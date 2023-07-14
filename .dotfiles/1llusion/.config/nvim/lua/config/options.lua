@@ -35,7 +35,7 @@ opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true -- Don't ignore case with capitals
 opt.smartindent = true -- Insert indents automatically
-opt.spell = true -- Enable spell check
+opt.spell = false -- Enable spell check
 opt.spelllang = { "en", "cjk" } -- Set languages: English and Chinese
 opt.spelloptions = "camel" -- Enable camel case
 opt.splitbelow = true -- Put new windows below current
@@ -51,8 +51,8 @@ opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 
 if vim.fn.has("nvim-0.9.0") == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess:append({ C = true })
+	opt.splitkeep = "screen"
+	opt.shortmess:append({ C = true })
 end
 
 -- Fix markdown indentation settings
