@@ -152,7 +152,7 @@ printf "Copying files to respective directories...\n"
 [ ! -d ~/.local/share/asciiart ] && mkdir -p ~/.local/share/asciiart
 
 cd 1llusion
-for rices in ~/1llusion/.dotfiles/xenon/config/bspwm/rices/*; do
+for rices in ~/1llusion/config/bspwm/rices/*; do
 	cp -R walls "${rices}"
 	if [ $? -eq 0 ]; then
 		printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
@@ -164,7 +164,7 @@ for rices in ~/1llusion/.dotfiles/xenon/config/bspwm/rices/*; do
 done
 cd
 
-for archivos in ~/1llusion/.dotfiles/xenon/config/*; do
+for archivos in ~/1llusion/config/*; do
 	cp -R "${archivos}" ~/.config/
 	if [ $? -eq 0 ]; then
 		printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
@@ -175,7 +175,7 @@ for archivos in ~/1llusion/.dotfiles/xenon/config/*; do
 	fi
 done
 
-for archivos in ~/1llusion/.dotfiles/xenon/misc/bin/*; do
+for archivos in ~/1llusion/misc/bin/*; do
 	cp -R "${archivos}" ~/.local/bin/
 	if [ $? -eq 0 ]; then
 		printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
@@ -186,7 +186,7 @@ for archivos in ~/1llusion/.dotfiles/xenon/misc/bin/*; do
 	fi
 done
 
-for archivos in ~/1llusion/.dotfiles/xenon/misc/applications/*; do
+for archivos in ~/1llusion/misc/applications/*; do
 	cp -R "${archivos}" ~/.local/share/applications/
 	if [ $? -eq 0 ]; then
 		printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
@@ -197,7 +197,7 @@ for archivos in ~/1llusion/.dotfiles/xenon/misc/applications/*; do
 	fi
 done
 
-for archivos in ~/1llusion/.dotfiles/xenon/misc/fonts/*; do
+for archivos in ~/1llusion/misc/fonts/*; do
 	cp -R "${archivos}" ~/.local/share/fonts/
 	if [ $? -eq 0 ]; then
 		printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
@@ -208,7 +208,7 @@ for archivos in ~/1llusion/.dotfiles/xenon/misc/fonts/*; do
 	fi
 done
 
-for archivos in ~/1llusion/.dotfiles/xenon/misc/asciiart/*; do
+for archivos in ~/1llusion/misc/asciiart/*; do
 	cp -R "${archivos}" ~/.local/share/asciiart/
 	if [ $? -eq 0 ]; then
 		printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
@@ -219,7 +219,7 @@ for archivos in ~/1llusion/.dotfiles/xenon/misc/asciiart/*; do
 	fi
 done
 
-for archivos in ~/1llusion/.dotfiles/xenon/misc/firefox/*; do
+for archivos in ~/1llusion/misc/firefox/*; do
 	cp -R "${archivos}" ~/.mozilla/firefox/*.default-release/
 	if [ $? -eq 0 ]; then
 		printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"

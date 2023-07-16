@@ -1,2 +1,0 @@
-# 1llusion
-My dotfiles
