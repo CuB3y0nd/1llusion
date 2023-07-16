@@ -151,6 +151,19 @@ printf "Copying files to respective directories...\n"
 [ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts
 [ ! -d ~/.local/share/asciiart ] && mkdir -p ~/.local/share/asciiart
 
+cd 1llusion
+for rices in ~/1llusion/.dotfiles/xenon/config/bspwm/rices/*; do
+	cp -R walls "${rices}"
+	if [ $? -eq 0 ]; then
+		printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+		sleep 1
+	else
+		printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+		sleep 1
+	fi
+done
+cd
+
 for archivos in ~/1llusion/.dotfiles/xenon/config/*; do
 	cp -R "${archivos}" ~/.config/
 	if [ $? -eq 0 ]; then
@@ -222,20 +235,33 @@ fc-cache -rv >/dev/null 2>&1
 printf "%s%sFiles copied succesfully!%s\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 3
 
-# Install yay & eww
+# Install yay & paru & eww
 
 logo "Install yay & eww"
 
 if ! command -v yay >/dev/null 2>&1; then
 	printf "%s%sInstalling yay...%s\n" "${BLD}" "${CBL}" "${CNC}"
+	cd
 	git clone https://aur.archlinux.org/yay-bin.git
 	cd yay-bin
-	makepkg -si
+	makepkg -si --noconfirm
+	cd
 	yay -Y --gendb
 	yay -Y --devel --save
 	yay -Syu --devel
 else
 	printf "\n%s%syay is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
+fi
+
+if ! command -v paru >/dev/null 2>&1; then
+	printf "%s%sInstalling paru...%s\n" "${BLD}" "${CBL}" "${CNC}"
+	cd
+	git clone https://aur.archlinux.org/paru-bin.git
+	cd paru-bin
+	makepkg -si --noconfirm
+	cd
+else
+	printf "%s%sparu is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
 
 if ! command -v eww >/dev/null 2>&1; then
