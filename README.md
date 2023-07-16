@@ -169,15 +169,15 @@ And more... You need to look sxhkdrc file for more.
 > This is step-by-step how to install these dotfiles. Just [R.T.F.M](https://en.wikipedia.org/wiki/RTFM).
 
 <b>Open a terminal in HOME</b>
-- **First download the installer**
+- **First download the install script**
 ```sh
-curl https://raw.githubusercontent.com/gh0stzk/dotfiles/master/RiceInstaller -o $HOME/RiceInstaller
+curl https://raw.githubusercontent.com/CuB3y0nd/1llusion/master/install -o $HOME/install
 ```
 - **Now give it execute permissions**
 ```sh
-chmod +x RiceInstaller
+chmod +x install
 ```
-- **Finally run the installer**
+- **Finally run the install script**
 ```sh
 ./install
 ```
