@@ -179,7 +179,7 @@ chmod +x RiceInstaller
 ```
 - **Finally run the installer**
 ```sh
-./RiceInstaller
+./install
 ```
 
 ## Troubleshooting & Tips
