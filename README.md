@@ -185,3 +185,9 @@ chmod +x RiceInstaller
 ## Troubleshooting & Tips
 
 > See the [Wiki]()
+
+## References
+
+- **gh0stzk's rices:** [dotfiles](https://github.com/gh0stzk/dotfiles/tree/master)
+- **LazyVim:** [LazyVim](https://github.com/LazyVim/LazyVim)
+- **ElKowars wacky widgets:** [eww](https://github.com/elkowar/eww)
