@@ -7,11 +7,11 @@ alt + F1
 	KeybindingsHelp
 	
 # Open Terminal (alacritty)
-super + Return
+alt + shift + Return
 	OpenApps --terminal
 	
 # Open floating Terminal
-super + alt + Return
+alt + shift + f
 	OpenApps --floating
 
 # Menu aplicaciones
@@ -23,15 +23,15 @@ alt + @space
 	RiceSelector
 
 # Scratchpad
-super + alt + o
+alt + shift + s
 	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch alacritty --class=scratch
 
 # Power off, Reboot, Log out, Lockscreen, kill an app
-ctrl + super + alt + {p,r,q,l,k}
+ctrl + super + shift + {p,r,q,l,k}
 	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
 
 # Apps
-shift + alt + {b,g,n,p,r,t,w,m,v,k}
+alt + shift + {b,g,n,p,r,t,w,m,v,k}
 	{chromium, \
 	 geany, \
 	 thunar, \
@@ -48,7 +48,7 @@ super + {h,u}
 	HideBar {-h,-u}
 
 # Change transparency on focused window
-ctrl + alt {plus,minus,t}
+ctrl + shift + {plus,minus,t}
 	{picom-trans -c -o +3, picom-trans -c -o -1, picom-trans -c -d}
 
 # Screenshot Now
@@ -68,7 +68,7 @@ super + Escape
 	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
 
 # Random wallpaper
-super + alt + w
+super + shift + w
 	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
 
 #
@@ -76,7 +76,7 @@ super + alt + w
 #
 
 # Reload BSPWM
-super + alt + r
+super + r
 	bspc wm -r
 
 # close and kill
@@ -86,7 +86,7 @@ super + {_,shift + }q
 ####
 
 # rotate desktop
-super + r
+super + shift + r
 	bspc node @/ --rotate {90,-90}
 
 # Circulate the leaves of the tree
@@ -180,11 +180,11 @@ super + ctrl + shift + space
 #
 
 # expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
+super + ctrl + {h,j,k,l}
 	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
 
 # contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
+super + ctrl + shift + {h,j,k,l}
 	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
 
 # move a floating window
