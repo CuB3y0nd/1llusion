@@ -2,16 +2,16 @@
 
 FILE="$HOME/.cache/eww_andrea-sidebar.lock"
 CFG="$HOME/.config/bspwm/rices/"$RICETHEME"/arin/sidedar"
- 
+
 run_eww() {
 	eww --config "$CFG" open-many \
-			resources \
-			logout \
-			suspend \
-			lock \
-			reboot \
-			shutdown \
-			quotes
+		resources \
+		logout \
+		suspend \
+		lock \
+		reboot \
+		shutdown \
+		quotes
 }
 
 if [[ ! -f "$FILE" ]]; then

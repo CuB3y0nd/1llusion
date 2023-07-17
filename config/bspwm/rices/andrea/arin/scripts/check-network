@@ -3,7 +3,7 @@
 ID="$(ip link | awk '/state UP/ {print $2}')"
 SSID="$(iwgetid -r)"
 
-net_stat () {
+net_stat() {
 	if (ping -c 1 archlinux.org || ping -c 1 google.com) &>/dev/null; then
 		if [[ $ID == e* ]]; then
 			echo "Online"
@@ -14,13 +14,15 @@ net_stat () {
 		fi
 	else
 		echo "Offline"
-		echo "images/icons/system/no-wifi.png"	
+		echo "images/icons/system/no-wifi.png"
 	fi
 }
 
 case "$1" in
-	--stat)
-		net_stat | head -n1;;
-	--icon)
-		net_stat | tail -n1;;
+--stat)
+	net_stat | head -n1
+	;;
+--icon)
+	net_stat | tail -n1
+	;;
 esac

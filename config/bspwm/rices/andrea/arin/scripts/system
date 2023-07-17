@@ -7,27 +7,27 @@ close_eww() {
 }
 
 case "$1" in
-	--lock)
-		close_eww
-		physlock -d
-		;;
-	--logout)
-		close_eww
-		bspc quit
-		;;
-	--suspend)
-		close_eww
-		systemctl suspend
-		;;
-	--reboot)
-		close_eww
-		systemctl reboot
-		;;
-	--shutdown)
-		close_eww
-		systemctl poweroff
-		;;
-	*)
-		echo "error";;
+--lock)
+	close_eww
+	physlock -d
+	;;
+--logout)
+	close_eww
+	bspc quit
+	;;
+--suspend)
+	close_eww
+	systemctl suspend
+	;;
+--reboot)
+	close_eww
+	systemctl reboot
+	;;
+--shutdown)
+	close_eww
+	systemctl poweroff
+	;;
+*)
+	echo "error"
+	;;
 esac
-	
