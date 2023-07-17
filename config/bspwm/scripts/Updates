@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
+
 #  ╔═╗╦═╗╔═╗╦ ╦  ╦ ╦╔═╗╔╦╗╔═╗╔╦╗╔═╗╔═╗
 #  ╠═╣╠╦╝║  ╠═╣  ║ ║╠═╝ ║║╠═╣ ║ ║╣ ╚═╗
 #  ╩ ╩╩╚═╚═╝╩ ╩  ╚═╝╩  ═╩╝╩ ╩ ╩ ╚═╝╚═╝
-#	Script to check for new updates in arch and AUR. Copyright 2023 gh0stzk
-#   Author: z0mbi3
-#	url: https://github.com/gh0stzk
+# Script to check for new updates in arch and AUR
 
 get_total_updates() {
-	local total_updates=$(($(checkupdates 2>/dev/null | wc -l || echo 0) + $(paru -Qua 2>/dev/null | wc -l || echo 0)))
+  local total_updates=$(($(checkupdates 2>/dev/null | wc -l || echo 0) + $(yay -Qua 2>/dev/null | wc -l || echo 0))
 	echo "${total_updates:-0}"
 }
 
@@ -18,7 +17,7 @@ get_list_updates() {
 
 get_list_aur_updates() {
 	echo -e "\n\033[1m\033[34mAur updates available:\033[0m"
-	paru -Qua | sed 's/->/\x1b[32;1m\x1b[0m/g'
+	yay -Qua | sed 's/->/\x1b[32;1m\x1b[0m/g'
 }
 
 print_updates() {
@@ -34,7 +33,7 @@ print_updates() {
 }
 
 update_system() {
-	paru -Syu --nocombinedupgrade
+	yay -Syu --nocombinedupgrade
 }
 
 case "$1" in

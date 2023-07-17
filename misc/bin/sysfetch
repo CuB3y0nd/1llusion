@@ -21,7 +21,6 @@ CNC=$(tput sgr0)
 FULL=━
 EMPTY=━
 
-
 name=$USER
 host=$(uname -n)
 distro=$(uname -o | awk -F '"' '/PRETTY_NAME/ { print $2 }' /etc/os-release)
@@ -74,7 +73,6 @@ BAR=" ▓▒░"
 OUTT="$CBK$BAR$CRE$BAR$CGR$BAR$CYE$BAR$CBL$BAR$CMA$BAR$CCY$BAR$CWH$BAR$CNC"
 printf "%s%b\n\n" "$PADC" "$OUTT"
 
-
 # greetings
 printf "%s%b\n" "$PADC" "            Hi $CRE$CBD$name$CNC"
 printf "%s%b\n" "$PADC" "      Welcome to $CGR$CBD$host$CNC"
@@ -115,7 +113,7 @@ printf "   $CMA%-4s $CWH%-5s %-25s \n" " cpu" "$c_lvl%" "$(draw "$c_lvl" 15 35)"
 ram=$(free | awk '/Mem:/ {print int($3/$2 * 100.0)}')
 printf "%b" "$CNC" "$PADC"
 printf "   $CMA%-4s $CWH%-5s %-25s \n" " ram" "$ram%" "$(draw "$ram" 15 35)"
-    
+
 # hide the cursor and wait for user input
 tput civis
 read -n 1

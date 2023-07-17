@@ -7,13 +7,13 @@
 f=3 b=4
 
 for j in f b; do
-  for i in {0..7}; do
-    printf -v $j$i %b "\e[${!j}${i}m"
-  done
+	for i in {0..7}; do
+		printf -v $j$i %b "\e[${!j}${i}m"
+	done
 done
 
 for i in {0..7}; do
-    printf -v g$i %b "\e[9${i}m"
+	printf -v g$i %b "\e[9${i}m"
 done
 
 bd=$'\e[1m'
@@ -29,7 +29,7 @@ iv=$'\e[7m'
 # g0=bright black, g1=bright red, g2=bright green, g3=bright yellow,
 # g4=bright blue, g5=bright magneta, g6=bright cyan, f7=bright white
 
-cat << EOF
+cat <<EOF
 
   ${g3}                       ██████
   ${f1}           ████████    ${g3}██████
@@ -49,9 +49,3 @@ cat << EOF
   ${g0}██   ${f1}██████${rt}
   
 EOF
-
-
-
-
-
-

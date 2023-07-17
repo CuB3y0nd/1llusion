@@ -2,7 +2,7 @@
 #
 # Fire flower by Invader
 #
-# Depicts a fire flower featured in nintendo games. 
+# Depicts a fire flower featured in nintendo games.
 #
 # Author: rob o'leary
 
@@ -15,14 +15,14 @@ for j in f b; do
 done
 
 for i in {0..7}; do
-		printf -v g$i %b "\e[9${i}m"
+	printf -v g$i %b "\e[9${i}m"
 done
 
 bd=$'\e[1m'
 rt=$'\e[0m'
 iv=$'\e[7m'
 
-cat << EOF
+cat <<EOF
 
   $f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█
   $f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█
