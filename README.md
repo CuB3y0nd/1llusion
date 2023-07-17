@@ -150,14 +150,14 @@ Complementarily you can install [this extension](https://github.com/PonyLucky/gh
 - <code>alt + @space</code> Display menu to select theme selector.
 - <code>super + @space</code> Apps Menu.
 - <code>super + h </code> Hides bar/s <code>super + u</code> unhide bar/s
-- <code>super + Print</code> Takes screenshot.
+- <code>Print</code> Takes screenshot.
 - <code>ctrl + alt {plus,minus,t}</code> Changes transparency on focused window.
-- <code>ctrl + super + alt + p</code> Power off computer. <code>ctrl + super + alt + r</code> Restart computer.
-- <code>super + Return</code> Open a terminal.
-- <code>super + Alt + Return</code> Open a floating terminal.
-- <code>ctrl + super + alt + k</code> Brute Kill a window/process.
-- <code>super + alt + w</code> Changes randomly wallpaper.
-- <code>super + alt + r</code> Restart bspwm.
+- <code>ctrl + super + shift + p</code> Power off computer. <code>ctrl + super + shift + r</code> Restart computer.
+- <code>alt + shift + Return</code> Open a terminal.
+- <code>alt + f</code> Open a floating terminal.
+- <code>super + {_,shift + }q</code> Brute Kill a window/process.
+- <code>alt + w</code> Changes randomly wallpaper.
+- <code>alt + r</code> Restart bspwm.
 
 And more... You need to look sxhkdrc file for more.
 
