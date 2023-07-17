@@ -9,7 +9,7 @@ check_if_empty() {
 }
 
 KEY="8b05d62206f459e1d298cbe5844d7d87"
-CITY="Shanghai City"
+CITY="Shanghai"
 CITYN=$(encode_to_url_format "$CITY")
 UNITS="metric" # Available "metric" "imperial"
 WEATHER=$(curl -sf "api.openweathermap.org/data/2.5/weather?q=$CITYN&appid=$KEY&units=$UNITS")

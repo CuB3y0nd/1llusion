@@ -32,7 +32,7 @@ ctrl + super + alt + {p,r,q,l,k}
 
 # Apps
 shift + alt + {b,g,n,p,r,t,w,m,v,k}
-	{firefox, \
+	{chromium, \
 	 geany, \
 	 thunar, \
 	 pavucontrol, \
