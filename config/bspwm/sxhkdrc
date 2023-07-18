@@ -31,17 +31,17 @@ ctrl + super + shift + {p,r,q,l,k}
 	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
 
 # Apps
-alt + shift + {b,g,n,p,r,t,w,m,v,k}
+super + shift + {b,n,p,r,t,m,e}
 	{chromium, \
-	 geany, \
-	 thunar, \
-	 pavucontrol, \
-	 OpenApps --ranger, \
-	 telegram-desktop, \
-	 whatsapp-nativefier --disable-gpu, \
-	 env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --disable-gpu --no-zygote %U, \
-	 OpenApps --nvim, \
-	 OpenApps --music}
+   thunar, \
+   pavucontrol, \
+   OpenApps --ranger, \
+   telegram-desktop, \
+   env DESKTOPINTEGRATION=no /opt/appimages/listen1.AppImage --no-sandbox, \
+   OpenApps --nvim
+   #OpenApps --music, \
+   #whatsapp-nativefier --disable-gpu, \
+	 #env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --disable-gpu --no-zygote %U, \}
 
 # Hide/Show Bar (Polybar and/or eww)
 super + {h,u}
@@ -86,7 +86,7 @@ super + {_,shift + }q
 ####
 
 # rotate desktop
-super + shift + r
+super + ctrl + r
 	bspc node @/ --rotate {90,-90}
 
 # Circulate the leaves of the tree
