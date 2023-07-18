@@ -235,7 +235,7 @@ fc-cache -rv >/dev/null 2>&1
 printf "%s%sFiles copied succesfully!%s\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 3
 
-# Install yay & paru & eww
+# Install yay & eww
 
 logo "Install yay & eww"
 
@@ -251,17 +251,6 @@ if ! command -v yay >/dev/null 2>&1; then
 	yay -Syu --devel
 else
 	printf "\n%s%syay is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
-fi
-
-if ! command -v paru >/dev/null 2>&1; then
-	printf "%s%sInstalling paru...%s\n" "${BLD}" "${CBL}" "${CNC}"
-	cd
-	git clone https://aur.archlinux.org/paru-bin.git
-	cd paru-bin
-	makepkg -si --noconfirm
-	cd
-else
-	printf "%s%sparu is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
 
 if ! command -v eww >/dev/null 2>&1; then
