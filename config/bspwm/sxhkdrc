@@ -2,19 +2,19 @@
 #  ╚═╗╔╩╦╝╠═╣╠╩╗ ║║╠╦╝║  
 #  ╚═╝╩ ╚═╩ ╩╩ ╩═╩╝╩╚═╚═╝
 
-# Show keybindings help
+#
+# User
+#
+
+# Show Keybindings Help
 alt + F1
 	KeybindingsHelp
-	
-# Open Terminal (alacritty)
-alt + shift + Return
-	OpenApps --terminal
-	
-# Open floating Terminal
-alt + shift + f
-	OpenApps --floating
 
-# Menu aplicaciones
+# Reload Keybindings
+super + Escape
+	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
+
+# Applicacion Menu
 super + @space
 	OpenApps --menu
 
@@ -22,15 +22,23 @@ super + @space
 alt + @space
 	RiceSelector
 
-# Scratchpad
+# Open Terminal (alacritty)
+alt + shift + Return
+	OpenApps --terminal
+	
+# Open Floating Terminal
+alt + shift + f
+	OpenApps --floating
+
+# Open Scratchpad Terminal
 alt + shift + s
 	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch alacritty --class=scratch
 
-# Power off, Reboot, Log out, Lockscreen, kill an app
+# Power off, Reboot, Log out, Lockscreen, Select an App/Process to kill
 ctrl + super + shift + {p,r,q,l,k}
 	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
 
-# Apps
+# Chromium, Thunar, Pavucontrol, Ranger, Telegram, Listen1, 1llusion
 super + shift + {b,n,p,r,t,m,e}
 	{chromium, \
    thunar, \
@@ -55,7 +63,7 @@ ctrl + shift + {plus,minus,t}
 Print
 	ScreenShoTer --now
 
-# Screenshot Select
+# Select an area screenshot
 ctrl + Print
 	ScreenShoTer --sel
 
@@ -63,33 +71,27 @@ ctrl + Print
 alt + Print
 	ScreenShoTer --in10
 
-# Reload sxhkd
-super + Escape
-	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
-
-# Random wallpaper
+# Random Wallpaper
 super + shift + w
 	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
 
 #
-# bspwm hotkeys
+# BSPWM
 #
 
 # Reload BSPWM
 super + r
 	bspc wm -r
 
-# close and kill
+# Close and Kill
 super + {_,shift + }q
 	bspc node -{c,k}
 
-####
-
-# rotate desktop
+# Rotate App
 super + ctrl + r
 	bspc node @/ --rotate {90,-90}
 
-# Circulate the leaves of the tree
+# Circulate switch window in nodes
 super + c
 	bspc node @/ --circulate {backward,forward}
 
@@ -101,20 +103,20 @@ super + equal
 super + minus
 	bspc node @/ --balance
 
-# alternate between the tiled and monocle layout
+# Alternate between the Tiled and Monocle layout
 super + m
 	bspc desktop -l next
 
-# swap the current node and the biggest node
+# Swap in the current node and the biggest node
 super + g
 	bspc node -s biggest
 
-# set the window state
+# Set the window state
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# set the node flags
-ctrl + alt {m,x,s,p,i}
+# Set the node flags
+ctrl + alt + {m,x,s,p,i}
 	bspc node -g {marked,locked,sticky,private,hidden}
 
 # Focused desktop window gaps scroll
@@ -125,77 +127,77 @@ super + button{4,5}
 super + alt + button{4,5}
 	bspc config window_gap $(( $(bspc config window_gap) {-,+} 5 ))
 
-# focus the node in the given direction
+# Focus the node in the given direction
 super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
+# Focus the node for the given path jump
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous node in the current desktop
+# Focus the Next/Previous node in the current desktop
 alt + {_,shift + }Tab
 	bspc node -f {next,prev}.local
 
-# focus the next/previous desktop in the current monitor
+# Focus the Next/Previous desktop in the current monitor
 super + alt + {Left,Right}
 	bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
+# Focus the last Node/Desktop
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
+# Focus the older or newer node in the focus history
 super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
+# Focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
-# preselect
+# Preselect
 #
 
-# preselect the direction
+# Preselect the direction
 super + ctrl + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
 
-# preselect the ratio
+# Preselect the ratio
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-# cancel the preselection for the focused node
+# Cancel the preselection for the focused node
 super + ctrl + space
 	bspc node -p cancel
 
-# cancel the preselection for the focused desktop
+# Cancel the preselection for the focused desktop
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
-# move/resize
+# Move/Resize
 #
 
-# expand a window by moving one of its side outward
+# Expand a window by moving one of its side outward
 super + ctrl + {h,j,k,l}
 	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
 
-# contract a window by moving one of its side inward
+# Contract a window by moving one of its side inward
 super + ctrl + shift + {h,j,k,l}
 	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
 
-# move a floating window
-alt + shift {Left,Down,Up,Right}
+# Move a floating window
+alt + shift + {Left,Down,Up,Right}
 	bspc node -v {-10 0,0 10,0 -10,10 0}
 
-# Manage brightness
+# Manage Brightness
 XF86MonBrightness{Up,Down}
     sh Brightness {up,down}
 
-# Volume control
+# Volume Control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	Volume{ --inc, --dec, --toggle}
 
