@@ -8,7 +8,8 @@
 
 ## :book: WIKI
 
-In progressing
+This [wiki](https://github.com/CuB3y0nd/1llusion/wiki) only include the key mappings for now
+If you want get more information, create issue let me know
 
 https://user-images.githubusercontent.com/67278339/211363959-9182ecb7-e56e-4598-afed-f352c5d2979e.mp4
 
@@ -182,9 +183,9 @@ chmod +x install
 ./install
 ```
 
-## Troubleshooting & Tips
+## More information about key mappings
 
-> See the [Wiki]()
+> See the [Wiki](https://github.com/CuB3y0nd/1llusion/wiki)
 
 ## References
 
