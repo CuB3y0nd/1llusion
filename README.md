@@ -9,7 +9,7 @@
 ## :book: WIKI
 
 This [wiki](https://github.com/CuB3y0nd/1llusion/wiki) only include the key mappings for now
-If you want get more information, create issue let me know
+> If you want get more information, create issue let me know
 
 https://user-images.githubusercontent.com/67278339/211363959-9182ecb7-e56e-4598-afed-f352c5d2979e.mp4
 
