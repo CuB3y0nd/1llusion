@@ -22,6 +22,14 @@ super + @space
 alt + @space
 	RiceSelector
 
+# Get Updates
+alt + u
+  OpenApps --update
+
+# Check Updates
+ctrl + alt + u
+  OpenApps --checkupdates
+
 # Open Terminal (alacritty)
 alt + shift + Return
 	OpenApps --terminal
