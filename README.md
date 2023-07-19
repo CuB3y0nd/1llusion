@@ -185,7 +185,7 @@ chmod +x install
 
 ## More information about key mappings
 
-> See the [Wiki](https://github.com/CuB3y0nd/1llusion/wiki)
+> See the [wiki](https://github.com/CuB3y0nd/1llusion/wiki)
 
 ## References
 
