@@ -47,7 +47,7 @@ main() {
 		eval "$consequences"
 		[ "$state" ] || echo "state=pseudo_tiled desktop=^2 rectangle=966x576+0+0 follow=on"
 		;;
-	Chromium | Navigator)
+	firefox | Navigator)
 		eval "$consequences"
 		[ "$state" ] || echo "desktop=^3 follow=on"
 		;;
