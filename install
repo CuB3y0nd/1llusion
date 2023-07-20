@@ -51,7 +51,7 @@ logo "Install needed packages"
 dependencias=(base-devel rustup pacman-contrib bspwm polybar sxhkd
 	alacritty brightnessctl dunst rofi lsd
 	jq polkit-gnome git playerctl mpd python-pip python-pynvim nodejs npm
-	ncmpcpp geany ranger mpc picom xdotool
+	ncmpcpp ranger mpc picom xdotool
 	feh ueberzug maim pamixer libwebp xdg-user-dirs
 	webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme
 	ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels
