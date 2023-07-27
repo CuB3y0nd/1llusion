@@ -297,7 +297,7 @@ if [[ $SHELL != "/usr/bin/zsh" ]]; then
 	echo "Changing shell to zsh... Your root password is needed:"
 	chsh -s /usr/bin/zsh
 else
-	printf "%s%sYour shell is already change to zsh successfully!\n
+	printf "%s%sYour shell is already changed to zsh successfully!\n
 Good bye! Installation finished, now reboot your computer and enjoy!%s\n" "${BLD}" "${CGR}" "${CNC}"
 	zsh
 fi
