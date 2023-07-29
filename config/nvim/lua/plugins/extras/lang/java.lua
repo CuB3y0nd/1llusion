@@ -92,7 +92,7 @@ return {
 								})
 							end
 							local jdtls_base_config = {
-								on_attach = require("lazyvim.util").on_attach(function(client, buffer)
+								on_attach = require("util").on_attach(function(client, buffer)
 									if mason_registry.has_package("java-test") then
 										-- custom keymaps for Java test runner (not yet compatible with neotest)
 										vim.keymap.set("n", "<leader>tT", function()
@@ -118,7 +118,7 @@ return {
 									bundles = bundles,
 								},
 							}
-							local jdtls_opts = require("lazyvim.util").opts("nvim-jdtls")
+							local jdtls_opts = require("util").opts("nvim-jdtls")
 							require("jdtls").start_or_attach(
 								vim.tbl_deep_extend("force", jdtls_opts or {}, jdtls_base_config)
 							)
