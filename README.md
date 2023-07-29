@@ -43,9 +43,9 @@ Here are some details about my setup:
 
 * **Theme Selector:** <code>Alt + Space bar</code> to launch it.
 
-* **Random wallpaper:**  Every time you switch between rices or reload bspwm with <code>super + alt + r</code> a new wallpaper is set depending on the rice you are on.
+* **Random wallpaper:**  Every time you switch between rices or reload bspwm with <code>Space + r</code> a new wallpaper is set depending on the rice you are on.
 
-* **Wallpaper Changer** <code>Super + Alt + w</code> changes bethween different wallpapers in the actual rice.
+* **Wallpaper Changer** <code>Super + Shift + w</code> changes between different wallpapers in the actual rice.
 
 * **Hide / Unhide Bar:** If you need, you can hide bars!
 
