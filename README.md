@@ -11,6 +11,8 @@
 This [wiki](https://github.com/CuB3y0nd/1llusion/wiki) only include the key mappings for now
 > If you want get more information, create issue let me know
 
+I wrote a tutorial about the installation of Arch Linux dual boot + dotfile usage, you can see [Arch Linux 双系统 + Bspwm 配置小记](https://www.cubeyond.net/archlinux-dualboot-and-bspwm-configure/)
+
 https://user-images.githubusercontent.com/67278339/211363959-9182ecb7-e56e-4598-afed-f352c5d2979e.mp4
 
 ## Info
@@ -137,7 +139,7 @@ Increase and decrease transparency in focused or selected window.
 ## Neovim themes
 
 > Actually the neovim theme is catppuccin, but the background will adapt to the colorscheme in the rice you are. Now is configured in "lua". I wanna keepit simple so there are a few plugins.
-
+>
 > The plugin manager is lazy.nvim
 
 ## Firefox Theme (z0mbi3 Fox)
@@ -185,7 +187,7 @@ chmod +x install
 
 ## More information about key mappings
 
-> See the [wiki](https://github.com/CuB3y0nd/1llusion/wiki)
+See the [wiki](https://github.com/CuB3y0nd/1llusion/wiki)
 
 ## References
 
