@@ -49,7 +49,7 @@ clear
 logo "Install needed packages"
 
 dependencias=(base-devel rustup pacman-contrib bspwm polybar sxhkd
-	alacritty brightnessctl dunst rofi lsd
+	alacritty brightnessctl dunst rofi lsd lxappearance nitrogen pavucontrol
 	jq polkit-gnome git playerctl mpd xclip
 	python-pip python-pynvim nodejs npm
 	ncmpcpp ranger mpc picom xdotool
