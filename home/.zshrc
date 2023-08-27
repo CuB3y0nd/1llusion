@@ -88,6 +88,7 @@ PS1='λ %B%F{red}%~/ %f%b${vcs_info_msg_0_}'
 #  ├─┘│  │ ││ ┬││││└─┐
 #  ┴  ┴─┘└─┘└─┘┴┘└┘└─┘
 
+source ~/.zsh/plugins/zsh-sudo/sudo.plugin.zsh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -131,8 +132,22 @@ alias musica="ncmpcpp"
 alias ls='lsd -a --group-directories-first'
 alias ll='lsd -la --group-directories-first'
 
+# SWITCH GPU
+
+alias gpu-mode='optimus-manager --print-mode'
+alias nvidia='optimus-manager --switch nvidia'
+
+# PWN
+
+alias checkaslr='cat /proc/sys/kernel/randomize_va_space'
+alias aslron='echo 2 | sudo tee /proc/sys/kernel/randomize_va_space'
+alias aslrhalf='echo 1 | sudo tee /proc/sys/kernel/randomize_va_space'
+alias aslroff='echo 0 | sudo tee /proc/sys/kernel/randomize_va_space'
+
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │ 
 #  ┴ ┴└─┘ ┴ └─┘  └─┘ ┴ ┴ ┴┴└─ ┴ 
 
 $HOME/.local/bin/colorscript -r
+
+export BAT_THEME="Coldark-Dark"
