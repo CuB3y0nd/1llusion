@@ -17,7 +17,7 @@ end
 
 ---@param plugin string
 function M.has(plugin)
-	return require("lazy.core.config").plugins[plugin] ~= nil
+	return require("lazy.core.config").spec.plugins[plugin] ~= nil
 end
 
 function M.fg(name)
@@ -93,7 +93,7 @@ function M.get_root()
 end
 
 -- this will return a function that calls telescope.
--- cwd will default to lazyvim.util.get_root
+-- cwd will default to util.get_root
 -- for `files`, git_files or find_files will be chosen depending on .git
 function M.telescope(builtin, opts)
 	local params = { builtin = builtin, opts = opts }
@@ -275,6 +275,27 @@ function M.lsp_disable(server, cond)
 			end
 		end
 	)
+end
+
+---@param name string
+---@param fn fun(name:string)
+function M.on_load(name, fn)
+	local Config = require("lazy.core.config")
+	if Config.plugins[name] and Config.plugins[name]._.loaded then
+		vim.schedule(function()
+			fn(name)
+		end)
+	else
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "LazyLoad",
+			callback = function(event)
+				if event.data == name then
+					fn(name)
+					return true
+				end
+			end,
+		})
+	end
 end
 
 return M

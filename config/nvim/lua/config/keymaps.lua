@@ -1,4 +1,4 @@
--- This file is automatically loaded by init.lua
+-- This file is automatically loaded by lazyvim.config.init
 local Util = require("util")
 
 local function map(mode, lhs, rhs, opts)
@@ -66,8 +66,6 @@ map(
 	{ desc = "Redraw / clear hlsearch / diff update" }
 )
 
-map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
-
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
@@ -82,14 +80,17 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- save file
-map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
+--keywordprg
+map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- lazy
-map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -112,8 +113,8 @@ map("n", "<leader>ul", function() Util.toggle_number() end, { desc = "Toggle Lin
 map("n", "<leader>ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 map("n", "<leader>uc", function() Util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
-if vim.lsp.buf.inlay_hint then
-  map("n", "<leader>uh", function() vim.lsp.buf.inlay_hint(0, nil) end, { desc = "Toggle Inlay Hints" })
+if vim.lsp.inlay_hint then
+  map("n", "<leader>uh", function() vim.lsp.inlay_hint(0, nil) end, { desc = "Toggle Inlay Hints" })
 end
 
 -- lazygit
@@ -127,7 +128,6 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 if vim.fn.has("nvim-0.9.0") == 1 then
   map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 end
-
 -- floating terminal
 local lazyterm = function() Util.float_term(nil, { cwd = Util.get_root() }) end
 map("n", "<leader>ft", lazyterm, { desc = "Terminal (root dir)" })
