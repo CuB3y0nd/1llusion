@@ -172,8 +172,7 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
-			-- char = "▏",
-			char = "│",
+			indent = { char = "│" },
 			filetype_exclude = {
 				"help",
 				"alpha",
@@ -191,6 +190,7 @@ return {
 			show_current_context_start = false,
 			colored_indent_levels = false,
 		},
+		main = "ibl",
 	},
 
 	-- active indent guide and indent text objects
