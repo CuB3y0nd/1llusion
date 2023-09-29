@@ -54,7 +54,6 @@ return {
 			-- LSP Server Settings
 			---@type lspconfig.options
 			servers = {
-				jsonls = {},
 				lua_ls = {
 					-- mason = false, -- set to false if you don't want this server to be installed with mason
 					-- Use this to add any additional keymaps
@@ -170,7 +169,7 @@ return {
 				require("lspconfig")[server].setup(server_opts)
 			end
 
-			-- get all the servers that are available thourgh mason-lspconfig
+			-- get all the servers that are available through mason-lspconfig
 			local have_mason, mlsp = pcall(require, "mason-lspconfig")
 			local all_mslp_servers = {}
 			if have_mason then
@@ -233,19 +232,9 @@ return {
 		build = ":MasonUpdate",
 		opts = {
 			ensure_installed = {
-				"asm-lsp",
-				"clangd",
-				"clang-format",
-				"cmakelang",
-				"cmake-language-server",
-				"jdtls",
-				"java-debug-adapter",
-				"java-test",
-				"python-lsp-server",
-				"shellcheck",
-				"shfmt",
 				"stylua",
-				"flake8",
+				"shfmt",
+				-- "flake8",
 			},
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
