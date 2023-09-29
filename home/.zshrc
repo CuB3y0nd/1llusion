@@ -129,8 +129,8 @@ alias vm-off="sudo systemctl stop libvirtd.service"
 
 alias musica="ncmpcpp"
 
-alias ll='exa -algF --group-directories-first --octal-permissions --git'
-alias lld='exa -algFD --group-directories-first --octal-permissions --git'
+alias ll='eza -algF --group-directories-first --octal-permissions --git'
+alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 
 # SWITCH GPU
 
