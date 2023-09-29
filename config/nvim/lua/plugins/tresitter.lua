@@ -32,6 +32,7 @@ return {
 				"cpp",
 				"html",
 				"javascript",
+				"jsdoc",
 				"json",
 				"lua",
 				"luadoc",
