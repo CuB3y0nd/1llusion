@@ -51,8 +51,14 @@ return {
 				local codelldb = mason_registry.get_package("codelldb")
 				local extension_path = codelldb:get_install_path() .. "/extension/"
 				local codelldb_path = extension_path .. "adapter/codelldb"
-				local liblldb_path = vim.fn.has("mac") == 1 and extension_path .. "lldb/lib/liblldb.dylib"
-					or extension_path .. "lldb/lib/liblldb.so"
+				local liblldb_path = ""
+				if vim.loop.os_uname().sysname:find("Windows") then
+					liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+				elseif vim.fn.has("mac") == 1 then
+					liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+				else
+					liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+				end
 				adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
 			end
 			return {
@@ -129,7 +135,7 @@ return {
 			},
 			setup = {
 				rust_analyzer = function(_, opts)
-					local rust_tools_opts = require("lazyvim.util").opts("rust-tools.nvim")
+					local rust_tools_opts = require("util").opts("rust-tools.nvim")
 					require("rust-tools").setup(vim.tbl_deep_extend("force", rust_tools_opts or {}, { server = opts }))
 					return true
 				end,
