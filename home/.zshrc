@@ -132,6 +132,9 @@ alias musica="ncmpcpp"
 alias ll='eza -algF --group-directories-first --octal-permissions --git'
 alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 
+alias http_proxy='export http_proxy=socks5://127.0.0.1:7890'
+alias https_proxy='export https_proxy=socks5://127.0.0.1:7890'
+
 # SWITCH GPU
 
 alias gpu-mode='optimus-manager --print-mode'
