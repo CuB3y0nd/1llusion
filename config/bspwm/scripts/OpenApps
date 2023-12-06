@@ -47,9 +47,6 @@ case "$1" in
 --browser)
 	firefox
 	;;
---editor)
-	geany
-	;;
 --telegram)
 	telegram-desktop
 	;;

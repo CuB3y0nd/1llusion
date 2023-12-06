@@ -22,6 +22,10 @@ super + @space
 alt + @space
 	RiceSelector
 
+# jgmenu
+~button3
+  xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/scripts/menu.txt --config-file=~/.config/bspwm/jgmenurc
+
 # Get Updates
 alt + u
   OpenApps --update
@@ -46,26 +50,21 @@ alt + shift + s
 ctrl + super + shift + {p,r,q,l,k}
 	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
 
-# Firefox, Thunar, Pavucontrol, Ranger, Telegram, Listen1, 1llusion
-super + shift + {b,n,p,r,t,m,e}
-	{firefox, \
-   thunar, \
-   pavucontrol, \
-   OpenApps --ranger, \
-   telegram-desktop, \
-   env DESKTOPINTEGRATION=no /opt/appimages/listen1.AppImage --no-sandbox, \
-   OpenApps --nvim
-   #OpenApps --music, \
-   #whatsapp-nativefier --disable-gpu, \
-	 #env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --disable-gpu --no-zygote %U, \}
+# Apps (browser, editor, filemanager)
+shift + alt + {b,t,p}
+	OpenApps {--browser,--filemanager,--soundcontrol}
+
+# Terminal apps (ranger, nvim, ncmpcpp)
+shift + alt + {r,n,k}
+	OpenApps {--ranger,--nvim,--music}
 
 # Hide/Show Bar (Polybar and/or eww)
 super + {h,u}
 	HideBar {-h,-u}
 
 # Change transparency on focused window
-ctrl + shift + {plus,minus,t}
-	{picom-trans -c -o +3, picom-trans -c -o -1, picom-trans -c -d}
+ctrl + alt + {plus,minus,t}
+	picom-trans {-c -o +3,-c -o -1,-c -d}
 
 # Screenshot Now
 Print
@@ -165,6 +164,10 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
+# Hide/Unhide Window
+ctrl + alt + h
+	BspHideNode
+
 #
 # Preselect
 #
@@ -189,12 +192,12 @@ super + ctrl + shift + space
 # Move/Resize
 #
 
-# Expand a window by moving one of its side outward
-super + ctrl + {h,j,k,l}
+# Expand a window
+super + alt + {Left,Down,Up,Right}
 	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
 
-# Contract a window by moving one of its side inward
-super + ctrl + shift + {h,j,k,l}
+# Contract a window
+super + alt + shift + {Left,Down,Up,Right}
 	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
 
 # Move a floating window
