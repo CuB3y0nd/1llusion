@@ -21,7 +21,6 @@ if [ "$(id -u)" = 0 ]; then
 fi
 
 # Welcome
-
 logo "Welcome!"
 printf '%s%sThis script will check if you have the necessary dependencies,
 and if not, it will install them. Then, it will clone the RICE
@@ -44,15 +43,13 @@ while true; do
 done
 clear
 
-# Install packages
-
+# Install required packages
 logo "Install needed packages"
-
 dependencias=(base-devel rustup pacman-contrib bspwm polybar sxhkd
-	alacritty brightnessctl dunst rofi lsd lxappearance nitrogen pavucontrol
+	alacritty brightnessctl dunst rofi lsd stalonetray lxappearance nitrogen pavucontrol
 	jq polkit-gnome git playerctl mpd xclip
 	python-pip python-pynvim nodejs npm
-	ncmpcpp ranger mpc picom xdotool
+	ncmpcpp ranger mpc picom xdo xdotool jgmenu
 	feh ueberzug maim pamixer libwebp xdg-user-dirs
 	webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme
 	ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels
@@ -78,19 +75,15 @@ sleep 3
 clear
 
 # Prepar Folders
-
 logo "Prepar Folders"
 if [ ! -e $HOME/.config/user-dirs.dirs ]; then
 	xdg-user-dirs-update
 	echo "Creating xdg-user-dirs..."
-else
-	echo "user-dirs.dirs is already exists!"
 fi
 sleep 2
 clear
 
 # Clone the Rice
-
 logo "Download dotfiles"
 [ -d ~/1llusion ] && rm -rf ~/1llusion
 printf "Cloning rice from https://github.com/CuB3y0nd/1llusion...\n"
@@ -100,7 +93,6 @@ sleep 2
 clear
 
 # Backup files
-
 logo "Backup files"
 printf "Backup files will be stored in %s%s%s/.backup%s \n\n" "${BLD}" "${CRE}" "$HOME" "${CNC}"
 sleep 10
@@ -142,7 +134,6 @@ printf "%s%sDone.%s\n\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 5
 
 # Copy the Rice
-
 logo "Import dotfiles"
 printf "Copying files to respective directories...\n"
 
@@ -236,7 +227,6 @@ fc-cache -rv >/dev/null 2>&1
 printf "%s%sFiles copied succesfully!%s\n" "${BLD}" "${CGR}" "${CNC}"
 
 # Zsh plugins
-
 mkdir -p ~/.zsh/plugins/
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -P ~/.zsh/plugins/zsh-sudo
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh/plugins/zsh-autosuggestions
@@ -246,30 +236,34 @@ printf "%s%sZsh plugins install succesfully!%s\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 3
 
 # Install yay & eww
-
 logo "Install yay & eww"
 
 if ! command -v yay >/dev/null 2>&1; then
 	printf "%s%sInstalling yay...%s\n" "${BLD}" "${CBL}" "${CNC}"
+	pacman -S --needed git base-devel
 	cd
 	git clone https://aur.archlinux.org/yay-bin.git
 	cd yay-bin
 	makepkg -si --noconfirm
 	cd
 	yay -Y --gendb
-	yay -Y --devel --save
 	yay -Syu --devel
+	yay -Y --devel --save
 else
 	printf "\n%s%syay is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
 
 if ! command -v eww >/dev/null 2>&1; then
 	printf "\n%s%sInstalling eww... This could take 10 mins or more!%s\n" "${BLD}" "${CBL}" "${CNC}"
-	curl -sS https://github.com/elkowar.gpg | gpg --import -i -
-	curl -sS https://github.com/web-flow.gpg | gpg --import -i -
-	yay -S eww --noconfirm
-	rm -rf {.cargo,.rustup}
-	rm -rf $HOME/.cache/yay/eww
+	sudo pacman -S rustup --noconfirm
+	cd
+	git clone https://github.com/elkowar/eww.git
+	cd eww
+	cargo build --release --no-default-features --features x11
+	sudo install -m 755 "$HOME/eww/target/release/eww" -t /usr/bin/
+	cd
+	rm -rf {.cargo,.rustup,eww}
+	rm -rf $HOME/.cache/yay/*
 else
 	printf "\n%s%seww is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
@@ -282,26 +276,36 @@ else
 	printf "\n%s%sTdrop is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
 
-# Enable MPD service
+# Intall xqp
+if ! command -v xqp >/dev/null 2>&1; then
+	printf "\n%s%sInstalling xqp...%s\n" "${BLD}" "${CBL}" "${CNC}"
+	yay -S xqp --noconfirm
+else
+	printf "\n%s%sxqp is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
+fi
 
+# Enable MPD service
 logo "Enable MPD service"
 
-systemctl --user enable mpd.service
-systemctl --user start mpd.service
+if systemctl is-enabled --quiet mpd.service; then
+	printf "\n%s%sDisabling and stopping the global mpd service%s\n" "${BLD}" "${CBL}" "${CNC}"
+	sudo systemctl stop mpd.service
+	sudo systemctl disable mpd.service
+fi
+
+printf "\n%s%sEnabling and starting the user-level mpd service%s\n" "${BLD}" "${CYE}" "${CNC}"
+systemctl --user enable --now mpd.service
+
 printf "%s%sDone.%s\n\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 2
 
 # Change the shell to zsh
-
 logo "Change the default shell to zsh"
-printf "%s%sIf your shell is not zsh, will be changed now.\n
-Your root password is needed to make the change.\n\n
-After that is important for you to reboot!\n %s\n" "${BLD}" "${CYE}" "${CNC}"
 if [[ $SHELL != "/usr/bin/zsh" ]]; then
-	echo "Changing shell to zsh... Your root password is needed:"
+	echo "Changing your shell to zsh... Your root password is needed:"
 	chsh -s /usr/bin/zsh
 else
-	printf "%s%sYour shell is already changed to zsh successfully!\n
-Good bye! Installation finished, now reboot your computer and enjoy!%s\n" "${BLD}" "${CGR}" "${CNC}"
+	printf "%s%sYour shell is already changed to zsh!\n
+Good bye! Installation finished, now please reboot your computer and enjoy!%s\n" "${BLD}" "${CGR}" "${CNC}"
 	zsh
 fi

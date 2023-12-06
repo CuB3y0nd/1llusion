@@ -6,6 +6,7 @@
 #  └┐┌┘├─┤├┬┘└─┐
 #   └┘ ┴ ┴┴└─└─┘
 
+export VISUAL="${EDITOR}"
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="chromium"
@@ -132,8 +133,8 @@ alias musica="ncmpcpp"
 alias ll='eza -algF --group-directories-first --octal-permissions --git'
 alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 
-alias http_proxy='export http_proxy=socks5://127.0.0.1:7890'
-alias https_proxy='export https_proxy=socks5://127.0.0.1:7890'
+alias set-proxy='export ALL_PROXY=socks5://127.0.0.1:1080'
+alias unset-proxy='unset ALL_PROXY'
 
 # SWITCH GPU
 
@@ -146,6 +147,11 @@ alias checkaslr='cat /proc/sys/kernel/randomize_va_space'
 alias aslron='echo 2 | sudo tee /proc/sys/kernel/randomize_va_space'
 alias aslrhalf='echo 1 | sudo tee /proc/sys/kernel/randomize_va_space'
 alias aslroff='echo 0 | sudo tee /proc/sys/kernel/randomize_va_space'
+
+# Applications
+
+alias discord='discord --proxy-server="socks5://127.0.0.1:1080"'
+alias element='element-desktop --proxy-server="socks5://127.0.0.1:1080"'
 
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │ 

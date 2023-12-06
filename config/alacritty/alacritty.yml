@@ -1,3 +1,6 @@
+#  ╔═╗╦  ╔═╗╔═╗╦═╗╦╔╦╗╔╦╗╦ ╦  ╔═╗╔═╗╔╗╔╔═╗╦╔═╗
+#  ╠═╣║  ╠═╣║  ╠╦╝║ ║  ║ ╚╦╝  ║  ║ ║║║║╠╣ ║║ ╦
+#  ╩ ╩╩═╝╩ ╩╚═╝╩╚═╩ ╩  ╩  ╩   ╚═╝╚═╝╝╚╝╚  ╩╚═╝
 #  General configuration
 
 import:
@@ -24,7 +27,7 @@ cursor:
   style:
     shape: Block
     blinking: On
-    
+
   unfocused_hollow: false 
   blink_interval: 550
 

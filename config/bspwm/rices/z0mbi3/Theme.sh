@@ -15,23 +15,20 @@ set_bspwm_config() {
 	bspc config border_width 0
 	bspc config top_padding 3
 	bspc config bottom_padding 2
+	bspc config left_padding 79
+	bspc config right_padding 2
 	bspc config normal_border_color "#3d414f"
 	bspc config active_border_color "#3d414f"
 	bspc config focused_border_color "#3d414f"
 	bspc config presel_feedback_color "#90ceaa"
-	bspc config left_padding 79
-	bspc config right_padding 2
-	bspc config window_gap 6
 }
 
-if pidof -q bspc; then
-	pkill -9 bspc >/dev/null
-fi
+pidof -q bspc && pkill -9 bspc >/dev/null
 
 # Reload terminal colors
 set_term_config() {
 	sed -i "$HOME"/.config/alacritty/fonts.yml \
-		-e "s/family: .*/family: JetBrainsMono Nerd Font/g" \
+		-e "s/family: .*/family: JetBrainsMono NF/g" \
 		-e "s/size: .*/size: 10/g"
 
 	sed -i "$HOME"/.config/alacritty/rice-colors.yml \
@@ -54,7 +51,7 @@ set_dunst_config() {
 		-e "s/transparency = .*/transparency = 0/g" \
 		-e "s/frame_color = .*/frame_color = \"#0d0f18\"/g" \
 		-e "s/separator_color = .*/separator_color = \"#3d414f\"/g" \
-		-e "s/font = .*/font = JetBrainsMono Nerd Font Medium 9/g" \
+		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
 		-e "s/foreground='.*'/foreground='#c296eb'/g"
 
 	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
@@ -76,10 +73,49 @@ set_dunst_config() {
 	_EOF_
 }
 
+# Set eww colors
+set_eww_colors() {
+	cat >"$HOME"/.config/bspwm/eww/colors.scss <<EOF
+// Eww colors for z0mbi3 rice
+\$bg: #0d0f18;
+\$bg-alt: #151720;
+\$fg: #a5b6cf;
+\$black: #3d414f;
+\$lightblack: #262831;
+\$red: #dd6777;
+\$blue: #86aaec;
+\$cyan: #93cee9;
+\$magenta: #c296eb;
+\$green: #90ceaa;
+\$yellow: #ecd3a0;
+\$archicon: #0f94d2;
+EOF
+}
+
+# Set jgmenu colors for z0mbi3
+set_jgmenu_colors() {
+	sed -i "$HOME"/.config/bspwm/jgmenurc \
+		-e 's/color_menu_bg = .*/color_menu_bg = #0d0f18/' \
+		-e 's/color_norm_fg = .*/color_norm_fg = #a5b6cf/' \
+		-e 's/color_sel_bg = .*/color_sel_bg = #151720/' \
+		-e 's/color_sel_fg = .*/color_sel_fg = #a5b6cf/' \
+		-e 's/color_sep_fg = .*/color_sep_fg = #3d414f/'
+}
+
+# Set Rofi launcher config
+set_launcher_config() {
+	sed -i "$HOME/.config/bspwm/scripts/Launcher.rasi" \
+		-e '22s/\(font: \).*/\1"JetBrainsMono NF Bold 9";/' \
+		-e 's/\(background: \).*/\1#0b0d16;/' \
+		-e 's/\(background-alt: \).*/\1#0b0d16C7;/' \
+		-e 's/\(foreground: \).*/\1#a5b6cf;/' \
+		-e 's/\(selected: \).*/\1#087152;/' \
+		-e 's/[^/]*-rofi/gh-rofi/'
+}
+
 # Launch the bar and or eww widgets
 launch_bars() {
-	eww -c ${rice_dir}/bar open bar &
-	eww -c ${rice_dir}/dashboard daemon &
+	eww -c ${rice_dir}/bar open --toggle bar
 	polybar -q tray -c ${rice_dir}/bar/polybar_tray.ini &
 }
 
@@ -88,5 +124,8 @@ launch_bars() {
 set_bspwm_config
 set_term_config
 set_picom_config
-set_dunst_config
 launch_bars
+set_dunst_config
+set_eww_colors
+set_jgmenu_colors
+set_launcher_config
