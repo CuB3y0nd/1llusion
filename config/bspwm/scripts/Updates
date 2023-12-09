@@ -33,7 +33,7 @@ print_updates() {
 }
 
 update_system() {
-	yay -Syu --nocombinedupgrade
+	yay -Syu --combinedupgrade=false
 }
 
 case "$1" in
