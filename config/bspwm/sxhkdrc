@@ -80,7 +80,7 @@ alt + Print
 
 # Random Wallpaper
 super + shift + w
-	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
+  WallSelect
 
 #
 # BSPWM
