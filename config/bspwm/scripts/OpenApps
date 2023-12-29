@@ -5,10 +5,8 @@
 #  ██╔══██║██╔═══╝ ██╔═══╝ ╚════██║    ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗
 #  ██║  ██║██║     ██║     ███████║    ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║
 #  ╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝    ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-#	Script to control prefered apps to launch for all themes
 
 WIDGET_DIR="$HOME/.config/bspwm/eww"
-
 case "$1" in
 --menu)
 	rofi -show drun -theme $HOME/.config/bspwm/scripts/Launcher.rasi
@@ -20,25 +18,25 @@ case "$1" in
 	alacritty
 	;;
 --floating)
-	alacritty --class FloaTerm,Alacritty -o window.dimensions.lines=22 window.dimensions.columns=90
+	alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90
 	;;
 --update)
-	alacritty --hold --class FloaTerm,Alacritty -o window.dimensions.lines=22 window.dimensions.columns=90 -e Updates --update-system
+	alacritty --hold --class FloaTerm,FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90 -e Updates --update-system
 	;;
 --checkupdates)
-	alacritty --hold --class Updating,Alacritty -o window.dimensions.lines=22 window.dimensions.columns=47 -e Updates --print-updates
+	alacritty --hold --class Updating,Updating -o window.dimensions.lines=22 window.dimensions.columns=47 -e Updates --print-updates
 	;;
 --ranger)
-	alacritty --class FloaTerm,Alacritty -o window.dimensions.lines=14 window.dimensions.columns=90 -e ranger
+	alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=14 window.dimensions.columns=90 -e ranger
 	;;
 --nvim)
 	alacritty -e nvim
 	;;
 --music)
-	alacritty --class FloaTerm,Alacritty -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
+	alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
 	;;
 --fetch)
-	alacritty --hold --class FloaTerm,Alacritty -o window.dimensions.lines=26 window.dimensions.columns=40 -e ~/.local/bin/sysfetch
+	alacritty --hold --class FloaTerm,FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=40 -e ~/.local/bin/sysfetch
 	;;
 # Apps
 --filemanager)
@@ -46,6 +44,9 @@ case "$1" in
 	;;
 --browser)
 	firefox
+	;;
+--element)
+	element
 	;;
 --telegram)
 	telegram-desktop
@@ -70,6 +71,6 @@ case "$1" in
 	eww -c "$WIDGET_DIR" open --toggle date
 	;;
 *)
-	echo "Invalid option"
+	echo "Invalid Option"
 	;;
 esac
