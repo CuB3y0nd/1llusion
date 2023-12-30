@@ -156,6 +156,11 @@ for rices in ~/1llusion/config/bspwm/rices/*; do
 done
 cd
 
+# Init submodules
+cd ~/1llusion/config/nvim
+git submodule update --init --recursive
+cd -
+
 for archivos in ~/1llusion/config/*; do
 	cp -R "${archivos}" ~/.config/
 	if [ $? -eq 0 ]; then

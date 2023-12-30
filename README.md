@@ -185,10 +185,6 @@ chmod +x install
 ./install
 ```
 
-## About NeoVim Editor
-
-See this [repo](https://github.com/CuB3y0nd/DOOM)
-
 ## More information about key mappings
 
 See the [wiki](https://github.com/CuB3y0nd/1llusion/wiki)
