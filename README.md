@@ -185,6 +185,16 @@ chmod +x install
 ./install
 ```
 
+## About NeoVim
+
+This neovim configuration is modified base on [NvChad](https://github.com/NvChad/NvChad)
+
+If you want use my default configuration, choose `N` while in neovim's first startup.
+
+If you wanna to configure it yourself based on `NvChad` , then choose `y` .
+
+For more information about customize your nvim, see [NvChad](https://nvchad.com)
+
 ## More information about key mappings
 
 See the [wiki](https://github.com/CuB3y0nd/1llusion/wiki)
@@ -192,5 +202,5 @@ See the [wiki](https://github.com/CuB3y0nd/1llusion/wiki)
 ## References
 
 - **gh0stzk's rices:** [dotfiles](https://github.com/gh0stzk/dotfiles/tree/master)
-- **LazyVim:** [LazyVim](https://github.com/LazyVim/LazyVim)
+- **NvChad:** [NvChad](https://github.com/NvChad/NvChad)
 - **ElKowars wacky widgets:** [eww](https://github.com/elkowar/eww)
