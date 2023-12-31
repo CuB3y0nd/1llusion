@@ -133,7 +133,8 @@ alias musica="ncmpcpp"
 alias ll='eza -algF --group-directories-first --octal-permissions --git'
 alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 
-alias set-proxy='export ALL_PROXY=socks5://127.0.0.1:1080'
+alias set-proxy='export ALL_PROXY=socks5://127.0.0.1:2080'
+alias go-proxy='export GOPROXY=https://goproxy.io,direct'
 alias unset-proxy='unset ALL_PROXY'
 
 # SWITCH GPU
@@ -148,10 +149,13 @@ alias aslron='echo 2 | sudo tee /proc/sys/kernel/randomize_va_space'
 alias aslrhalf='echo 1 | sudo tee /proc/sys/kernel/randomize_va_space'
 alias aslroff='echo 0 | sudo tee /proc/sys/kernel/randomize_va_space'
 
+# Rust Documentation
+alias rust-doc='env -u BROWSER rustup doc'
+
 # Applications
 
-alias discord='discord --proxy-server="socks5://127.0.0.1:1080"'
-alias element='element-desktop --proxy-server="socks5://127.0.0.1:1080"'
+alias discord='discord --proxy-server="socks5://127.0.0.1:2080"'
+alias element='element-desktop --proxy-server="socks5://127.0.0.1:2080"'
 
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │ 
