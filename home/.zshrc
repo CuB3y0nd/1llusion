@@ -151,6 +151,10 @@ alias aslroff='echo 0 | sudo tee /proc/sys/kernel/randomize_va_space'
 
 # Rust Documentation
 alias rust-doc='env -u BROWSER rustup doc'
+alias cargo-doc='env -u BROWSER cargo doc --open'
+
+# Node.js
+alias yarn-env='export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/node_modules/.bin"'
 
 # Applications
 
@@ -164,3 +168,4 @@ alias element='element-desktop --proxy-server="socks5://127.0.0.1:2080"'
 $HOME/.local/bin/colorscript -r
 
 export BAT_THEME="Coldark-Dark"
+export ALL_PROXY=socks5://127.0.0.1:20173
