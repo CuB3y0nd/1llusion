@@ -15,7 +15,9 @@
 
     .player-info {
       border-radius: 1rem;
-      background: linear-gradient(to right, rgb(#191919, 1), rgba(#262626, 0.5));
+      background: linear-gradient(to right,
+                  rgb(#191919, 1),
+                  rgba(#262626, 0.5));
       padding: 0.65rem;
 
       .player-shuffle,

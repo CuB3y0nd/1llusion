@@ -27,8 +27,8 @@ wall_dir="${HOME}/.config/bspwm/rices/${RICETHEME}/walls"
 cacheDir="${HOME}/.cache/CuB3y0nd/${RICETHEME}"
 rofi_command="rofi -dmenu -theme ${HOME}/.config/bspwm/scripts/WallSelect.rasi -theme-str ${rofi_override}"
 
-monitor_res=$(xdpyinfo | grep dimensions | awk '{print $2}' | cut -d 'x' -f1)
-monitor_scale=$(xdpyinfo | grep -oP "resolution:.*" | awk '{print $2}' | cut -d 'x' -f1)
+monitor_res=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f1)
+monitor_scale=$(xdpyinfo | awk '/resolution/{print $2}' | cut -d 'x' -f1)
 monitor_res=$((monitor_res * 17 / monitor_scale))
 rofi_override="element-icon{size:${monitor_res}px;border-radius:0px;}"
 
