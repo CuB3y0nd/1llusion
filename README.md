@@ -1,4 +1,4 @@
-# :tent: A complete bspwm environment for Arch Linux
+# :tent: A complete bspwm configuration for Arch Linux
 
 - Modern NEOVIM configuration.
 - 12 different themes i collected for BSPWM and Polybar. With a theme selector to change on the fly.
