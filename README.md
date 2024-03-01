@@ -32,7 +32,7 @@ You are probably here for my **Aesthetic BSPWM** and **Aesthetic NEOVIM** config
 
 Here is the [wiki](https://github.com/CuB3y0nd/1llusion/wiki). I also wrote a tutorial about the installation of Arch Linux dual boot + dotfile usage, check [Arch Linux 双系统 + Bspwm 配置小记](https://www.cubeyond.net/blog/linux/archlinux-dualboot-and-bspwm-configure).
 
-If you have any problem, create issue or contact me: mailto:root@cubeyond.net
+If you have any problem, create issue or contact me: <a href="mailto:root@cubeyond.net">root@cubeyond.net</a>.
 
 ## :rocket: Features
 
