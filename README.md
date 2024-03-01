@@ -175,6 +175,8 @@ Access the scratchpad functionality, a terminal window you can show or hide for 
  - `Super + Shift + W` Changes randomly wallpaper.
  - `Super + R` Restart bspwm.
 
+Hold `Super` and left-click to move window, right-click to resize window.
+
 And more... Use `Alt + F1` to open keybing menu or look `sxhkdrc` file for more.
 
 ## :floppy_disk: Installation
@@ -201,7 +203,7 @@ chmod +x install
 ./install
 ```
 
-## :wind_chime: About NeoVim
+## :wind_chime: About Neovim
 
 The neovim configuration is modified base on [NvChad](https://github.com/NvChad/NvChad).
 
