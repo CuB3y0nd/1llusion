@@ -24,7 +24,7 @@ fi
 
 # Set some variables
 wall_dir="${HOME}/.config/bspwm/rices/${RICETHEME}/walls"
-cacheDir="${HOME}/.cache/cub3y0nd/${RICETHEME}"
+cacheDir="${HOME}/.cache/$(whoami)/${RICETHEME}"
 rofi_command="rofi -dmenu -theme ${HOME}/.config/bspwm/scripts/WallSelect.rasi -theme-str ${rofi_override}"
 
 monitor_res=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f1)
