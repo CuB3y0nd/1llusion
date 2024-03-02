@@ -13,10 +13,9 @@ BSPWM,^checkout(wm),/usr/share/icons/Papirus/32x32/apps/gnome-windows.svg
 Exit,^checkout(exit),/usr/share/icons/Papirus/32x32/apps/system-shutdown.svg
 
 ^tag(favorites)
-Editor,OpenApps --editor,/usr/share/icons/Papirus/32x32/apps/standard-notes.svg
+Ranger,OpenApps --ranger,/usr/share/icons/Papirus/32x32/apps/terminal.svg
 Neovim,OpenApps --nvim,nvim
 Firefox,OpenApps --browser,firefox
-Retroarch,retroarch,/usr/share/icons/Papirus/32x32/apps/retroarch.svg
 
 ^tag(wg)
 User Card,OpenApps --usercard,/usr/share/icons/Papirus/32x32/apps/system-users.svg
