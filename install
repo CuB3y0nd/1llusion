@@ -45,19 +45,17 @@ clear
 
 # Install required packages
 logo "Install needed packages"
-dependencias=(base-devel rustup pacman-contrib bspwm polybar sxhkd
-	alacritty brightnessctl dunst rofi lsd stalonetray lxappearance nitrogen pavucontrol
-	jq polkit-gnome git playerctl mpd xclip
-	python-pip python-pynvim nodejs npm
-	ncmpcpp ranger mpc picom xdo xdotool jgmenu
-	feh ueberzug maim pamixer libwebp xdg-user-dirs
-	webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme
-	ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels
-	zsh imagemagick xorg-xdpyinfo xorg-xsetroot xorg-xwininfo xorg-xrandr)
+dependencias=(alacritty base-devel brightnessctl bspwm dunst feh geany git imagemagick jq \
+  jgmenu libwebp lsd maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib \
+  papirus-icon-theme physlock picom playerctl polybar polkit-gnome ranger \
+  rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd \
+  ttf-joypixels ttf-terminus-nerd ueberzug webp-pixbuf-loader xclip xdg-user-dirs \
+  xdo xdotool xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot \
+  xorg-xwininfo zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
+)
 
 is_installed() {
-	pacman -Qi "$1" &>/dev/null
-	return $?
+  pacman -Q "$1" &> /dev/null
 }
 
 printf "%s%sChecking for required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
@@ -232,11 +230,8 @@ fc-cache -rv >/dev/null 2>&1
 printf "%s%sFiles copied succesfully!%s\n" "${BLD}" "${CGR}" "${CNC}"
 
 # Zsh plugins
-mkdir -p ~/.zsh/plugins/
+[ ! -d ~/.zsh/plugins ] && mkdir -p ~/.zsh/plugins
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -P ~/.zsh/plugins/zsh-sudo
-git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-history-substring-search.git ~/.zsh/plugins/zsh-history-substring-search
 printf "%s%sZsh plugins install succesfully!%s\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 3
 
