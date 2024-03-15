@@ -1,7 +1,7 @@
 # :tent: A complete bspwm configuration for Arch Linux
 
 - Modern NEOVIM configuration.
-- 12 different themes i collected for BSPWM and Polybar. With a theme selector to change on the fly.
+- 15 different themes i collected for BSPWM and Polybar. With a theme selector to change on the fly.
 - All the system initialization configuration you needed.
 
 ## :stars: Thanks for dropping by!
@@ -40,7 +40,7 @@ If you have any problem, create issue or contact me: <a href="mailto:root@cubeyo
 
 ### Change themes on the fly
 
-With our custom menu based on rofi launcher, switching between the 12 themes is as easy as a click. Enjoy the versatility of styles and color combinations instantly.
+With our custom menu based on rofi launcher, switching between the 15 themes is as easy as a click. Enjoy the versatility of styles and color combinations instantly.
 
 ### Consistency Across the Environment
 
@@ -77,7 +77,7 @@ Hide and show the polybar and eww widgets according to your needs, giving you co
 
 Access the scratchpad functionality, a terminal window you can show or hide for tasks when you don't want the window taking up unnecessary space.
 
- - **Change themes on the fly:** 12 different Rices now!
+ - **Change themes on the fly:** 15 different Rices now!
  - **Theme Selector:** `Alt + Space` to launch it.
  - **Random wallpaper:**  Every time you switch between rices or reload bspwm with `Space + R` a new wallpaper is set depending on the rice you are on.
  - **Wallpaper Changer:** `Super + Shift + W` changes between different wallpapers in the actual rice.
@@ -159,6 +159,21 @@ Access the scratchpad functionality, a terminal window you can show or hide for 
 ### :octopus: z0mbi3:
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/ff65caa8-6a15-4873-bf05-edf89ac0985d" alt="z0mbi3 Rice" align="center">|
+|---|
+
+### 🌸Brenda:
+
+|<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/22e37944-5aad-46bf-8934-3a57d1718ed2" alt="Brenda Rice" align="center">|
+|---|
+
+### 🌸Daniela:
+
+|<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/f296d6b4-9c8a-49ae-bf63-d82e5105f122" alt="Daniela Rice" align="center">|
+|---|
+
+### 🌸Marisol:
+
+|<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/d11d20c5-1edc-44c8-901b-a4103a139617" alt="Daniela Rice" align="center">|
 |---|
 
 ## :coffee: Very useful keybindigs to know...
