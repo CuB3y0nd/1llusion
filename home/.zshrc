@@ -139,7 +139,6 @@ alias ll='eza -algF --group-directories-first --octal-permissions --git'
 alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 
 alias set-proxy='export ALL_PROXY=socks5://127.0.0.1:2080'
-alias go-proxy='export GOPROXY=https://goproxy.io,direct'
 alias unset-proxy='unset ALL_PROXY'
 
 # SWITCH GPU
@@ -173,4 +172,6 @@ alias element='element-desktop --proxy-server="socks5://127.0.0.1:2080"'
 $HOME/.local/bin/colorscript -r
 
 export BAT_THEME="Coldark-Dark"
+export GOPROXY=https://goproxy.io,direct
 export ALL_PROXY=socks5://127.0.0.1:20173
+
