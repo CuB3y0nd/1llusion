@@ -137,7 +137,7 @@ set_launcher_config() {
 		-e 's/\(background-alt: \).*/\1#2d353bE0;/' \
 		-e 's/\(foreground: \).*/\1#d3c6aa;/' \
 		-e 's/\(selected: \).*/\1#475258;/' \
-		-e 's/[^/]*-rofi/br-rofi/'
+		-e "s/rices\/[[:alnum:]\-]*/rices\/${RICETHEME}/g"
 
 	# WallSelect menu colors
 	sed -i "$HOME/.config/bspwm/scripts/WallSelect.rasi" \
@@ -149,11 +149,9 @@ set_launcher_config() {
 
 # Launch the bar
 launch_bars() {
-
 	for mon in $(polybar --list-monitors | cut -d":" -f1); do
 		MONITOR=$mon polybar -q brenda -c "${rice_dir}"/config.ini &
 	done
-
 }
 
 ### ---------- Apply Configurations ---------- ###
@@ -166,3 +164,4 @@ set_eww_colors
 set_jgmenu_colors
 set_dunst_config
 set_launcher_config
+
