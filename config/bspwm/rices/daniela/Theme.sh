@@ -101,13 +101,13 @@ set_dunst_config() {
     timeout = 0
     background = "#181825"
     foreground = "#CDD6F4"
-  _EOF_
+_EOF_
 }
 
 # Set eww colors
 set_eww_colors() {
   cat > "$HOME"/.config/bspwm/eww/colors.scss << EOF
-// Eww colors for Emilia rice
+// Eww colors for Daniela rice
 \$bg: #181825;
 \$bg-alt: #1e1e2e;
 \$fg: #CDD6F4;

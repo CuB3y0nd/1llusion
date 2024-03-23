@@ -26,7 +26,7 @@ set_bspwm_config() {
 # Reload terminal colors
 set_term_config() {
   cat > "$HOME"/.config/alacritty/rice-colors.toml << EOF
-# (Kanagawa) color scheme for Marisol Rice
+# (Dracula) color scheme for Marisol Rice
 
 # Default colors
 [colors.primary]
@@ -97,7 +97,7 @@ set_dunst_config() {
     timeout = 0
     background = "#282a36"
     foreground = "#f8f8f2"
-  _EOF_
+_EOF_
 }
 
 # Set eww colors
