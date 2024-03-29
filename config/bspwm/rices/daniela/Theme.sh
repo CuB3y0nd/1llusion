@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #  ██████╗  █████╗ ███╗   ██╗██╗███████╗██╗      █████╗     ██████╗ ██╗ ██████╗███████╗
 #  ██╔══██╗██╔══██╗████╗  ██║██║██╔════╝██║     ██╔══██╗    ██╔══██╗██║██╔════╝██╔════╝
-#  ██║  ██║███████║██╔██╗ ██║██║█████╗  ██║     ███████║    ██████╔╝██║██║     █████╗  
-#  ██║  ██║██╔══██║██║╚██╗██║██║██╔══╝  ██║     ██╔══██║    ██╔══██╗██║██║     ██╔══╝  
+#  ██║  ██║███████║██╔██╗ ██║██║█████╗  ██║     ███████║    ██████╔╝██║██║     █████╗
+#  ██║  ██║██╔══██║██║╚██╗██║██║██╔══╝  ██║     ██╔══██║    ██╔══██╗██║██║     ██╔══╝
 #  ██████╔╝██║  ██║██║ ╚████║██║███████╗███████╗██║  ██║    ██║  ██║██║╚██████╗███████╗
 #  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝ ╚═════╝╚══════╝
 #  Author  :  z0mbi3
@@ -78,30 +78,30 @@ set_picom_config() {
 
 # Set dunst notification daemon config
 set_dunst_config() {
-  sed -i "$HOME"/.config/bspwm/dunstrc \
-    -e "s/transparency = .*/transparency = 0/g" \
-    -e "s/frame_color = .*/frame_color = \"#181825\"/g" \
-    -e "s/separator_color = .*/separator_color = \"#CDD6F4\"/g" \
-    -e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
-    -e "s/foreground='.*'/foreground='#F5C2E7'/g"
+	sed -i "$HOME"/.config/bspwm/dunstrc \
+		-e "s/transparency = .*/transparency = 0/g" \
+		-e "s/frame_color = .*/frame_color = \"#181825\"/g" \
+		-e "s/separator_color = .*/separator_color = \"#CDD6F4\"/g" \
+		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
+		-e "s/foreground='.*'/foreground='#F5C2E7'/g"
 
-  sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
-  cat >> "$HOME"/.config/bspwm/dunstrc <<- _EOF_
-    [urgency_low]
-    timeout = 3
-    background = "#181825"
-    foreground = "#CDD6F4"
+	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
+	cat >>"$HOME"/.config/bspwm/dunstrc <<-_EOF_
+		[urgency_low]
+		timeout = 3
+		background = "#181825"
+		foreground = "#CDD6F4"
 
-    [urgency_normal]
-    timeout = 6
-    background = "#181825"
-    foreground = "#CDD6F4"
+		[urgency_normal]
+		timeout = 6
+		background = "#181825"
+		foreground = "#CDD6F4"
 
-    [urgency_critical]
-    timeout = 0
-    background = "#181825"
-    foreground = "#CDD6F4"
-_EOF_
+		[urgency_critical]
+		timeout = 0
+		background = "#181825"
+		foreground = "#CDD6F4"
+	_EOF_
 }
 
 # Set eww colors
@@ -134,21 +134,30 @@ set_jgmenu_colors() {
 }
 
 # Set Rofi launcher config
-set_launcher_config () {
-  sed -i "$HOME/.config/bspwm/scripts/Launcher.rasi" \
-    -e '22s/\(font: \).*/\1"JetBrainsMono NF Bold 9";/' \
-    -e 's/\(background: \).*/\1#181825;/' \
-    -e 's/\(background-alt: \).*/\1#181825E0;/' \
-    -e 's/\(foreground: \).*/\1#CDD6F4;/' \
-    -e 's/\(selected: \).*/\1#F5C2E7;/' \
-    -e "s/rices\/[[:alnum:]\-]*/rices\/${RICETHEME}/g"
+set_launcher_config() {
+	sed -i "$HOME/.config/bspwm/scripts/Launcher.rasi" \
+		-e '22s/\(font: \).*/\1"JetBrainsMono NF Bold 9";/' \
+		-e 's/\(background: \).*/\1#181825;/' \
+		-e 's/\(background-alt: \).*/\1#181825E0;/' \
+		-e 's/\(foreground: \).*/\1#CDD6F4;/' \
+		-e 's/\(selected: \).*/\1#F5C2E7;/' \
+		-e "s/rices\/[[:alnum:]\-]*/rices\/${RICETHEME}/g"
 
-  # WallSelect menu colors
-  sed -i "$HOME/.config/bspwm/scripts/WallSelect.rasi" \
-    -e 's/\(main-bg: \).*/\1#181825E6;/' \
-    -e 's/\(main-fg: \).*/\1#CDD6F4;/' \
-    -e 's/\(select-bg: \).*/\1#F5C2E7;/' \
-    -e 's/\(select-fg: \).*/\1#181825;/'
+	# NetworkManager launcher
+	sed -i "$HOME/.config/bspwm/scripts/NetManagerDM.rasi" \
+		-e '12s/\(background: \).*/\1#181825;/' \
+		-e '13s/\(background-alt: \).*/\1#1e1e2e;/' \
+		-e '14s/\(foreground: \).*/\1#CDD6F4;/' \
+		-e '15s/\(selected: \).*/\1#89B4FA;/' \
+		-e '16s/\(active: \).*/\1#A6E3A1;/' \
+		-e '17s/\(urgent: \).*/\1#F38BA8;/'
+
+	# WallSelect menu colors
+	sed -i "$HOME/.config/bspwm/scripts/WallSelect.rasi" \
+		-e 's/\(main-bg: \).*/\1#181825E6;/' \
+		-e 's/\(main-fg: \).*/\1#CDD6F4;/' \
+		-e 's/\(select-bg: \).*/\1#F5C2E7;/' \
+		-e 's/\(select-fg: \).*/\1#181825;/'
 }
 
 # Launch the bar

@@ -26,7 +26,7 @@ set_bspwm_config() {
 # Reload terminal colors
 set_term_config() {
   cat > "$HOME"/.config/alacritty/rice-colors.toml << EOF
-# (Pencil light) color scheme for Aline Rice
+# (Rose Pine Dawn) color scheme for Aline Rice
 
 # Default colors
 [colors.primary]

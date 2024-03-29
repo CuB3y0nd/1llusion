@@ -74,30 +74,30 @@ set_picom_config() {
 
 # Set dunst notification daemon config
 set_dunst_config() {
-  sed -i "$HOME"/.config/bspwm/dunstrc \
-    -e "s/transparency = .*/transparency = 0/g" \
-    -e "s/frame_color = .*/frame_color = \"#282a36\"/g" \
-    -e "s/separator_color = .*/separator_color = \"#a4ffff\"/g" \
-    -e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
-    -e "s/foreground='.*'/foreground='#a4ffff'/g"
+	sed -i "$HOME"/.config/bspwm/dunstrc \
+		-e "s/transparency = .*/transparency = 0/g" \
+		-e "s/frame_color = .*/frame_color = \"#282a36\"/g" \
+		-e "s/separator_color = .*/separator_color = \"#a4ffff\"/g" \
+		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
+		-e "s/foreground='.*'/foreground='#a4ffff'/g"
 
-  sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
-  cat >> "$HOME"/.config/bspwm/dunstrc <<- _EOF_
-    [urgency_low]
-    timeout = 3
-    background = "#282a36"
-    foreground = "#f8f8f2"
+	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
+	cat >>"$HOME"/.config/bspwm/dunstrc <<-_EOF_
+		[urgency_low]
+		timeout = 3
+		background = "#282a36"
+		foreground = "#f8f8f2"
 
-    [urgency_normal]
-    timeout = 6
-    background = "#282a36"
-    foreground = "#f8f8f2"
+		[urgency_normal]
+		timeout = 6
+		background = "#282a36"
+		foreground = "#f8f8f2"
 
-    [urgency_critical]
-    timeout = 0
-    background = "#282a36"
-    foreground = "#f8f8f2"
-_EOF_
+		[urgency_critical]
+		timeout = 0
+		background = "#282a36"
+		foreground = "#f8f8f2"
+	_EOF_
 }
 
 # Set eww colors
@@ -130,21 +130,30 @@ set_jgmenu_colors() {
 }
 
 # Set Rofi launcher config
-set_launcher_config () {
-  sed -i "$HOME/.config/bspwm/scripts/Launcher.rasi" \
-    -e '22s/\(font: \).*/\1"JetBrainsMono NF Bold 9";/' \
-    -e 's/\(background: \).*/\1#282a36;/' \
-    -e 's/\(background-alt: \).*/\1#282a36E0;/' \
-    -e 's/\(foreground: \).*/\1#f8f8f2;/' \
-    -e 's/\(selected: \).*/\1#bd93f9;/' \
-    -e "s/rices\/[[:alnum:]\-]*/rices\/${RICETHEME}/g"
+set_launcher_config() {
+	sed -i "$HOME/.config/bspwm/scripts/Launcher.rasi" \
+		-e '22s/\(font: \).*/\1"JetBrainsMono NF Bold 9";/' \
+		-e 's/\(background: \).*/\1#282a36;/' \
+		-e 's/\(background-alt: \).*/\1#282a36E0;/' \
+		-e 's/\(foreground: \).*/\1#f8f8f2;/' \
+		-e 's/\(selected: \).*/\1#bd93f9;/' \
+		-e "s/rices\/[[:alnum:]\-]*/rices\/${RICETHEME}/g"
 
-  # WallSelect menu colors
-  sed -i "$HOME/.config/bspwm/scripts/WallSelect.rasi" \
-    -e 's/\(main-bg: \).*/\1#282a36E6;/' \
-    -e 's/\(main-fg: \).*/\1#f8f8f2;/' \
-    -e 's/\(select-bg: \).*/\1#bd93f9;/' \
-    -e 's/\(select-fg: \).*/\1#f8f8f2;/'
+	# NetworkManager launcher
+	sed -i "$HOME/.config/bspwm/scripts/NetManagerDM.rasi" \
+		-e '12s/\(background: \).*/\1#282a36;/' \
+		-e '13s/\(background-alt: \).*/\1#2f3240;/' \
+		-e '14s/\(foreground: \).*/\1#f8f8f2;/' \
+		-e '15s/\(selected: \).*/\1#bd93f9;/' \
+		-e '16s/\(active: \).*/\1#50fa7b;/' \
+		-e '17s/\(urgent: \).*/\1#ff6e6e;/'
+
+	# WallSelect menu colors
+	sed -i "$HOME/.config/bspwm/scripts/WallSelect.rasi" \
+		-e 's/\(main-bg: \).*/\1#282a36E6;/' \
+		-e 's/\(main-fg: \).*/\1#f8f8f2;/' \
+		-e 's/\(select-bg: \).*/\1#bd93f9;/' \
+		-e 's/\(select-fg: \).*/\1#f8f8f2;/'
 }
 
 # Launch the bar

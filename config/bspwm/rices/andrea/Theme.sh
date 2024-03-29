@@ -23,7 +23,7 @@ set_bspwm_config() {
   bspc config presel_feedback_color "#67d4f1"
 }
 
-pidof -q bspc && pkill -9 bspc > /dev/null
+pidof -q bspc && pkill -9 bspc >/dev/null
 
 # Reload terminal colors
 set_term_config() {
