@@ -15,7 +15,7 @@ You are probably here for my **Aesthetic BSPWM** and **Aesthetic NEOVIM** config
    <ul>
       <li><strong>WM: </strong> <a href="https://github.com/baskerville/bspwm">bspwm</a></li>
       <li><strong>OS: </strong> <a href="https://archlinux.org">Arch Linux</a></li>
-      <li><strong>Terminal: </strong> <a href="https://github.com/alacritty/alacritty">Alacritty</a></li>
+      <li><strong>Terminal: </strong> <a href="https://github.com/alacritty/alacritty">Alacritty</a>/<a href="https://github.com/kovidgoyal/kitty">kitty</a></li>
       <li><strong>Shell: </strong> <a href="https://www.zsh.org">zsh</a></li>
       <li><strong>Bar: </strong> <a href="https://github.com/polybar/polybar">Polybar</a></li>
       <li><strong>Music/Player: </strong> <a href="https://github.com/MusicPlayerDaemon/MPD">MPD</a>/<a href="https://github.com/ncmpcpp/ncmpcpp">ncmpcpp</a></li>
