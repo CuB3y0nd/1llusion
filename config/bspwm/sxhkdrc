@@ -1,76 +1,81 @@
-#  ╔═╗═╗ ╦╦ ╦╦╔═╔╦╗╦═╗╔═╗
-#  ╚═╗╔╩╦╝╠═╣╠╩╗ ║║╠╦╝║  
-#  ╚═╝╩ ╚═╩ ╩╩ ╩═╩╝╩╚═╚═╝
+#  ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ ██████╗  ██████╗
+#  ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗██╔══██╗██╔════╝
+#  ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║██████╔╝██║     
+#  ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║██╔══██╗██║     
+#  ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝██║  ██║╚██████╗
+#  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝
 
-#
-# User
-#
+# Show help
+F1
+	OpenApps --KeyHelp
 
-# Show Keybindings Help
-alt + F1
-	KeybindingsHelp
+#|||----- Applications -----|||#
 
-# Reload Keybindings
-super + Escape
-	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
+# Open Terminal (alacritty)
+alt + shift + Return
+	OpenApps --terminal
 
-# Applicacion Menu
+# Open floating Terminal
+alt + shift + f
+	OpenApps --floating
+
+# Application menu
 super + @space
 	OpenApps --menu
+
+#####
+
+# Apps (browser, editor, filemanager)
+shift + alt + {b,g,n}
+	OpenApps {--browser,--editor,--filemanager}
+
+# Terminal apps (ranger, nvim, ncmpcpp)
+shift + alt + {r,v,k}
+	OpenApps {--ranger,--nvim,--music}
+
+# Pavucontrol
+shift + alt + p
+	OpenApps --soundcontrol
+
+#|||----- System Keybindings -----|||#
 
 # Theme Selector
 alt + @space
 	RiceSelector
 
+#Terminal Selector
+super + alt + t
+	Term --selecterm
+
 # jgmenu
 ~button3
   xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/scripts/menu.txt --config-file=~/.config/bspwm/jgmenurc
 
-# Get Updates
-alt + u
-  OpenApps --update
-
-# Check Updates
-ctrl + alt + u
-  OpenApps --checkupdates
-
-# Open Terminal (alacritty)
-alt + shift + Return
-	OpenApps --terminal
-	
-# Open Floating Terminal
-alt + shift + f
-	OpenApps --floating
-
-# Open Scratchpad Terminal
-alt + shift + s
+# Scratchpad
+super + alt + o
 	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch alacritty --class=scratch
 
-# Power off, Reboot, Log out, Lockscreen, Select an App/Process to kill
-ctrl + super + shift + {p,r,q,l,k}
+# Power off, Reboot, Log out, Lockscreen, kill an app
+ctrl + super + alt + {p,r,q,l,k}
 	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
 
-# Apps (browser, editor, filemanager)
-shift + alt + {b,t,p}
-	OpenApps {--browser,--filemanager,--soundcontrol}
-
-# Terminal apps (ranger, nvim, ncmpcpp)
-shift + alt + {r,n,k}
-	OpenApps {--ranger,--nvim,--music}
-
 # Hide/Show Bar (Polybar and/or eww)
-super + {h,u}
+super + alt + {h,u}
 	HideBar {-h,-u}
 
 # Change transparency on focused window
-ctrl + alt + {plus,minus,t}
+ctrl + alt + {plus,minus,equal}
 	picom-trans {-c -o +3,-c -o -1,-c -d}
+
+# Random wallpaper
+super + alt + w
+	WallSelect
 
 # Screenshot Now
 Print
 	ScreenShoTer --now
 
-# Select an area screenshot
+# Screenshot Select
 ctrl + Print
 	ScreenShoTer --sel
 
@@ -78,140 +83,100 @@ ctrl + Print
 alt + Print
 	ScreenShoTer --in10
 
-# Random Wallpaper
-super + shift + w
-  WallSelect
+# Screenshot active window
+shift + Print
+	ScreenShoTer --active
 
-#
-# BSPWM
-#
-
-# Reload BSPWM
-super + r
-	bspc wm -r
-
-# Close and Kill
-super + {_,shift + }q
-	bspc node -{c,k}
-
-# Rotate App
-super + ctrl + r
-	bspc node @/ --rotate {90,-90}
-
-# Circulate switch window in nodes
-super + c
-	bspc node @/ --circulate {backward,forward}
-
-# Make split ratios equal
-super + equal
-	bspc node @/ --equalize
-
-# Make split ratios balanced
-super + minus
-	bspc node @/ --balance
-
-# Alternate between the Tiled and Monocle layout
-super + m
-	bspc desktop -l next
-
-# Swap in the current node and the biggest node
-super + g
-	bspc node -s biggest
-
-# Set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# Set the node flags
-ctrl + alt + {m,x,s,p,i}
-	bspc node -g {marked,locked,sticky,private,hidden}
-
-# Focused desktop window gaps scroll
-super + button{4,5}
-	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 2 ))
-
-# Global window gaps scroll
-super + alt + button{4,5}
-	bspc config window_gap $(( $(bspc config window_gap) {-,+} 2 ))
-
-# Focus the node in the given direction
-super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
-
-# Focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
-# Focus the Next/Previous node in the current desktop
-alt + {_,shift + }Tab
-	bspc node -f {next,prev}.local
-
-# Focus the Next/Previous desktop in the current monitor
-super + alt + {Left,Right}
-	bspc desktop -f {prev,next}.local
-
-# Focus the last Node/Desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
-
-# Focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
-# Focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-# Hide/Unhide Window
-ctrl + alt + h
-	BspHideNode
-
-#
-# Preselect
-#
-
-# Preselect the direction
-super + ctrl + {Left,Down,Up,Right}
-	bspc node -p {west,south,north,east}
-
-# Preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# Cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
-
-# Cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
-
-#
-# Move/Resize
-#
-
-# Expand a window
-super + alt + {Left,Down,Up,Right}
-	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
-
-# Contract a window
-super + alt + shift + {Left,Down,Up,Right}
-	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
-
-# Move a floating window
-alt + shift + {Left,Down,Up,Right}
-	bspc node -v {-10 0,0 10,0 -10,10 0}
-
-# Manage Brightness
+# Manage brightness
 XF86MonBrightness{Up,Down}
     sh Brightness {up,down}
 
-# Volume Control
+# Volume control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	Volume{ --inc, --dec, --toggle}
 
 # Music Control
 XF86Audio{Next,Prev,Play,Stop}
 	MediaControl {--next,--previous,--toggle,--stop}
+
+#|||----- Bspwm hotkeys -----|||#
+
+# Reload BSPWM
+super + alt + r
+	bspc wm -r
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+	
+# Reload Keybindings
+super + Escape
+	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
+
+#####
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+ctrl + alt {m,x,s,p}
+	bspc node -g {marked,locked,sticky,private}
+
+# Hide/Unhide Window
+ctrl + alt + h
+	BspHideNode
+
+#####
+
+# rotate desktop
+super + r
+	bspc node @/ --rotate {90,-90}
+
+# Change focus of the Node or Swap Nodes
+shift + {_,ctrl + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# Switch workspace
+super + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+# focus or send to the given desktop
+super + {_,alt + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Send focused Node to workspace directionally
+super + alt + {Left,Right}
+	bspc node -d {prev,next} '--follow'
+
+# focus the last node/desktop
+super + {comma,Tab}
+	bspc {node,desktop} -f last
+
+#####
+
+# preselect the direction
+super + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# cancel the preselection for the focused node
+super + alt + space
+	bspc node -p cancel
+
+#####
+	
+# expand a window
+ctrl + alt {Left,Down,Up,Right}
+	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
+
+# contract a window
+ctrl + shift + alt + {Left,Down,Up,Right}
+	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
+
+# move a floating window
+alt + shift {Left,Down,Up,Right}
+	bspc node -v {-10 0,0 10,0 -10,10 0}

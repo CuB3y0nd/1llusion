@@ -45,10 +45,10 @@ clear
 
 # Install required packages
 logo "Install needed packages"
-dependencias=(alacritty base-devel brightnessctl bspwm dunst feh geany git imagemagick jq \
+dependencias=(alacritty base-devel brightnessctl bspwm dunst feh geany git kitty imagemagick jq \
   jgmenu libwebp lsd maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib \
   papirus-icon-theme physlock picom playerctl polybar polkit-gnome python-gobject ranger \
-  rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd \
+  redshift rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd \
   ttf-joypixels ttf-terminus-nerd ueberzug webp-pixbuf-loader xclip xdg-user-dirs \
   xdo xdotool xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot \
   xorg-xwininfo zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
@@ -72,11 +72,10 @@ sudo npm install -g neovim
 sleep 3
 clear
 
-# Prepar Folders
+# Verifies if the archive user-dirs.dirs doesn't exist in ~/.config
 logo "Prepar Folders"
 if [ ! -e $HOME/.config/user-dirs.dirs ]; then
 	xdg-user-dirs-update
-	echo "Creating xdg-user-dirs..."
 fi
 sleep 2
 clear
@@ -99,7 +98,7 @@ if [ ! -d "$backup_folder" ]; then
 	mkdir -p "$backup_folder"
 fi
 
-for folder in bspwm alacritty picom rofi eww sxhkd dunst polybar ncmpcpp nvim ranger zsh mpd yay; do
+for folder in bspwm alacritty picom rofi eww sxhkd dunst kitty polybar ncmpcpp nvim ranger zsh mpd yay; do
 	if [ -d "$HOME/.config/$folder" ]; then
 		mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date"
 		echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
@@ -154,7 +153,7 @@ for rices in ~/1llusion/config/bspwm/rices/*; do
 done
 cd
 
-# Init submodules
+# Initial submodules
 cd ~/1llusion/config/nvim
 git submodule update --init --recursive
 cd -

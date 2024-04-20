@@ -8,8 +8,6 @@
 
 export VISUAL="${EDITOR}"
 export EDITOR="nvim"
-export TERM='alacritty'
-export TERMINAL="alacritty"
 export BROWSER="chromium"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|reboot|history|cd -|cd ..)"
 
