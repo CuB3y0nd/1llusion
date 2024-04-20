@@ -25,13 +25,9 @@ super + @space
 
 #####
 
-# Apps (browser, editor, filemanager)
-shift + alt + {b,g,n}
-	OpenApps {--browser,--editor,--filemanager}
-
-# Terminal apps (ranger, nvim, ncmpcpp)
-shift + alt + {r,v,k}
-	OpenApps {--ranger,--nvim,--music}
+# Apps (browser, filemanager, ranger, nvim, music)
+alt + shift + {b,t,r,e,m}
+	OpenApps {--browser,--filemanager,--ranger,--nvim,--music}
 
 # Pavucontrol
 shift + alt + p
@@ -52,23 +48,23 @@ super + alt + t
   xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/scripts/menu.txt --config-file=~/.config/bspwm/jgmenurc
 
 # Scratchpad
-super + alt + o
+alt + shift + o
 	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch alacritty --class=scratch
 
 # Power off, Reboot, Log out, Lockscreen, kill an app
-ctrl + super + alt + {p,r,q,l,k}
+ctrl + super + shift + {p,r,q,l,k}
 	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
 
 # Hide/Show Bar (Polybar and/or eww)
-super + alt + {h,u}
+ctrl + super + {h,u}
 	HideBar {-h,-u}
 
 # Change transparency on focused window
 ctrl + alt + {plus,minus,equal}
 	picom-trans {-c -o +3,-c -o -1,-c -d}
 
-# Random wallpaper
-super + alt + w
+# Change wallpaper
+alt + shift + w
 	WallSelect
 
 # Screenshot Now
@@ -138,19 +134,19 @@ super + r
 	bspc node @/ --rotate {90,-90}
 
 # Change focus of the Node or Swap Nodes
-shift + {_,ctrl + }{Left,Down,Up,Right}
+alt + shift + {_,ctrl + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # Switch workspace
-super + {Left,Right}
+super + {h,l}
 	bspc desktop -f {prev,next}.local
 
 # focus or send to the given desktop
-super + {_,alt + }{1-9,0}
+super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
 # Send focused Node to workspace directionally
-super + alt + {Left,Right}
+super + shift + {h,l}
 	bspc node -d {prev,next} '--follow'
 
 # focus the last node/desktop
