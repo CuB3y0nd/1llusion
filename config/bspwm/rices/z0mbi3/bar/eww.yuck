@@ -19,16 +19,16 @@
 (defvar pac false)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;							Widget Section's							 ;;	
+;;							Widget Section's							 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Launcher Widgets ;;
 (defwidget launcher []
-	(box :orientation "v" 
-		   :space-evenly "false" 
+	(box :orientation "v"
+		   :space-evenly "false"
 		   :spacing -15
 	  (eventbox :cursor "pointer"
-  	  (button :class "launcher_icon" 
+  	  (button :class "launcher_icon"
 		   	      :onclick "cd ; OpenApps --menu"
 		   	      :onrightclick "OpenApps --rice" "󰣇"
       )
@@ -59,60 +59,60 @@
 
 ;; control center ;;
 (defwidget notifycenter []
-	(eventbox	:onhover "${EWW_CMD} update notify=true"	
+	(eventbox	:onhover "${EWW_CMD} update notify=true"
 				:onhoverlost "${EWW_CMD} update notify=false"
 				:cursor "pointer"
-	(box		:orientation "v"					
-				:space-evenly "false" 	 
-				:vexpand "false" 	
-				
-	(revealer	:transition "slideup"				
-				:reveal notify			 
-				:duration "550ms"
-	(box		:orientation "v"					
+	(box		:orientation "v"
 				:space-evenly "false"
-				
-	(eventbox :cursor "pointer"			
+				:vexpand "false"
+
+	(revealer	:transition "slideup"
+				:reveal notify
+				:duration "550ms"
+	(box		:orientation "v"
+				:space-evenly "false"
+
+	(eventbox :cursor "pointer"
 	(button		:style "background-image: url('images/riceselector.png');"
-				:class "trayicon" 									
-				:tooltip "Change Rice!"		 
+				:class "trayicon"
+				:tooltip "Change Rice!"
 				:onclick "OpenApps --rice"))
-	
+
 	(eventbox :cursor "pointer"
 	(button		:style "background-image: url('images/music_player.png');"
-				:class "trayicon" 									
-				:tooltip "Music Player"		 
+				:class "trayicon"
+				:tooltip "Music Player"
 				:onclick "OpenApps --player"))
-				
-	(eventbox :cursor "pointer"			
+
+	(eventbox :cursor "pointer"
 	(button		:style "background-image: url('images/usercard.png');"
-				:class "trayicon" 									
-				:tooltip "User Card"		 
+				:class "trayicon"
+				:tooltip "User Card"
 				:onclick "OpenApps --usercard"))))
 
 	(button		:style "background-image: url('images/widget_apps.png');"
-				:class "trayicon" 									
+				:class "trayicon"
 				:tooltip "Widgets"))))
 
 
 
 ;; Pacman Widgets ;;
 (defwidget pacman []
-	(eventbox	:onhover "${EWW_CMD} update pac=true"	
-				:onhoverlost "${EWW_CMD} update pac=false" 
-	(box		:orientation "v"					
-				:space-evenly "false" 	 
-				:vexpand "false" 	
-				
-	(revealer	:transition "slideup"				
-				:reveal pac			 
-				:duration "550ms"
-	(box		:orientation "v"					
+	(eventbox	:onhover "${EWW_CMD} update pac=true"
+				:onhoverlost "${EWW_CMD} update pac=false"
+	(box		:orientation "v"
 				:space-evenly "false"
-				
+				:vexpand "false"
+
+	(revealer	:transition "slideup"
+				:reveal pac
+				:duration "550ms"
+	(box		:orientation "v"
+				:space-evenly "false"
+
 	(label  	:class "bar-updates-text"
 				:text "${UPDATES}")))
-	
+
 	(eventbox   :cursor "pointer"
 	(button		:style "background-image: url('images/pac_man.png');"
 				:class "trayicon"
@@ -122,22 +122,22 @@
 
 ;; Volume Widgets ;;
 (defwidget volum []
-	(eventbox :onhover "${EWW_CMD} update volum=true" 		
+	(eventbox :onhover "${EWW_CMD} update volum=true"
 			  :onhoverlost "${EWW_CMD} update volum=false"
 			  :cursor "pointer"
-	(box      :orientation "v" 	  
-			  :space-evenly "false" 
+	(box      :orientation "v"
+			  :space-evenly "false"
 			  :spacing "2"
-	(revealer :transition "slideup" 
-			  :reveal volum         
+	(revealer :transition "slideup"
+			  :reveal volum
 			  :duration "550ms"
-	(scale    :class "volbar" 	  
+	(scale    :class "volbar"
 			  :value volume_value
 			  :onchange "pamixer --set-volume {}"
-			  :orientation "v"      
-			  :flipped true 
-			  :tooltip "Volume: ${volume_value}%" 
-			  :max 101 
+			  :orientation "v"
+			  :flipped true
+			  :tooltip "Volume: ${volume_value}%"
+			  :max 101
 			  :min 0))
 	(button   :style "background-image: url('${volume_icon}');"
 			  :class "trayicon"
@@ -146,8 +146,8 @@
 
 ;; Clock Widgets ;;
 (defwidget time []
-	(box	:orientation "v" 
-			:class "time" 
+	(box	:orientation "v"
+			:class "time"
 			:valign "end"
 	(eventbox :cursor "pointer"
 	(button	:onclick "OpenApps --calendar"
@@ -159,65 +159,73 @@
 
 ;; Powermenu Widgets ;;
 (defwidget power []
-	(eventbox	:onhover "${EWW_CMD} update power=true"	
+	(eventbox	:onhover "${EWW_CMD} update power=true"
 				:onhoverlost "${EWW_CMD} update power=false"
 				:cursor "pointer"
-	(box		:orientation "v"					
-				:space-evenly "false" 	 
-				:vexpand "false" 	
+	(box		:orientation "v"
+				:space-evenly "false"
+				:vexpand "false"
 				:class "powermenu"
-	(revealer	:transition "slideup"				
-				:reveal power			 
+	(revealer	:transition "slideup"
+				:reveal power
 				:duration "550ms"
 	(box		:orientation "v"
 				:space-evenly "false"
 
 	(button		:style "background-image: url('images/enpass.png');"
-				:class "button-lock" 				
-				:tooltip "Lock Screen"	 
+				:class "button-lock"
+				:tooltip "Lock Screen"
 				:onclick "physlock -d")
-				
+
 	(button   	:style "background-image: url('images/sys-sleep.png');"
-				:class "button-bspres"  			
-				:tooltip "Suspend computer" 
+				:class "button-bspres"
+				:tooltip "Suspend computer"
 				:onclick "systemctl suspend")
-				
+
 	(button		:style "background-image: url('images/sys-reboot.png');"
-				:class "button-reb"					
-	  			:tooltip "Reboot"		 
+				:class "button-reb"
+	  			:tooltip "Reboot"
 				:onclick "reboot")
-				
-	(button		
+
+	(button
 				:style "background-image: url('images/sys-poweroff.png');"
-				:class "button-off"					
-				:tooltip "Shutdown"		 
+				:class "button-off"
+				:tooltip "Shutdown"
 				:onclick "shutdown now")))
 
-	(button		
+	(button
 				:style "background-image: url('images/sys-powermenu.png');"
-				:class "button-powermenu"					
+				:class "button-powermenu"
 				:tooltip "Power Menu"))))
+
+
+;; Systray widget ;;
+(defwidget systemtray []
+  (box :orientation "v" :halign "center"
+    (systray :class "tray" :orientation "v" :icon-size 16 :spacing 5)
+  )
+)
 
 
 ;; Top Widgets ;;
 (defwidget top []
-	(box	:orientation "v" 
-			:space-evenly "false" 
-			:valign "start" 
+	(box	:orientation "v"
+			:space-evenly "false"
+			:valign "start"
 (launcher)
 (workspaces)))
 
 ;; Bottom Widgets ;;
 (defwidget bottom []
-	(box	:orientation "v" 
+	(box	:orientation "v"
 			:space-evenly "false"
 (time)
 (power)))
 
-;; Control Panel Widgets ;;	
+;; Control Panel Widgets ;;
 (defwidget control []
-	(box :orientation "v" 
-		 :space-evenly false  
+	(box :orientation "v"
+		 :space-evenly false
 		 :class "control"
 (notifycenter)
 (volum)
@@ -226,33 +234,34 @@
 
 ;; End Widgets ;;
 (defwidget end []
-	(box :orientation "v" 
-		 :space-evenly "false" 
-		 :valign "end" 
+	(box :orientation "v"
+		 :space-evenly "false"
+		 :valign "end"
 		 :spacing 5
+(systemtray)
 (control)
 (bottom)))
 
 ;; Bar Widgets ;;
 (defwidget bar []
-	(box :class "eww_bar" 
-		 :orientation "v" 
-		 :vexpand "false" 
+	(box :class "eww_bar"
+		 :orientation "v"
+		 :vexpand "false"
 		 :hexpand "false"
 (top)
 (end)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;							Window Section's							 ;;	
+;;							Window Section's							 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defwindow bar
 	:geometry (geometry :x "15px"
 						:y "0%"
 						:anchor "left center"
-						:height "86%"
+						:height "90%"
 						:width "47px")
-						
+
 	:reserve (struts :distance "5px"
 					 :side "left")
 	:wm-ignore false

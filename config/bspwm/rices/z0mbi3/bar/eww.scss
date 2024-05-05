@@ -5,6 +5,7 @@
 // Variable Color's
 $background: #0d0f18;
 $foreground: #a5b6cf;
+
 $black: #151720;
 $gray: #1c1e27;
 $red: #dd6777;
@@ -57,6 +58,36 @@ $archlogo: #0f94d2;
   margin: 0.35rem 0 0.35rem 0;
 }
 
+// System Tray
+.tray menu {
+	padding: 5px 5px;
+	background-color: $background;
+
+	>menuitem {
+    font-family: JetBrainsMono NF;
+    font-size: 14px;
+		padding: 2px 5px;
+    color: $foreground;
+
+		&:disabled label {
+			color: $black;
+		}
+
+		&:hover {
+			background-color: $gray;
+		}
+	}
+
+	separator {
+		background-color: $foreground;
+		padding-top: 1px;
+
+		&:last-child {
+			padding: unset;
+		}
+	}
+}
+
 // icons info
 .control {
   padding: 0.5rem;
@@ -77,7 +108,7 @@ $archlogo: #0f94d2;
   font-size: 14px;
   font-weight: Bold;
   color: #8ea6c4;
-  margin: .4rem 0 .2rem .2rem;
+  margin: 0.4rem 0 0.2rem 0.2rem;
 }
 
 scale trough {
@@ -127,5 +158,5 @@ scale trough {
   background-size: 22px;
   min-height: 22px;
   min-width: 7px;
-  margin: 0rem 0rem .5rem 9px;
+  margin: 0rem 0rem 0.5rem 9px;
 }
