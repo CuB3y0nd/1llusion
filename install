@@ -45,17 +45,17 @@ clear
 
 # Install required packages
 logo "Install needed packages"
-dependencias=(alacritty base-devel brightnessctl bspwm dunst feh geany git kitty imagemagick jq \
-  jgmenu libwebp lsd maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib \
-  papirus-icon-theme physlock picom playerctl polybar polkit-gnome python-gobject ranger \
-  redshift rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd \
-  ttf-joypixels ttf-terminus-nerd ueberzug webp-pixbuf-loader xclip xdg-user-dirs \
-  xdo xdotool xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot \
-  xorg-xwininfo zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
+dependencias=(alacritty base-devel brightnessctl bspwm dunst feh geany git kitty imagemagick jq
+	jgmenu libwebp lsd maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib
+	papirus-icon-theme physlock picom playerctl polybar polkit-gnome python-gobject ranger
+	redshift rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd
+	ttf-joypixels ttf-terminus-nerd ueberzug webp-pixbuf-loader xclip xdg-user-dirs
+	xdo xdotool xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot
+	xorg-xwininfo zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
 )
 
 is_installed() {
-  pacman -Q "$1" &> /dev/null
+	pacman -Q "$1" &>/dev/null
 }
 
 printf "%s%sChecking for required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
@@ -153,10 +153,9 @@ for rices in ~/1llusion/config/bspwm/rices/*; do
 done
 cd
 
-# Initial submodules
-cd ~/1llusion/config/nvim
-git submodule update --init --recursive
-cd -
+# Install DOOM (nvim configuration)
+git clone https://github.com/CuB3y0nd/DOOM.git ~/.config/nvim
+rm -rf ~/.config/nvim/.git
 
 for archivos in ~/1llusion/config/*; do
 	cp -R "${archivos}" ~/.config/

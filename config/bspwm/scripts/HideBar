@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#  ██╗  ██╗██╗██████╗ ███████╗    ██████╗  █████╗ ██████╗ 
+#  ██╗  ██╗██╗██████╗ ███████╗    ██████╗  █████╗ ██████╗
 #  ██║  ██║██║██╔══██╗██╔════╝    ██╔══██╗██╔══██╗██╔══██╗
 #  ███████║██║██║  ██║█████╗      ██████╔╝███████║██████╔╝
 #  ██╔══██║██║██║  ██║██╔══╝      ██╔══██╗██╔══██║██╔══██╗
@@ -41,17 +41,17 @@ unhide() {
 
 	if pgrep -f 'eww.*bar'; then
 		if [ "$RICETHEME" = "z0mbi3" ]; then
-      if ! eww -c "$HOME"/.config/bspwm/rices/z0mbi3/bar active-windows | grep -q "bar: bar"; then
-			  (eww -c "$HOME"/.config/bspwm/rices/z0mbi3/bar open bar)
-			  (bspc config left_padding "$L_Padding")
-			  (bspc config right_padding "$R_Padding")
-      fi
+			if ! eww -c "$HOME"/.config/bspwm/rices/z0mbi3/bar active-windows | grep -q "bar: bar"; then
+				(eww -c "$HOME"/.config/bspwm/rices/z0mbi3/bar open bar)
+				(bspc config left_padding "$L_Padding")
+				(bspc config right_padding "$R_Padding")
+			fi
 		elif [ "$RICETHEME" = "andrea" ]; then
-      if ! eww -c "$HOME"/.config/bspwm/rices/andrea/andy active-windows | grep -q "bar: bar"; then
-			  (eww -c "$HOME"/.config/bspwm/rices/andrea/andy open bar)
-			  (bspc config top_padding "$T_Padding")
-			  (bspc config bottom_padding "$B_Padding")
-      fi
+			if ! eww -c "$HOME"/.config/bspwm/rices/andrea/andy active-windows | grep -q "bar: bar"; then
+				(eww -c "$HOME"/.config/bspwm/rices/andrea/andy open bar)
+				(bspc config top_padding "$T_Padding")
+				(bspc config bottom_padding "$B_Padding")
+			fi
 		fi
 	fi
 }
@@ -64,4 +64,3 @@ case $1 in
 	unhide
 	;;
 esac
-
