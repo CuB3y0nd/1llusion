@@ -16,7 +16,7 @@ if [ -d "$HOME/.local/bin" ];
 fi
 
 #  ┬  ┌─┐┌─┐┌┬┐  ┌─┐┌┐┌┌─┐┬┌┐┌┌─┐
-#  │  │ │├─┤ ││  ├┤ ││││ ┬││││├┤ 
+#  │  │ │├─┤ ││  ├┤ ││││ ┬││││├┤
 #  ┴─┘└─┘┴ ┴─┴┘  └─┘┘└┘└─┘┴┘└┘└─┘
 
 autoload -Uz compinit
@@ -59,7 +59,7 @@ bindkey "^I" expand-or-complete-with-dots
 
 #  ┬ ┬┬┌─┐┌┬┐┌─┐┬─┐┬ ┬
 #  ├─┤│└─┐ │ │ │├┬┘└┬┘
-#  ┴ ┴┴└─┘ ┴ └─┘┴└─ ┴ 
+#  ┴ ┴┴└─┘ ┴ └─┘┴└─ ┴
 
 HISTFILE=~/.config/zsh/zhistory
 HISTSIZE=5000
@@ -79,7 +79,7 @@ setopt HIST_FIND_NO_DUPS   # When searching history don't display results alread
 setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 
 #  ┌┬┐┬ ┬┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┌┬┐
-#   │ ├─┤├┤   ├─┘├┬┘│ ││││├─┘ │ 
+#   │ ├─┤├┤   ├─┘├┬┘│ ││││├─┘ │
 #   ┴ ┴ ┴└─┘  ┴  ┴└─└─┘┴ ┴┴   ┴
 
 PS1='λ %B%F{red}%~/ %f%b${vcs_info_msg_0_}'
@@ -101,7 +101,7 @@ bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
 
 #  ┌─┐┬ ┬┌─┐┌┐┌┌─┐┌─┐  ┌┬┐┌─┐┬─┐┌┬┐┬┌┐┌┌─┐┬  ┌─┐  ┌┬┐┬┌┬┐┬  ┌─┐
-#  │  ├─┤├─┤││││ ┬├┤    │ ├┤ ├┬┘│││││││├─┤│  └─┐   │ │ │ │  ├┤ 
+#  │  ├─┤├─┤││││ ┬├┤    │ ├┤ ├┬┘│││││││├─┤│  └─┐   │ │ │ │  ├┤
 #  └─┘┴ ┴┴ ┴┘└┘└─┘└─┘   ┴ └─┘┴└─┴ ┴┴┘└┘┴ ┴┴─┘└─┘   ┴ ┴ ┴ ┴─┘└─┘
 
 function xterm_title_precmd () {
@@ -136,7 +136,9 @@ alias musica="ncmpcpp"
 alias ll='eza -algF --group-directories-first --octal-permissions --git'
 alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 
-alias set-proxy='export ALL_PROXY=socks5://127.0.0.1:2080'
+alias ssh='kitty +kitten ssh'
+
+alias set-proxy='export ALL_PROXY=socks5://v6.cubeyond.net:20173'
 alias unset-proxy='unset ALL_PROXY'
 
 # SWITCH GPU
@@ -160,16 +162,17 @@ alias yarn-env='export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/n
 
 # Applications
 
-alias discord='discord --proxy-server="socks5://127.0.0.1:2080"'
-alias element='element-desktop --proxy-server="socks5://127.0.0.1:2080"'
+alias discord='discord --proxy-server="socks5://v6.cubeyond.net:20173"'
+alias element='element-desktop --proxy-server="socks5://v6.cubeyond.net:20173"'
+alias onekey-wallet='onekey-wallet --proxy-server="socks5://v6.cubeyond.net:20173"'
 
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
-#  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │ 
-#  ┴ ┴└─┘ ┴ └─┘  └─┘ ┴ ┴ ┴┴└─ ┴ 
+#  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │
+#  ┴ ┴└─┘ ┴ └─┘  └─┘ ┴ ┴ ┴┴└─ ┴
 
 $HOME/.local/bin/colorscript -r
 
 export BAT_THEME="Coldark-Dark"
 export GOPROXY=https://goproxy.io,direct
-export ALL_PROXY=socks5://127.0.0.1:20173
+export ALL_PROXY=socks5://v6.cubeyond.net:20173
 
