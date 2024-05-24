@@ -45,7 +45,7 @@ clear
 
 # Install required packages
 logo "Install needed packages"
-dependencias=(alacritty base-devel brightnessctl bspwm dunst feh geany git kitty imagemagick jq
+dependencias=(alacritty base-devel brightnessctl bspwm dunst feh firefox geany git kitty imagemagick jq
 	jgmenu libwebp lsd maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib
 	papirus-icon-theme physlock picom playerctl polybar polkit-gnome python-gobject ranger
 	redshift rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd
