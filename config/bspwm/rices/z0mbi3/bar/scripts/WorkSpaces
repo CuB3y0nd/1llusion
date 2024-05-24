@@ -10,7 +10,7 @@ contains() {
 
 print_workspaces() {
 	local buf=""
-	local desktops=$(bspc query -D --names)
+	local desktops=$(bspc query -D --names | sort | uniq)
 	local focused_desktop=$(bspc query -D -d focused --names)
 	local occupied_desktops=$(bspc query -D -d .occupied --names)
 
