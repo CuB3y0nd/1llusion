@@ -161,32 +161,32 @@ Access the scratchpad functionality, a terminal window you can show or hide for 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/ff65caa8-6a15-4873-bf05-edf89ac0985d" alt="z0mbi3 Rice" align="center">|
 |---|
 
-### 🌸Brenda:
+### :octopus: Brenda:
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/22e37944-5aad-46bf-8934-3a57d1718ed2" alt="Brenda Rice" align="center">|
 |---|
 
-### 🌸Daniela:
+### :octopus: Daniela:
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/f296d6b4-9c8a-49ae-bf63-d82e5105f122" alt="Daniela Rice" align="center">|
 |---|
 
-### 🌸Marisol:
+### :octopus: Marisol:
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/d11d20c5-1edc-44c8-901b-a4103a139617" alt="Daniela Rice" align="center">|
 |---|
 
-### 🌸h4ck3r:
+### :octopus: h4ck3r:
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/2d55fcc6-1ea4-4d56-8c46-3a3fe10566fe" alt="Hacker Rice" align="center">|
 |---|
 
-### 🌸Varinka:
+### :octopus: Varinka:
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/454d82b4-8f09-4768-bf51-6ce7818ad226" alt="Varinka Rice" align="center">|
 |---|
 
-### 🌸Yael:
+### :octopus: Yael:
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/cbb0a1cc-4e2d-46a2-a4f2-ee0be3d08b50" alt="Yael Rice" align="center">|
 |---|
