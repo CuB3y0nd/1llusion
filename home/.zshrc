@@ -1,7 +1,3 @@
-#  ╔═╗╔═╗╦ ╦╦═╗╔═╗  ╔═╗╔═╗╔╗╔╔═╗╦╔═╗
-#  ╔═╝╚═╗╠═╣╠╦╝║    ║  ║ ║║║║╠╣ ║║ ╦
-#  ╚═╝╚═╝╩ ╩╩╚═╚═╝  ╚═╝╚═╝╝╚╝╚  ╩╚═╝
-
 #  ┬  ┬┌─┐┬─┐┌─┐
 #  └┐┌┘├─┤├┬┘└─┐
 #   └┘ ┴ ┴┴└─└─┘
@@ -95,8 +91,8 @@ PS1='λ %B%F{red}%~/ %f%b${vcs_info_msg_0_}'
 
 # command not found
 command_not_found_handler() {
-	printf "%s%s? I don't know what is it\n" "$acc" "$0" >&2
-    return 127
+  printf "%s%s? I don't know what's that ;-;\n" "$acc" "$0" >&2
+  return 127
 }
 
 #  ┌─┐┬  ┬ ┬┌─┐┬┌┐┌┌─┐
@@ -154,7 +150,7 @@ alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 
 alias ssh='kitty +kitten ssh'
 
-alias set-proxy='export ALL_PROXY=socks5://v6.cubeyond.net:20173'
+alias set-proxy='export ALL_PROXY=socks5://127.0.0.1:2080'
 alias unset-proxy='unset ALL_PROXY'
 
 # SWITCH GPU
@@ -178,9 +174,9 @@ alias yarn-env='export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/n
 
 # Applications
 
-alias discord='discord --proxy-server="socks5://v6.cubeyond.net:20173"'
-alias element='element-desktop --proxy-server="socks5://v6.cubeyond.net:20173"'
-alias onekey-wallet='onekey-wallet --proxy-server="socks5://v6.cubeyond.net:20173"'
+alias discord='discord --proxy-server="socks5://127.0.0.1:2080"'
+alias element='element-desktop --proxy-server="socks5://127.0.0.1:2080"'
+alias onekey-wallet='onekey-wallet --proxy-server="socks5://127.0.0.1:2080"'
 
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │
@@ -190,5 +186,5 @@ $HOME/.local/bin/colorscript -r
 
 export BAT_THEME="Coldark-Dark"
 export GOPROXY=https://goproxy.io,direct
-export ALL_PROXY=socks5://v6.cubeyond.net:20173
+export ALL_PROXY=socks5://127.0.0.1:2080
 
