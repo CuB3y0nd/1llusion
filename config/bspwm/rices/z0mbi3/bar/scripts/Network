@@ -1,40 +1,26 @@
 #!/usr/bin/env bash
-#  ███╗   ██╗███████╗████████╗██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗
-#  ████╗  ██║██╔════╝╚══██╔══╝██║    ██║██╔═══██╗██╔══██╗██║ ██╔╝
-#  ██╔██╗ ██║█████╗     ██║   ██║ █╗ ██║██║   ██║██████╔╝█████╔╝
-#  ██║╚██╗██║██╔══╝     ██║   ██║███╗██║██║   ██║██╔══██╗██╔═██╗
-#  ██║ ╚████║███████╗   ██║   ╚███╔███╔╝╚██████╔╝██║  ██║██║  ██╗
-#  ╚═╝  ╚═══╝╚══════╝   ╚═╝    ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-#	This script checks if you are connected to the internet and sets values.
 
 ID=$(ip link | awk '/state UP/ {print $2}' | tr -d :)
 SSID=""
 ICON="images/wifi.png"
 
-if command -v nmcli >/dev/null 2>&1 ; then
-	SSID=$(nmcli -t -f active,ssid dev wifi show | sed -n '1{s/SSID: //p}')
+if command -v nmcli >/dev/null 2>&1; then
+  SSID=$(nmcli -t -f active,ssid dev wifi show | sed -n '1{s/SSID: //p}')
 fi
 
-ping_servers=("archlinux.org" "google.com")
-
 is_online() {
-	for server in "${ping_servers[@]}"; do
-		if ping -c 1 "$server" &>/dev/null; then
-			return 0 # Online
-		fi
-	done
-	return 1 # Offline
+  ping -c 1 archlinux.org &>/dev/null
 }
 
 if is_online; then
-	if [[ $ID == e* ]]; then
-		STATUS="$ID"
-	else
-		STATUS="$SSID"
-	fi
+  if [[ $ID == e* ]]; then
+    STATUS="$ID"
+  else
+    STATUS="$SSID"
+  fi
 else
-	STATUS="Offline"
-	ICON="images/no-wifi.png"
+  STATUS="Offline"
+  ICON="images/no-wifi.png"
 fi
 
 case "$1" in

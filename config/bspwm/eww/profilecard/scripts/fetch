@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 os() {
   awk -F '"' '/PRETTY_NAME/ {print $2}' /etc/os-release | awk '{print $1}'
