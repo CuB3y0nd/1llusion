@@ -10,7 +10,7 @@ CNC=$(tput sgr0)
 backup_folder=~/.backup
 date=$(date +%Y%m%d-%H%M%S)
 
-logo() {
+info() {
   local text="${1:?}"
   printf '%s [%s%s %s%s %s]%s\n' "${CRE}" "${CNC}" "${CYE}" "${text}" "${CNC}" "${CRE}" "${CNC}"
 }
@@ -21,7 +21,7 @@ if [ "$(id -u)" = 0 ]; then
 fi
 
 # Welcome
-logo "Welcome!"
+info "Welcome!"
 printf '%s%sThis script will check if you have the necessary dependencies,
 and if not, it will install them. Then, it will clone the RICE
 into your HOME directory.\n
@@ -38,13 +38,13 @@ while true; do
   case $yn in
   [Yy]*) break ;;
   [Nn]*) exit ;;
-  *) printf " Error: Please enter 'y' or 'n'\n\n" ;;
+  *) printf " Error: Please enter 'y' or 'N'\n\n" ;;
   esac
 done
 clear
 
 # Install required packages
-logo "Install needed packages"
+info "Install needed packages"
 dependencias=(alacritty base-devel bat brightnessctl bspwm dunst feh firefox git kitty imagemagick jq
   jgmenu libwebp lsd maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib
   papirus-icon-theme physlock picom playerctl polybar polkit-gnome python-gobject ranger
@@ -72,8 +72,8 @@ sudo npm install -g neovim
 sleep 3
 clear
 
-# Verifies if the archive user-dirs.dirs doesn't exist in ~/.config
-logo "Prepar Folders"
+# Verify if the archive user-dirs.dirs doesn't exist in ~/.config
+info "Prepar Folders"
 if [ ! -e $HOME/.config/user-dirs.dirs ]; then
   xdg-user-dirs-update
 fi
@@ -81,7 +81,7 @@ sleep 2
 clear
 
 # Clone the Rice
-logo "Download dotfiles"
+info "Download dotfiles"
 [ -d ~/1llusion ] && rm -rf ~/1llusion
 printf "Cloning rice from https://github.com/CuB3y0nd/1llusion...\n"
 cd
@@ -90,7 +90,7 @@ sleep 2
 clear
 
 # Backup files
-logo "Backup files"
+info "Backup files"
 printf "Backup files will be stored in %s%s%s/.backup%s \n\n" "${BLD}" "${CRE}" "$HOME" "${CNC}"
 sleep 10
 
@@ -131,7 +131,7 @@ printf "%s%sDone.%s\n\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 5
 
 # Copy the Rice
-logo "Import dotfiles"
+info "Import dotfiles"
 printf "Copying files to respective directories...\n"
 
 [ ! -d ~/.config ] && mkdir -p ~/.config
@@ -233,9 +233,8 @@ wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.
 printf "%s%sZsh plugins install succesfully!%s\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 3
 
-# Install yay & eww
-logo "Install yay & eww"
-
+# Install yay
+info "Install yay"
 if ! command -v yay >/dev/null 2>&1; then
   printf "%s%sInstalling yay...%s\n" "${BLD}" "${CBL}" "${CNC}"
   pacman -S --needed git base-devel
@@ -251,6 +250,8 @@ else
   printf "\n%s%syay is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
 
+# Install eww
+info "Install eww"
 if ! command -v eww >/dev/null 2>&1; then
   printf "\n%s%sInstalling eww... This could take 10 mins or more!%s\n" "${BLD}" "${CBL}" "${CNC}"
   sudo pacman -S rustup --noconfirm
@@ -283,24 +284,23 @@ else
 fi
 
 # Install rofi-greenclip
-if pacman -Q rofi-greenclip >/dev/null 2>&1; then
-  printf "\n%s%srofi-greenclip is already installed%s\n" "${BLD}" "${CGR}" "${CNC}"
+if yay -Q rofi-greenclip >/dev/null 2>&1; then
+  printf "\n%s%srofi-greenclip is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 else
-  printf "\n%s%sInstalling rofi-greenclip, this should be fast!%s\n" "${BLD}" "${CBL}" "${CNC}"
+  printf "\n%s%sInstalling rofi-greenclip...%s\n" "${BLD}" "${CBL}" "${CNC}"
   yay -S rofi-greenclip --skipreview --noconfirm
 fi
 
 # Install ttf-maple
-if pacman -Q ttf-maple >/dev/null 2>&1; then
-  printf "\n%s%sttf-maple is already installed%s\n" "${BLD}" "${CGR}" "${CNC}"
+if yay -Q ttf-maple >/dev/null 2>&1; then
+  printf "\n%s%sttf-maple is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 else
-  printf "\n%s%sInstalling ttf-maple, this should be fast!%s\n" "${BLD}" "${CBL}" "${CNC}"
+  printf "\n%s%sInstalling ttf-maple...%s\n" "${BLD}" "${CBL}" "${CNC}"
   yay -S ttf-maple --skipreview --noconfirm
 fi
 
 # Enable MPD service
-logo "Enable MPD service"
-
+info "Enable MPD service"
 if systemctl is-enabled --quiet mpd.service; then
   printf "\n%s%sDisabling and stopping the global mpd service%s\n" "${BLD}" "${CBL}" "${CNC}"
   sudo systemctl stop mpd.service
@@ -314,7 +314,7 @@ printf "%s%sDone.%s\n\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 2
 
 # Change the shell to zsh
-logo "Change the default shell to zsh"
+info "Change the default shell to zsh"
 if [[ $SHELL != "/usr/bin/zsh" ]]; then
   echo "Changing your shell to zsh... Your root password is needed:"
   chsh -s /usr/bin/zsh
