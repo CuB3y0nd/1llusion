@@ -1,7 +1,3 @@
-;; Author : gh0st
-;; Dotfiles : https://github.com/gh0stzk/dotfiles
-;; Show a cheatsheet for the bspwm environment.
-
 (defwidget cheatsheet []
   (box :class "cheatsheet" :orientation "v" :space-evenly "false"
     (top)
@@ -61,6 +57,9 @@
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Wallpaper Selector")
         (label :class "keys-alt" :xalign 1 :text "Alt + Shift + W"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Terminal selector")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + T"))
       (box :orientation "h" :space-evenly "true"
         (label :class "category-workspaces" :xalign 0.5 :text "Workspaces")
         (label :text ""))
@@ -171,19 +170,22 @@
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Super + {h,u}"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Change transparency")
-        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt +   "))
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + {+,-,t}"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Screenshot now")
-        (label :class "keys-alt" :xalign 1 :text "Print"))
+        (label :class "keys" :xalign 0 :text "Network Manager")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + N"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Screenshot select")
-        (label :class "keys-alt" :xalign 1 :text "Ctrl + Print"))
+        (label :class "keys" :xalign 0 :text "Screenshot")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + S"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Screenshot in 10s")
-        (label :class "keys-alt" :xalign 1 :text "Alt + Print"))
+        (label :class "keys" :xalign 0 :text "Bluetooth")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + B"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Screenshot active node")
-        (label :class "keys-alt" :xalign 1 :text "Shift + Print"))
+        (label :class "keys" :xalign 0 :text "Clipboard")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + C"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Power Menu")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + P"))
       (box :orientation "h" :space-evenly "true"
         (label :class "category-apps" :xalign 0.5 :text "Apps")
         (label :text ""))

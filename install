@@ -11,13 +11,13 @@ backup_folder=~/.backup
 date=$(date +%Y%m%d-%H%M%S)
 
 logo() {
-	local text="${1:?}"
-	printf '%s [%s%s %s%s %s]%s\n' "${CRE}" "${CNC}" "${CYE}" "${text}" "${CNC}" "${CRE}" "${CNC}"
+  local text="${1:?}"
+  printf '%s [%s%s %s%s %s]%s\n' "${CRE}" "${CNC}" "${CYE}" "${text}" "${CNC}" "${CRE}" "${CNC}"
 }
 
 if [ "$(id -u)" = 0 ]; then
-	echo "This script cannot be run as root user!"
-	exit 1
+  echo "This script cannot be run as root user!"
+  exit 1
 fi
 
 # Welcome
@@ -34,39 +34,39 @@ This script doesnt have the potential power to break your system,
 it only copies files from my repository to your HOME directory.%s\n\n' "${BLD}" "${CRE}" "${CNC}"
 
 while true; do
-	read -rp " Do you want to continue? [y/N]: " yn
-	case $yn in
-	[Yy]*) break ;;
-	[Nn]*) exit ;;
-	*) printf " Error: Please enter 'y' or 'n'\n\n" ;;
-	esac
+  read -rp " Do you want to continue? [y/N]: " yn
+  case $yn in
+  [Yy]*) break ;;
+  [Nn]*) exit ;;
+  *) printf " Error: Please enter 'y' or 'n'\n\n" ;;
+  esac
 done
 clear
 
 # Install required packages
 logo "Install needed packages"
-dependencias=(alacritty base-devel brightnessctl bspwm dunst feh firefox geany git kitty imagemagick jq
-	jgmenu libwebp lsd maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib
-	papirus-icon-theme physlock picom playerctl polybar polkit-gnome python-gobject ranger
-	redshift rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd
-	ttf-joypixels ttf-terminus-nerd ueberzug webp-pixbuf-loader xclip xdg-user-dirs
-	xdo xdotool xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot
-	xorg-xwininfo zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
+dependencias=(alacritty base-devel bat brightnessctl bspwm dunst feh firefox git kitty imagemagick jq
+  jgmenu libwebp lsd maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib
+  papirus-icon-theme physlock picom playerctl polybar polkit-gnome python-gobject ranger
+  redshift rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd
+  ttf-joypixels ttf-terminus-nerd ueberzug webp-pixbuf-loader xclip xdg-user-dirs
+  xdo xdotool xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot
+  xorg-xwininfo zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
 )
 
 is_installed() {
-	pacman -Q "$1" &>/dev/null
+  pacman -Q "$1" &>/dev/null
 }
 
 printf "%s%sChecking for required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
 for paquete in "${dependencias[@]}"; do
-	if ! is_installed "$paquete"; then
-		sudo pacman -S "$paquete" --noconfirm
-		printf "\n"
-	else
-		printf '%s%s is already installed!%s\n' "${CGR}" "$paquete" "${CNC}"
-		sleep 1
-	fi
+  if ! is_installed "$paquete"; then
+    sudo pacman -S "$paquete" --noconfirm
+    printf "\n"
+  else
+    printf '%s%s is already installed!%s\n' "${CGR}" "$paquete" "${CNC}"
+    sleep 1
+  fi
 done
 sudo npm install -g neovim
 sleep 3
@@ -75,7 +75,7 @@ clear
 # Verifies if the archive user-dirs.dirs doesn't exist in ~/.config
 logo "Prepar Folders"
 if [ ! -e $HOME/.config/user-dirs.dirs ]; then
-	xdg-user-dirs-update
+  xdg-user-dirs-update
 fi
 sleep 2
 clear
@@ -95,34 +95,34 @@ printf "Backup files will be stored in %s%s%s/.backup%s \n\n" "${BLD}" "${CRE}" 
 sleep 10
 
 if [ ! -d "$backup_folder" ]; then
-	mkdir -p "$backup_folder"
+  mkdir -p "$backup_folder"
 fi
 
 for folder in bspwm alacritty picom rofi eww sxhkd dunst kitty polybar ncmpcpp nvim ranger zsh mpd yay; do
-	if [ -d "$HOME/.config/$folder" ]; then
-		mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date"
-		echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
-	else
-		echo "The folder $folder does not exist in $HOME/.config/"
-	fi
+  if [ -d "$HOME/.config/$folder" ]; then
+    mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date"
+    echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
+  else
+    echo "The folder $folder does not exist in $HOME/.config/"
+  fi
 done
 
 for folder in chrome; do
-	if [ -d "$HOME"/.mozilla/firefox/*.default-release/$folder ]; then
-		mv "$HOME"/.mozilla/firefox/*.default-release/$folder "$backup_folder"/${folder}_$date
-		echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
-	else
-		echo "The folder $folder does not exist in $HOME/.mozilla/firefox/"
-	fi
+  if [ -d "$HOME"/.mozilla/firefox/*.default-release/$folder ]; then
+    mv "$HOME"/.mozilla/firefox/*.default-release/$folder "$backup_folder"/${folder}_$date
+    echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
+  else
+    echo "The folder $folder does not exist in $HOME/.mozilla/firefox/"
+  fi
 done
 
 for file in user.js; do
-	if [ -e "$HOME"/.mozilla/firefox/*.default-release/$file ]; then
-		mv "$HOME"/.mozilla/firefox/*.default-release/$file "$backup_folder"/${file}_$date
-		echo "$file file backed up successfully at $backup_folder/${file}_$date"
-	else
-		echo "The file $file does not exist in $HOME/.mozilla/firefox/"
-	fi
+  if [ -e "$HOME"/.mozilla/firefox/*.default-release/$file ]; then
+    mv "$HOME"/.mozilla/firefox/*.default-release/$file "$backup_folder"/${file}_$date
+    echo "$file file backed up successfully at $backup_folder/${file}_$date"
+  else
+    echo "The file $file does not exist in $HOME/.mozilla/firefox/"
+  fi
 done
 
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/.backup/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
@@ -142,14 +142,14 @@ printf "Copying files to respective directories...\n"
 
 cd 1llusion
 for rices in ~/1llusion/config/bspwm/rices/*; do
-	cp -R walls "${rices}"
-	if [ $? -eq 0 ]; then
-		printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-		sleep 1
-	else
-		printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-		sleep 1
-	fi
+  cp -R walls "${rices}"
+  if [ $? -eq 0 ]; then
+    printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+    sleep 1
+  else
+    printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+    sleep 1
+  fi
 done
 cd
 
@@ -158,69 +158,69 @@ git clone https://github.com/CuB3y0nd/DOOM.git ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
 for archivos in ~/1llusion/config/*; do
-	cp -R "${archivos}" ~/.config/
-	if [ $? -eq 0 ]; then
-		printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-		sleep 1
-	else
-		printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-		sleep 1
-	fi
+  cp -R "${archivos}" ~/.config/
+  if [ $? -eq 0 ]; then
+    printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+    sleep 1
+  else
+    printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+    sleep 1
+  fi
 done
 
 for archivos in ~/1llusion/misc/bin/*; do
-	cp -R "${archivos}" ~/.local/bin/
-	if [ $? -eq 0 ]; then
-		printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-		sleep 1
-	else
-		printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-		sleep 1
-	fi
+  cp -R "${archivos}" ~/.local/bin/
+  if [ $? -eq 0 ]; then
+    printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+    sleep 1
+  else
+    printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+    sleep 1
+  fi
 done
 
 for archivos in ~/1llusion/misc/applications/*; do
-	cp -R "${archivos}" ~/.local/share/applications/
-	if [ $? -eq 0 ]; then
-		printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-		sleep 1
-	else
-		printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-		sleep 1
-	fi
+  cp -R "${archivos}" ~/.local/share/applications/
+  if [ $? -eq 0 ]; then
+    printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+    sleep 1
+  else
+    printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+    sleep 1
+  fi
 done
 
 for archivos in ~/1llusion/misc/fonts/*; do
-	cp -R "${archivos}" ~/.local/share/fonts/
-	if [ $? -eq 0 ]; then
-		printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-		sleep 1
-	else
-		printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-		sleep 1
-	fi
+  cp -R "${archivos}" ~/.local/share/fonts/
+  if [ $? -eq 0 ]; then
+    printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+    sleep 1
+  else
+    printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+    sleep 1
+  fi
 done
 
 for archivos in ~/1llusion/misc/asciiart/*; do
-	cp -R "${archivos}" ~/.local/share/asciiart/
-	if [ $? -eq 0 ]; then
-		printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-		sleep 1
-	else
-		printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-		sleep 1
-	fi
+  cp -R "${archivos}" ~/.local/share/asciiart/
+  if [ $? -eq 0 ]; then
+    printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+    sleep 1
+  else
+    printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+    sleep 1
+  fi
 done
 
 for archivos in ~/1llusion/misc/firefox/*; do
-	cp -R "${archivos}" ~/.mozilla/firefox/*.default-release/
-	if [ $? -eq 0 ]; then
-		printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-		sleep 1
-	else
-		printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-		sleep 1
-	fi
+  cp -R "${archivos}" ~/.mozilla/firefox/*.default-release/
+  if [ $? -eq 0 ]; then
+    printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+    sleep 1
+  else
+    printf "%s%s%s failed to been copied, you must copy it manually!%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+    sleep 1
+  fi
 done
 
 cp -f "$HOME"/1llusion/home/.zshrc "$HOME"
@@ -237,58 +237,74 @@ sleep 3
 logo "Install yay & eww"
 
 if ! command -v yay >/dev/null 2>&1; then
-	printf "%s%sInstalling yay...%s\n" "${BLD}" "${CBL}" "${CNC}"
-	pacman -S --needed git base-devel
-	cd
-	git clone https://aur.archlinux.org/yay-bin.git
-	cd yay-bin
-	makepkg -si --noconfirm
-	cd
-	yay -Y --gendb
-	yay -Syu --devel
-	yay -Y --devel --save
+  printf "%s%sInstalling yay...%s\n" "${BLD}" "${CBL}" "${CNC}"
+  pacman -S --needed git base-devel
+  cd
+  git clone https://aur.archlinux.org/yay-bin.git
+  cd yay-bin
+  makepkg -si --noconfirm
+  cd
+  yay -Y --gendb
+  yay -Syu --devel
+  yay -Y --devel --save
 else
-	printf "\n%s%syay is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
+  printf "\n%s%syay is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
 
 if ! command -v eww >/dev/null 2>&1; then
-	printf "\n%s%sInstalling eww... This could take 10 mins or more!%s\n" "${BLD}" "${CBL}" "${CNC}"
-	sudo pacman -S rustup --noconfirm
-	cd
-	git clone https://github.com/elkowar/eww.git
-	cd eww
-	cargo build --release --no-default-features --features x11
-	sudo install -m 755 "$HOME/eww/target/release/eww" -t /usr/bin/
-	cd
-	rm -rf {.cargo,.rustup,eww}
-	rm -rf $HOME/.cache/yay/*
+  printf "\n%s%sInstalling eww... This could take 10 mins or more!%s\n" "${BLD}" "${CBL}" "${CNC}"
+  sudo pacman -S rustup --noconfirm
+  cd
+  git clone https://github.com/elkowar/eww.git
+  cd eww
+  cargo build --release --no-default-features --features x11
+  sudo install -m 755 "$HOME/eww/target/release/eww" -t /usr/bin/
+  cd
+  rm -rf {.cargo,.rustup,eww}
+  rm -rf $HOME/.cache/yay/*
 else
-	printf "\n%s%seww is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
+  printf "\n%s%seww is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
 
-# Intall tdrop for scratchpads
+# Install tdrop for scratchpads
 if ! command -v tdrop >/dev/null 2>&1; then
-	printf "\n%s%sInstalling tdrop...%s\n" "${BLD}" "${CBL}" "${CNC}"
-	yay -S tdrop-git --noconfirm
+  printf "\n%s%sInstalling tdrop...%s\n" "${BLD}" "${CBL}" "${CNC}"
+  yay -S tdrop-git --noconfirm
 else
-	printf "\n%s%sTdrop is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
+  printf "\n%s%sTdrop is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 fi
 
-# Intall xqp
+# Install xqp
 if ! command -v xqp >/dev/null 2>&1; then
-	printf "\n%s%sInstalling xqp...%s\n" "${BLD}" "${CBL}" "${CNC}"
-	yay -S xqp --noconfirm
+  printf "\n%s%sInstalling xqp...%s\n" "${BLD}" "${CBL}" "${CNC}"
+  yay -S xqp --noconfirm
 else
-	printf "\n%s%sxqp is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
+  printf "\n%s%sxqp is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
+fi
+
+# Install rofi-greenclip
+if pacman -Q rofi-greenclip >/dev/null 2>&1; then
+  printf "\n%s%srofi-greenclip is already installed%s\n" "${BLD}" "${CGR}" "${CNC}"
+else
+  printf "\n%s%sInstalling rofi-greenclip, this should be fast!%s\n" "${BLD}" "${CBL}" "${CNC}"
+  yay -S rofi-greenclip --skipreview --noconfirm
+fi
+
+# Install ttf-maple
+if pacman -Q ttf-maple >/dev/null 2>&1; then
+  printf "\n%s%sttf-maple is already installed%s\n" "${BLD}" "${CGR}" "${CNC}"
+else
+  printf "\n%s%sInstalling ttf-maple, this should be fast!%s\n" "${BLD}" "${CBL}" "${CNC}"
+  yay -S ttf-maple --skipreview --noconfirm
 fi
 
 # Enable MPD service
 logo "Enable MPD service"
 
 if systemctl is-enabled --quiet mpd.service; then
-	printf "\n%s%sDisabling and stopping the global mpd service%s\n" "${BLD}" "${CBL}" "${CNC}"
-	sudo systemctl stop mpd.service
-	sudo systemctl disable mpd.service
+  printf "\n%s%sDisabling and stopping the global mpd service%s\n" "${BLD}" "${CBL}" "${CNC}"
+  sudo systemctl stop mpd.service
+  sudo systemctl disable mpd.service
 fi
 
 printf "\n%s%sEnabling and starting the user-level mpd service%s\n" "${BLD}" "${CYE}" "${CNC}"
@@ -300,10 +316,10 @@ sleep 2
 # Change the shell to zsh
 logo "Change the default shell to zsh"
 if [[ $SHELL != "/usr/bin/zsh" ]]; then
-	echo "Changing your shell to zsh... Your root password is needed:"
-	chsh -s /usr/bin/zsh
+  echo "Changing your shell to zsh... Your root password is needed:"
+  chsh -s /usr/bin/zsh
 else
-	printf "%s%sYour shell is already changed to zsh!\n
+  printf "%s%sYour shell is already changed to zsh!\n
 Good bye! Installation finished, now please reboot your computer and enjoy!%s\n" "${BLD}" "${CGR}" "${CNC}"
-	zsh
+  zsh
 fi

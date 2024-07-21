@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+SFILE="$HOME/.config/bspwm/src/.sys"
+
+function get_values() {
+
+  DEFNETWORK=$(ip route | awk '/^default/ {print $5; exit}')
+  CARD=$(ls -1 /sys/class/backlight/)
+
+  for file in /sys/class/power_supply/*; do
+    [ -e "$file/capacity" ] && BATTERY=$(basename "$file")
+    [ -e "$file/online" ] && ADAPTER=$(basename "$file")
+  done
+}
+
+function set_values() {
+
+  CONFIG_FILE="$HOME/.config/bspwm/src/system.ini"
+  [ "$DEFNETWORK" ] && sed -i "s/sys_network_interface = .*/sys_network_interface = $DEFNETWORK/" "$CONFIG_FILE"
+  [ "$ADAPTER" ] && sed -i "s/sys_adapter = .*/sys_adapter = $ADAPTER/" "$CONFIG_FILE"
+  [ "$BATTERY" ] && sed -i "s/sys_battery = .*/sys_battery = $BATTERY/" "$CONFIG_FILE"
+  [ "$CARD" ] && sed -i "s/sys_graphics_card = .*/sys_graphics_card = $CARD/" "$CONFIG_FILE"
+}
+
+if [[ ! -f "$SFILE" ]]; then
+  get_values
+  set_values
+  touch "$SFILE"
+fi

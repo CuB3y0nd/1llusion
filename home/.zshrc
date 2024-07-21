@@ -6,6 +6,9 @@
 #  └┐┌┘├─┤├┬┘└─┐
 #   └┘ ┴ ┴┴└─└─┘
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 export VISUAL="${EDITOR}"
 export EDITOR="nvim"
 export BROWSER="chromium"
@@ -64,6 +67,14 @@ bindkey "^I" expand-or-complete-with-dots
 HISTFILE=~/.config/zsh/zhistory
 HISTSIZE=5000
 SAVEHIST=5000
+HISTDUP=erase
+setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
 
 #  ┌─┐┌─┐┬ ┬  ┌─┐┌─┐┌─┐┬    ┌─┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐
 #  ┌─┘└─┐├─┤  │  │ ││ ││    │ │├─┘ │ ││ ││││└─┐
@@ -74,8 +85,6 @@ setopt PROMPT_SUBST        # Enable command substitution in prompt
 setopt MENU_COMPLETE       # Automatically highlight first element of completion menu
 setopt LIST_PACKED         # The completion menu takes less space.
 setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
-setopt HIST_IGNORE_DUPS    # Do not write events to history that are duplicates of previous events
-setopt HIST_FIND_NO_DUPS   # When searching history don't display results already cycled through twice
 setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 
 #  ┌┬┐┬ ┬┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┌┬┐
@@ -83,6 +92,12 @@ setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 #   ┴ ┴ ┴└─┘  ┴  ┴└─└─┘┴ ┴┴   ┴
 
 PS1='λ %B%F{red}%~/ %f%b${vcs_info_msg_0_}'
+
+# command not found
+command_not_found_handler() {
+	printf "%s%s? I don't know what is it\n" "$acc" "$0" >&2
+    return 127
+}
 
 #  ┌─┐┬  ┬ ┬┌─┐┬┌┐┌┌─┐
 #  ├─┘│  │ ││ ┬││││└─┐
@@ -131,8 +146,9 @@ alias update="yay -Syu --nocombinedupgrade"
 alias vm-on="sudo systemctl start libvirtd.service"
 alias vm-off="sudo systemctl stop libvirtd.service"
 
-alias musica="ncmpcpp"
+alias music="ncmpcpp"
 
+alias cat="bat --theme=base16"
 alias ll='eza -algF --group-directories-first --octal-permissions --git'
 alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 

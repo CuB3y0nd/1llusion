@@ -20,6 +20,7 @@ Cristina,echo cristina > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Cynthia,echo cynthia > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Daniela,echo daniela > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Emilia,echo emilia > ~/.config/bspwm/.rice ; bspc wm -r,colors
+h4ck3r,echo h4ck3r > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Isabel,echo isabel > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Jan,echo jan > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Karla,echo karla > ~/.config/bspwm/.rice ; bspc wm -r,colors
@@ -27,6 +28,8 @@ Marisol,echo marisol > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Melissa,echo melissa > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Pamela,echo pamela > ~/.config/bspwm/.rice ; bspc wm -r,colors
 Silvia,echo silvia > ~/.config/bspwm/.rice ; bspc wm -r,colors
+Varinka,echo varinka > ~/.config/bspwm/.rice ; bspc wm -r,colors
+Yael,echo yael > ~/.config/bspwm/.rice ; bspc wm -r,colors
 z0mbi3,echo z0mbi3 > ~/.config/bspwm/.rice ; bspc wm -r,colors
 
 ^tag(favorites)

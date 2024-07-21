@@ -1,7 +1,7 @@
 #  ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ ██████╗  ██████╗
 #  ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗██╔══██╗██╔════╝
-#  ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║██████╔╝██║     
-#  ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║██╔══██╗██║     
+#  ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║██████╔╝██║
+#  ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║██╔══██╗██║
 #  ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝██║  ██║╚██████╗
 #  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝
 
@@ -45,7 +45,7 @@ super + alt + t
 
 # jgmenu
 ~button3
-  xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/scripts/menu.txt --config-file=~/.config/bspwm/jgmenurc
+  xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/src/jgmenu/menu.txt --config-file=~/.config/bspwm/jgmenurc
 
 # Scratchpad
 alt + shift + o
@@ -60,28 +60,32 @@ ctrl + super + {h,u}
 	HideBar {-h,-u}
 
 # Change transparency on focused window
-ctrl + alt + {plus,minus,equal}
+ctrl + alt + {plus,minus,t}
 	picom-trans {-c -o +3,-c -o -1,-c -d}
 
 # Change wallpaper
 alt + shift + w
 	WallSelect
 
-# Screenshot Now
-Print
-	ScreenShoTer --now
+# Network Manager
+super + alt + n
+  OpenApps --netmanager
 
-# Screenshot Select
-ctrl + Print
-	ScreenShoTer --sel
+# Clipboard
+super + alt + c
+  OpenApps --clipboard
 
-# Screenshot in 10s
-alt + Print
-	ScreenShoTer --in10
+# Screenshot
+super + alt + s
+  OpenApps --screenshot
 
-# Screenshot active window
-shift + Print
-	ScreenShoTer --active
+# Bluetooth
+super + alt + b
+  OpenApps --bluetooth
+
+# PowerMenu
+super + alt + p
+  OpenApps --powermenu
 
 # Manage brightness
 XF86MonBrightness{Up,Down}
@@ -104,7 +108,7 @@ super + alt + r
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}
-	
+
 # Reload Keybindings
 super + Escape
 	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
@@ -164,7 +168,7 @@ super + alt + space
 	bspc node -p cancel
 
 #####
-	
+
 # expand a window
 ctrl + alt {Left,Down,Up,Right}
 	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
