@@ -1,13 +1,8 @@
-// # z0mbi3 -  https://github.com/gh0stzk/dotfiles
-
-
 configuration {
-    show-icons:                 false;
+    show-icons:                  false;
 }
 
-
 @import "shared.rasi"
-
 
 window {
     transparency:                "real";
@@ -111,7 +106,7 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    
+
     spacing:                     5px;
     margin:                      0px;
     padding:                     0px;

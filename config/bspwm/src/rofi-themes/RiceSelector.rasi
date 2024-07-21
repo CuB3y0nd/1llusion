@@ -1,24 +1,21 @@
-// Config //
 configuration {
     modi:                        "drun";
     show-icons:                  true;
     drun-display-format:         "{name}";
     font:                        "JetBrainsMono NF Bold 11";
 
-    //hover-select:				 true;
-	//me-select-entry:			 "";
-	//me-accept-entry:			 "MousePrimary";
+    //hover-select:                true;
+    //me-select-entry:             "";
+    //me-accept-entry:             "MousePrimary";
 }
 
 * {
-main-bg: #14171c;
-main-fg: #b8bfe5;
-select-bg: #7560d3;
-select-fg: #14171c;
+    main-bg: #14171c;
+    main-fg: #b8bfe5;
+    select-bg: #7560d3;
+    select-fg: #14171c;
 }
 
-
-// Main //
 window {
     enabled:                     true;
     fullscreen:                  false;
@@ -38,8 +35,6 @@ mainbox {
     background-color:            @main-bg;
 }
 
-
-// Lists //
 listview {
     enabled:                     true;
     columns:                     6;
@@ -58,8 +53,6 @@ listview {
     text-color:                  @main-fg;
 }
 
-
-// Elements //
 element {
     enabled:                     true;
     orientation:                 horizontal;
@@ -70,15 +63,18 @@ element {
     background-color:            transparent;
     text-color:                  @main-fg;
 }
+
 @media(max-aspect-ratio: 1.8) {
     element {
         orientation:             vertical;
     }
 }
+
 element selected.normal {
     background-color:            @select-bg;
     text-color:                  @select-fg;
 }
+
 element-icon {
     size:                        33%;
     cursor:                      inherit;
@@ -86,6 +82,7 @@ element-icon {
     background-color:            transparent;
     text-color:                  inherit;
 }
+
 element-text {
     vertical-align:              0.5;
     horizontal-align:            0.5;

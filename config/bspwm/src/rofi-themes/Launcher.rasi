@@ -1,15 +1,15 @@
 configuration {
-	modi: 						"drun";
-	icon-theme: 				"Papirus-Dark";
-	application-fallback-icon: 	"Adwaita";
-    show-icons:                 true;
-	drun-display-format:        "{name}";
-	disable-history:            true;
-	sidebar-mode: 				false;
+    modi:                        "drun";
+    icon-theme:                  "Papirus-Dark";
+    application-fallback-icon:   "Adwaita";
+    show-icons:                  true;
+    drun-display-format:         "{name}";
+    disable-history:             true;
+    sidebar-mode:                false;
 
-	hover-select:				true;
-	me-select-entry:			"";
-	me-accept-entry:			"MousePrimary";
+    hover-select:                true;
+    me-select-entry:             "";
+    me-accept-entry:             "MousePrimary";
 }
 
 @import "shared.rasi"
@@ -83,7 +83,7 @@ entry {
 listview {
     enabled:                     true;
     columns:                     3;
-    lines:						 5;
+    lines:                       5;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;

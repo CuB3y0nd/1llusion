@@ -1,9 +1,7 @@
-// # z0mbi3 - https://github.com/gh0stzk/dotfiles
-
 configuration {
-	hover-select:				true;
-	me-select-entry:			"";
-	me-accept-entry:			"MousePrimary";
+    hover-select:                true;
+    me-select-entry:             "";
+    me-accept-entry:             "MousePrimary";
 }
 
 @import "shared.rasi"
@@ -90,7 +88,7 @@ listview {
     cycle:                       true;
     scrollbar:                   false;
     layout:                      vertical;
-    
+
     spacing:                     10px;
     background-color:            transparent;
     cursor:                      "default";
