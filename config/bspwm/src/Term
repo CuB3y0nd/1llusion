@@ -65,16 +65,16 @@ case $MY_TERM in
     kitty
     ;;
   "--floating")
-    kitty --class=FloaTerm -o initial_window_width=842 -o initial_window_height=495
+    kitty --class=FloaTerm -o initial_window_width=1125 -o initial_window_height=635
     ;;
   "--update")
-    kitty --hold --class=FloaTerm -o initial_window_width=842 -o initial_window_height=495 -e Updates --update-system
+    kitty --hold --class=FloaTerm -o initial_window_width=1125 -o initial_window_height=630 -e Updates --update-system
     ;;
   "--checkupdates")
-    kitty --hold --class=Updating -o initial_window_width=457 -o initial_window_height=496 -e Updates --print-updates
+    kitty --hold --class=Updating -o initial_window_width=600 -o initial_window_height=650 -e Updates --print-updates
     ;;
   "--ranger")
-    kitty --hold --class=FloaTerm -o initial_window_width=844 -o initial_window_height=328 -e ranger
+    kitty --hold --class=FloaTerm -o initial_window_width=1125 -o initial_window_height=425 -e ranger
     ;;
   "--nvim")
     kitty -e nvim
