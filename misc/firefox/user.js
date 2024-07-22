@@ -1,10 +1,3 @@
- /***
- *    ╔═╗╔═╗╔╦╗╔╗ ╦╔═╗  ╔╦╗╦ ╦╔═╗╔╦╗╔═╗	author: z0mbi3
- *    ╔═╝║ ║║║║╠╩╗║║╣    ║ ╠═╣║╣ ║║║║╣ 	url: https://github.com/gh0stzk/dotfiles
- *    ╚═╝╚═╝╩ ╩╚═╝╩╚═╝   ╩ ╩ ╩╚═╝╩ ╩╚═╝	z0mbi3 Fox Firefox Theme
- */
- 
- 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.cache.disk.enable", false);
 user_pref("browser.cache.memory.enable", true);
@@ -102,13 +95,15 @@ user_pref("network.connectivity-service.enabled", false);
 /*** [GEOLOCATION / LANGUAGE / LOCALE ***/
 
 /* use Mozilla geolocation service instead of Google.*/
-user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
+user_pref(
+  "geo.provider.network.url",
+  "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%",
+);
 /* disable using the OS's geolocation service ***/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
 user_pref("geo.provider.use_gpsd", false); // [LINUX]
 user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
-
 
 // Integrated calculator at urlbar
 user_pref("browser.urlbar.suggest.calculator", true);

@@ -60,32 +60,32 @@ $archlogo: #0f94d2;
 
 // System Tray
 .tray menu {
-	padding: 5px 5px;
-	background-color: $background;
+  padding: 5px 5px;
+  background-color: $background;
 
-	>menuitem {
+  >menuitem {
     font-family: JetBrainsMono NF;
     font-size: 14px;
-		padding: 2px 5px;
+    padding: 2px 5px;
     color: $foreground;
 
-		&:disabled label {
-			color: $black;
-		}
+    &:disabled label {
+      color: $black;
+    }
 
-		&:hover {
-			background-color: $gray;
-		}
-	}
+    &:hover {
+      background-color: $gray;
+    }
+  }
 
-	separator {
-		background-color: $foreground;
-		padding-top: 1px;
+  separator {
+    background-color: $foreground;
+    padding-top: 1px;
 
-		&:last-child {
-			padding: unset;
-		}
-	}
+    &:last-child {
+      padding: unset;
+    }
+  }
 }
 
 // icons info

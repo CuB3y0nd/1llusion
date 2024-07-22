@@ -1,18 +1,4 @@
 #!/usr/bin/env bash
-#  ██████╗ ██╗ ██████╗███████╗
-#  ██╔══██╗██║██╔════╝██╔════╝        gh0stzk
-#  ██████╔╝██║██║     █████╗          https://github.com/gh0stzk/dotfiles
-#  ██╔══██╗██║██║     ██╔══╝          08.12.2023 08:48:08
-#  ██║  ██║██║╚██████╗███████╗
-#  ╚═╝  ╚═╝╚═╝ ╚═════╝╚══════╝
-#
-#            ███████╗███████╗██╗     ███████╗ ██████╗████████╗ ██████╗ ██████╗
-#            ██╔════╝██╔════╝██║     ██╔════╝██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗
-#            ███████╗█████╗  ██║     █████╗  ██║        ██║   ██║   ██║██████╔╝
-#            ╚════██║██╔══╝  ██║     ██╔══╝  ██║        ██║   ██║   ██║██╔══██╗
-#            ███████║███████╗███████╗███████╗╚██████╗   ██║   ╚██████╔╝██║  ██║
-#            ╚══════╝╚══════╝╚══════╝╚══════╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
-#
 
 # Some vars
 bspwm_dir="$HOME/.config/bspwm"
@@ -20,13 +6,13 @@ current_rice_file="$bspwm_dir/.rice"
 preview_dir="$bspwm_dir/rices/${options[*]}"
 rofi_command="rofi -dmenu -theme $bspwm_dir/src/rofi-themes/RiceSelector.rasi"
 
-# Variables to try to define the correct size of the images for your resolution
+# These variables to try to define the correct size of the images for your resolution
 monitor_res=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f1)
 monitor_scale=$(xdpyinfo | awk '/resolution/{print $2}' | cut -d 'x' -f1)
 monitor_res=$((monitor_res * 17 / monitor_scale))
 rofi_override="element-icon{size:${monitor_res}px;}"
 
-# Verificar si xdpyinfo e imagemagick están instalados
+# Check if xdpyinfo and imagemagick are installed
 if ! command -v xdpyinfo >/dev/null 2>&1; then
   dunstify "Missing package" "Please install the xorg-xdpyinfo package to continue" -u critical
   exit 1

@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
 
-#  ██╗   ██╗ ██████╗ ██╗     ██╗   ██╗███╗   ███╗███████╗
-#  ██║   ██║██╔═══██╗██║     ██║   ██║████╗ ████║██╔════╝
-#  ██║   ██║██║   ██║██║     ██║   ██║██╔████╔██║█████╗
-#  ╚██╗ ██╔╝██║   ██║██║     ██║   ██║██║╚██╔╝██║██╔══╝
-#   ╚████╔╝ ╚██████╔╝███████╗╚██████╔╝██║ ╚═╝ ██║███████╗
-#    ╚═══╝   ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
-
 get_vol() {
-	volumen=$(pamixer --get-volume-human | tr -d '%')
-	[[ $volumen == 'muted' ]] && echo "0" || echo "${volumen}"
+  volumen=$(pamixer --get-volume-human | tr -d '%')
+  [[ $volumen == 'muted' ]] && echo "0" || echo "${volumen}"
 }
 
 get_icon() {
-	local vol=$(get_vol)
-	echo "images/$([[ $vol == "0" ]] && echo "mute" || echo "volume").png"
+  local vol=$(get_vol)
+  echo "images/$([[ $vol == "0" ]] && echo "mute" || echo "volume").png"
 }
 
 case "$1" in

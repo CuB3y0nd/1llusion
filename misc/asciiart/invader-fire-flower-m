@@ -1,21 +1,15 @@
 #!/usr/bin/env bash
-#
-# Fire flower by Invader
-#
-# Depicts a fire flower featured in nintendo games.
-#
-# Author: rob o'leary
 
 f=3 b=4
 
 for j in f b; do
-	for i in {0..7}; do
-		printf -v $j$i %b "\e[${!j}${i}m"
-	done
+  for i in {0..7}; do
+    printf -v $j$i %b "\e[${!j}${i}m"
+  done
 done
 
 for i in {0..7}; do
-	printf -v g$i %b "\e[9${i}m"
+  printf -v g$i %b "\e[9${i}m"
 done
 
 bd=$'\e[1m'
@@ -41,5 +35,5 @@ cat <<EOF
   $f4█$f4█$f4█$f4█$f0█$f0█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f0█$f0█$f2█$f2█$f2█$f2█$f0█$f0█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f0█$f0█$f4█$f4█$f4█$f4█
   $f4█$f4█$f4█$f4█$f4█$f4█$f0█$f0█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f0█$f0█$f2█$f2█$f2█$f2█$f0█$f0█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f0█$f0█$f4█$f4█$f4█$f4█$f4█$f4█
   $f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f0█$f0█$f0█$f0█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f2█$f0█$f0█$f0█$f0█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$f4█$rt
-  
+
 EOF

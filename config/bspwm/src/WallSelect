@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Verify if xdpyinfo and imagemagick are installed
+# Check if xdpyinfo and imagemagick are installed
 for app in xorg-xdpyinfo imagemagick; do
   if ! pacman -Q $app >/dev/null 2>&1; then
     dunstify "Missing package" "Please install the $app package to continue" -u critical
