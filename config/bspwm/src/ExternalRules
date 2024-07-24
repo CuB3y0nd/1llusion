@@ -23,9 +23,6 @@ mpv)
 Viewnior)
   result "state=floating focus=on center=on"
   ;;
-retroarch)
-  result "state=pseudo_tiled desktop=^6"
-  ;;
 pavucontrol)
   result "state=floating center=on"
   ;;
@@ -36,13 +33,19 @@ Thunar)
   result "desktop=^2 follow=on"
   ;;
 firefox | Navigator)
-  result "desktop=^3 follow=on"
+  result "desktop=^1 follow=on"
   ;;
 Transmission-gtk)
   result "desktop=^6 follow=on"
   ;;
 Spotify)
-  result "state=floating desktop=^6 follow=on center=on"
+  result "state=floating desktop=^8 follow=on center=on"
+  ;;
+discord)
+  result "desktop=^7 follow=on center=on"
+  ;;
+bottles)
+  result "desktop=^2 follow=on center=on"
   ;;
 esac
 
