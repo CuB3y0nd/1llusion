@@ -193,7 +193,7 @@ Access the scratchpad functionality, a terminal window you can show or hide for 
 
 ## :coffee: Very useful keybindigs to know...
 
- - `F1` Display keybings cheat sheet.
+ - `F1` Display keybinds cheat sheet.
  - `Alt + Space` Display menu to select theme selector.
  - `Super + Space` Apps Menu.
  - `Alt + Shift + W` Wallpaper selector.
