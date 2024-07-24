@@ -193,21 +193,24 @@ Access the scratchpad functionality, a terminal window you can show or hide for 
 
 ## :coffee: Very useful keybindigs to know...
 
+ - `F1` Display keybings cheat sheet.
  - `Alt + Space` Display menu to select theme selector.
  - `Super + Space` Apps Menu.
- - `Super + H` Hide bar/s. `Super + U` Unhide bar/s.
- - `PrtSc` Takes screenshot.
- - `Ctrl + Shift + {plus,minus,t}` Changes transparency on focused window.
- - `Ctrl + Super + Shift + P` Power off computer. `Ctrl + Super + Shift + R` Restart computer.
+ - `Alt + Shift + W` Wallpaper selector.
+ - `Ctrl + Super + {h, u}` Hide/Unhide bars
+ - `Ctrl + Alt + S` Take screenshot.
+ - `Ctrl + Alt + {+,-,t}` Changes transparency on focused window.
+ - `Ctrl + Super + Shift + P` Power off computer.
+ - `Ctrl + Super + Shift + R` Restart computer.
+ - `Ctrl + Super + Shift + L` Lockscreen.
+ - `Ctrl + Super + Shift + Q` Logout.
+ - `Ctrl + Super + Shift + K` Brute Kill a window/process.
  - `Alt + Shift + Return` Open a terminal.
  - `Alt + Shift + F` Open a floating terminal.
- - `Ctrl + Super + Shift + K` Brute Kill a window/process.
- - `Super + Shift + W` Changes randomly wallpaper.
  - `Super + R` Restart bspwm.
+ - `Super + Esc` Restart sxhkd.
 
 Hold `Super` and left-click to move window, right-click to resize window.
-
-And more... Use `Alt + F1` to open keybing menu or look `sxhkdrc` file for more.
 
 ## :floppy_disk: Installation
 
