@@ -95,7 +95,7 @@ XF86Audio{Next,Prev,Play,Stop}
 #|||----- Bspwm hotkeys -----|||#
 
 # Reload BSPWM
-super + alt + r
+super + r
 	bspc wm -r
 
 # close and kill
