@@ -176,16 +176,16 @@
         (label :class "keys-alt" :xalign 1 :text "Super + Alt + N"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Screenshot")
-        (label :class "keys-alt" :xalign 1 :text "Super + Alt + S"))
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + S"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Bluetooth")
-        (label :class "keys-alt" :xalign 1 :text "Super + Alt + B"))
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + B"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Clipboard")
-        (label :class "keys-alt" :xalign 1 :text "Super + Alt + C"))
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + C"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Power Menu")
-        (label :class "keys-alt" :xalign 1 :text "Super + Alt + P"))
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + P"))
       (box :orientation "h" :space-evenly "true"
         (label :class "category-apps" :xalign 0.5 :text "Apps")
         (label :text ""))

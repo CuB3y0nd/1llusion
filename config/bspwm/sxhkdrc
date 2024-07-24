@@ -61,23 +61,23 @@ alt + shift + w
 	WallSelect
 
 # Network Manager
-super + alt + n
+ctrl + alt + n
   OpenApps --netmanager
 
 # Clipboard
-super + alt + c
+ctrl + alt + c
   OpenApps --clipboard
 
 # Screenshot
-super + alt + s
+ctrl + alt + s
   OpenApps --screenshot
 
 # Bluetooth
-super + alt + b
+ctrl + alt + b
   OpenApps --bluetooth
 
 # PowerMenu
-super + alt + p
+ctrl + alt + p
   OpenApps --powermenu
 
 # Manage brightness
