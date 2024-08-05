@@ -135,9 +135,9 @@ set_picom_config() {
     -e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
     -e "s/shadow-color = .*/shadow-color = \"${black}\"/g" \
     -e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
-    -e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
-    -e "s/\".*:class_g = 'kitty'\"/\"100:class_g = 'kitty'\"/g" \
-    -e "s/\".*:class_g = 'FloaTerm'\"/\"100:class_g = 'FloaTerm'\"/g"
+    -e "s/\".*:class_g = 'Alacritty'\"/\"95:class_g = 'Alacritty'\"/g" \
+    -e "s/\".*:class_g = 'kitty'\"/\"95:class_g = 'kitty'\"/g" \
+    -e "s/\".*:class_g = 'FloaTerm'\"/\"95:class_g = 'FloaTerm'\"/g"
 }
 
 set_dunst_config() {
