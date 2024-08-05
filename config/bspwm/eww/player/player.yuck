@@ -1,7 +1,7 @@
 ;; Vars ;;
 
 (defpoll music-player		:interval "1s" "MediaControl --player")
-(defpoll music-art			:interval "1s" "MediaControl --cover")
+(defpoll music-art			:interval "3s" "MediaControl --cover")
 (defpoll music-title 		:interval "1s" "MediaControl --title")
 (defpoll music-artist 		:interval "1s" "MediaControl --artist")
 (defpoll music-status 		:interval "1s" "MediaControl --status")
@@ -17,7 +17,7 @@
 (defwidget shuffle [color action status]
 	(eventbox
 		:cursor "pointer"
-		(button 
+		(button
 			:onclick action
 			:style "color: ${color}"
 			:tooltip status
@@ -29,7 +29,7 @@
 (defwidget loop [icon color status action]
 	(eventbox
 		:cursor "pointer"
-		(button 
+		(button
 			:onclick action
 			:style "color: ${color}"
 			:tooltip status
@@ -39,21 +39,21 @@
 )
 
 (defwidget player []
-	(box 
-		:class "player" 
+	(box
+		:class "player"
 		:space-evenly false
-		(box 
-			:class "player-art" 
+		(box
+			:class "player-art"
 			:style "background-image: url('${music-art}')"
-			(box 
-				:class "player-info" 
-				:space-evenly false 
-				:orientation "v" 
+			(box
+				:class "player-info"
+				:space-evenly false
+				:orientation "v"
 				:spacing 10
-				(box 
+				(box
 					:class "top-icons"
-					(box 
-						:space-evenly false 
+					(box
+						:space-evenly false
 						:spacing 10
 						(shuffle
 							:action {music-player != "spotify" ? "mpc random" : "playerctl -p spotify shuffle toggle"}
@@ -72,66 +72,66 @@
 						)
 					)
 					(box
-						(button 
+						(button
 							:class {music-player != "spotify" ? "mpd-icon" : "spotify-icon"}
 							:halign "end"
 							{music-player != "spotify" ? "󰎆" : "󰓇"}
 						)
 					)
 				)
-				(label 
-					:class "player-title" 
-					:halign "start" 
+				(label
+					:class "player-title"
+					:halign "start"
 					:text music-title
 					:limit-width 30
 					:wrap true
 					:xalign 0
 				)
-				(label 
-					:class "player-artist" 
-					:halign "start" 
-					:text music-artist 
+				(label
+					:class "player-artist"
+					:halign "start"
+					:text music-artist
 					:limit-width 35
 				)
-				
+
 				(box
 					:space-evenly false
 					:orientation "v"
 					:valign "end"
 					:spacing 6
 					:vexpand true
-					(box 
-						:class "player-bar" 
+					(box
+						:class "player-bar"
 						(eventbox
 							:cursor "pointer"
-							(scale 
+							(scale
 								:onchange {music-player != "spotify" ? "mpc seek {}" : "playerctl -p ${music-player} position {}"}
-								:min 0 
-								:max music-lengths
-								:value music-positions
+								:min 0
+								:max {music-lengths ?: "100"}
+								:value {music-positions ?: "0"}
 							)
 						)
 					)
-					(box 
-						:class "player-position" 
-						:space-evenly false 
+					(box
+						:class "player-position"
+						:space-evenly false
 						:valign "end"
 						:spacing 3
-						(label 
+						(label
 							:class "player-time"
-							:text music-position
+							:text {music-position ?: "0:00"}
 						)
 						(label :class "player-time" :text "/")
-						(label 
+						(label
 							:class "player-time"
-							:text music-length
-						)	
+							:text {music-length ?: "0:00"}
+						)
 					)
 				)
 			)
 		)
-		(box 
-			:class "player-controls" 
+		(box
+			:class "player-controls"
 			:orientation "v"
 			:valign "center"
 			:hexpand true
@@ -139,37 +139,37 @@
 			:spacing 20
 			(eventbox
 				:cursor "pointer"
-				(button 
-					:class "player-previous" 
-					:onclick "MediaControl --previous" 
+				(button
+					:class "player-previous"
+					:onclick "MediaControl --previous"
 					"󰒮"
 				)
 			)
 			(eventbox
 				:cursor "pointer"
-				(button 
-					:class "player-toggle" 
-					:onclick "MediaControl --toggle" 
+				(button
+					:class "player-toggle"
+					:onclick "MediaControl --toggle"
 					{music-status == "Playing" ? "󰏤" : music-status == "Paused" ? "󰐊" : "󰓛"}
 				)
 			)
 			(eventbox
 				:cursor "pointer"
-				(button 
-					:class "player-next" 
-					:onclick "MediaControl --next" 
+				(button
+					:class "player-next"
+					:onclick "MediaControl --next"
 					"󰒭"
 				)
 			)
       (eventbox
 				:cursor "pointer"
-				(button 
-					:class "min" 
-					:onclick "eww -c ~/.config/bspwm/eww open --toggle music" 
+				(button
+					:class "min"
+					:onclick "eww -c ~/.config/bspwm/eww open --toggle music"
 					"󰅙"
 				)
 			)
-		)		
+		)
 	)
 )
 

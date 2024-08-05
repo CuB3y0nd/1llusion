@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# Colors
-DIR="$HOME/.config/bspwm/rices/${RICETHEME}/config.ini"
+read -r current_rice <"$HOME"/.config/bspwm/.rice
+
+DIR="$HOME/.config/bspwm/rices/${current_rice}/config.ini"
 POWER_ON=$(cat $DIR | grep -m 1 '^blue =' | sed -n 's/.*= \(#[0-9a-fA-F]\+\).*/\1/p')
 POWER_OFF=$(cat $DIR | grep -m 1 '^grey =' | sed -n 's/.*= \(#[0-9a-fA-F]\+\).*/\1/p')
 

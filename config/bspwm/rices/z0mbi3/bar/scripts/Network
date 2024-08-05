@@ -1,26 +1,22 @@
 #!/usr/bin/env bash
 
-ID=$(ip link | awk '/state UP/ {print $2}' | tr -d :)
-SSID=""
-ICON="images/wifi.png"
-
-if command -v nmcli >/dev/null 2>&1; then
-  SSID=$(nmcli -t -f active,ssid dev wifi show | sed -n '1{s/SSID: //p}')
-fi
-
 is_online() {
-  ping -c 1 archlinux.org &>/dev/null
+  ping -c 1 -W 1 archlinux.org &>/dev/null
 }
 
+ID=$(ip link | awk '/state UP/ {print $2}' | tr -d :)
+
+ICON="images/no-wifi.png"
+STATUS="Offline"
+
 if is_online; then
+  ICON="images/wifi.png"
+
   if [[ $ID == e* ]]; then
     STATUS="$ID"
-  else
-    STATUS="$SSID"
+  elif command -v nmcli &>/dev/null; then
+    STATUS=$(nmcli -t -f active,ssid dev wifi show | sed -n '1{s/SSID: //p}')
   fi
-else
-  STATUS="Offline"
-  ICON="images/no-wifi.png"
 fi
 
 case "$1" in

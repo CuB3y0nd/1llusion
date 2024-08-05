@@ -1,35 +1,27 @@
 #!/usr/bin/env bash
 
-cfg_term="$HOME/.config/bspwm/src/.term"
+CFG_TERM="$HOME/.config/bspwm/src/.term"
+DEFAULT_TERM="alacritty"
+ROFI_THEME="$HOME/.config/bspwm/src/rofi-themes/TermSelector.rasi"
 
-if [ ! -e "$cfg_term" ]; then
-  echo alacritty >"$cfg_term"
-fi
+[ ! -f "$CFG_TERM" ] && echo "$DEFAULT_TERM" >"$CFG_TERM"
 
-MY_TERM=$(<"$cfg_term")
-export MY_TERM
+MY_TERM=$(<"$CFG_TERM")
 
-# Function to choose the terminal using rofi
 choose_terminal() {
-  local options="Alacritty\nKitty"
-  local chosen
-  chosen=$(echo -e "$options" | rofi -theme "$HOME/.config/bspwm/src/rofi-themes/TermSelector.rasi" -dmenu)
+  local options=("Alacritty" "Kitty")
+  local current_term=$(tr '[:upper:]' '[:lower:]' <"$CFG_TERM")
 
-  case $chosen in
-  "Alacritty")
-    echo alacritty >"$cfg_term"
-    ;;
-  "Kitty")
-    echo kitty >"$cfg_term"
-    ;;
-  esac
+  local selected_index=$(printf '%s\n' "${options[@],,}" | awk -v cur="$current_term" '$0==cur {print NR-1; exit}')
+
+  local chosen
+  chosen=$(printf '%s\n' "${options[@]}" | rofi -theme "$ROFI_THEME" -mesg "[ Your current terminal is $MY_TERM ]" -dmenu -selected-row "$selected_index")
+
+  [[ -n "$chosen" ]] && echo "${chosen,,}" >"$CFG_TERM"
 }
 
-if [[ "$1" == "--selecterm" ]]; then
-  choose_terminal
-fi
+[ "$1" = "--selecterm" ] && choose_terminal
 
-# Launch the terminal with appropriate options
 case $MY_TERM in
 "alacritty")
   case $1 in
@@ -65,16 +57,16 @@ case $MY_TERM in
     kitty
     ;;
   "--floating")
-    kitty --class=FloaTerm -o initial_window_width=1125 -o initial_window_height=635
+    kitty --class=FloaTerm -o initial_window_width=842 -o initial_window_height=495
     ;;
   "--update")
-    kitty --hold --class=FloaTerm -o initial_window_width=1125 -o initial_window_height=630 -e Updates --update-system
+    kitty --hold --class=FloaTerm -o initial_window_width=842 -o initial_window_height=495 -e Updates --update-system
     ;;
   "--checkupdates")
-    kitty --hold --class=Updating -o initial_window_width=600 -o initial_window_height=650 -e Updates --print-updates
+    kitty --hold --class=Updating -o initial_window_width=457 -o initial_window_height=496 -e Updates --print-updates
     ;;
   "--ranger")
-    kitty --hold --class=FloaTerm -o initial_window_width=1125 -o initial_window_height=425 -e ranger
+    kitty --hold --class=FloaTerm -o initial_window_width=844 -o initial_window_height=328 -e ranger
     ;;
   "--nvim")
     kitty -e nvim

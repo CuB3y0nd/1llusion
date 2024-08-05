@@ -6,7 +6,7 @@ get_vol() {
 }
 
 get_icon() {
-  local vol=$(get_vol)
+  vol=$(get_vol)
   echo "images/$([[ $vol == "0" ]] && echo "mute" || echo "volume").png"
 }
 
