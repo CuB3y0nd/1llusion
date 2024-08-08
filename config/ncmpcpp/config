@@ -6,7 +6,7 @@
 
 mpd_host = "127.0.0.1"
 mpd_port = 6600
-mpd_connection_timeout = "5"  
+mpd_connection_timeout = "5"
 mpd_crossfade_time = "5"
 mpd_music_dir = ~/Music
 lyrics_directory  = ~/.config/ncmpcpp/lyrics
@@ -19,7 +19,7 @@ visualizer_in_stereo = "yes"
 visualizer_fps = "60"
 visualizer_type = "ellipse"
 visualizer_look = ●●
-visualizer_color = "33,39,63,75,81,99,117,153,189"
+visualizer_color = "magenta,cyan,blue,red,white,green,yellow,black,magenta"
 visualizer_spectrum_smooth_look = "yes"
 
 # GENERAL
