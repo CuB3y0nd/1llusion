@@ -213,6 +213,16 @@ launch_theme() {
   eww -c "${HOME}"/.config/bspwm/rices/"${RICE}"/bar open --toggle bar
   feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
   dunst -config "${HOME}"/.config/bspwm/dunstrc &
+
+  # fix eww when entering fullscreen state
+  bspc subscribe node_state | while read -r _ _ _ _ state flag; do
+    [[ "$state" == "fullscreen" ]] || continue
+    if [ "$flag" == on ]; then
+      HideBar -h
+    else
+      HideBar -u
+    fi
+  done &
 }
 
 set_bspwm_config
