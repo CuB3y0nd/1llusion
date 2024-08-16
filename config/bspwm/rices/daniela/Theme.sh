@@ -6,9 +6,7 @@
 # Current Rice
 read -r RICE <"$HOME"/.config/bspwm/.rice
 
-# Vars config for Daniela Rice
-# Bspwm border		# Fade windows true|false	# Shadows true|false	# Corner radius
-BORDER_WIDTH="0" P_FADE="true" P_SHADOWS="true" P_CORNER_R="6"
+BORDER_WIDTH="0" P_FADE="true" P_SHADOWS="true" P_CORNER_R="6" SHADOW_C="#000000"
 
 # (Catppuccin Mocha) colorscheme
 bg="#181825" fg="#CDD6F4"
@@ -134,7 +132,7 @@ set_picom_config() {
   sed -i "$HOME"/.config/bspwm/picom.conf \
     -e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
     -e "s/dock = .*/dock = { fade = ${P_FADE}; }/g" \
-    -e "s/shadow-color = .*/shadow-color = \"${bg}\"/g" \
+    -e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
     -e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
     -e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
     -e "s/\".*:class_g = 'kitty'\"/\"100:class_g = 'kitty'\"/g" \
@@ -210,17 +208,17 @@ EOF
 }
 
 launch_theme() {
+  feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
+  dunst -config "${HOME}"/.config/bspwm/dunstrc &
   for mon in $(polybar --list-monitors | cut -d":" -f1); do
     MONITOR=$mon polybar -q dani -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
   done
-  feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
-  dunst -config "${HOME}"/.config/bspwm/dunstrc &
 }
 
 set_bspwm_config
 set_term_config
 set_picom_config
 set_dunst_config
-launch_theme
 set_eww_colors
 set_launchers
+launch_theme
