@@ -211,6 +211,7 @@ EOF
 launch_theme() {
   feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
   dunst -config "${HOME}"/.config/bspwm/dunstrc &
+  sleep 0.1
   eww -c "${HOME}"/.config/bspwm/rices/"${RICE}"/andy open --toggle bar
 
   # fix eww when entering fullscreen state

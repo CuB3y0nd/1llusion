@@ -18,4 +18,4 @@ pkill -x dunst
 if pgrep -f "bspc subscribe node_state" >/dev/null; then
   pkill -f "bspc subscribe node_state"
 fi
-sleep 0.25
+sleep 0.30

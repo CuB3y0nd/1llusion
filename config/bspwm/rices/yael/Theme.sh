@@ -211,6 +211,7 @@ EOF
 launch_theme() {
   feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
   dunst -config "${HOME}"/.config/bspwm/dunstrc &
+  sleep 0.1
   for mon in $(polybar --list-monitors | cut -d":" -f1); do
     MONITOR=$mon polybar -q yael-cohen -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
   done
