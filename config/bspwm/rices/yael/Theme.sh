@@ -17,6 +17,9 @@ blackb="#393939" redb="#ee5396" greenb="#42be65" yellowb="#ffe97b"
 blue="#33b1ff" magenta="#ff7eb6" cyan="#3ddbd9" white="#dde1e6"
 blueb="#33b1ff" magentab="#ff7eb6" cyanb="#3ddbd9" whiteb="#ffffff"
 
+# Gtk theme vars
+gtk_theme="OxoCarbon-zk" gtk_icons="Glassy" gtk_cursor="Qogirr-Dark" geany_theme="z0mbi3-OxoCarbon"
+
 set_bspwm_config() {
   bspc config border_width ${BORDER_WIDTH}
   bspc config top_padding 37
@@ -125,7 +128,7 @@ color7  ${white}
 color15 ${whiteb}
 EOF
 
-  pidof -x kitty && killall -USR1 kitty
+  pidof -q kitty && killall -USR1 kitty
 }
 
 set_picom_config() {
@@ -142,6 +145,7 @@ set_picom_config() {
 set_dunst_config() {
   sed -i "$HOME"/.config/bspwm/dunstrc \
     -e "s/transparency = .*/transparency = 0/g" \
+    -e "s/icon_theme = .*/icon_theme = \"Candy, Adwaita\"/g" \
     -e "s/frame_color = .*/frame_color = \"${bg}\"/g" \
     -e "s/separator_color = .*/separator_color = \"${cyan}\"/g" \
     -e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
@@ -208,6 +212,31 @@ set_launchers() {
 EOF
 }
 
+set_appearance() {
+  if pidof -q xsettingsd; then
+    sed -i "$HOME"/.config/bspwm/xsettingsd \
+      -e "s|Net/ThemeName .*|Net/ThemeName \"$gtk_theme\"|" \
+      -e "s|Net/IconThemeName .*|Net/IconThemeName \"$gtk_icons\"|" \
+      -e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$gtk_cursor\"|"
+  else
+    sed -i "$HOME"/.config/gtk-3.0/settings.ini \
+      -e "s/gtk-theme-name=.*/gtk-theme-name=$gtk_theme/" \
+      -e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=$gtk_icons/" \
+      -e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$gtk_cursor/"
+
+    sed -i "$HOME"/.gtkrc-2.0 \
+      -e "s/gtk-theme-name=.*/gtk-theme-name=\"$gtk_theme\"/" \
+      -e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$gtk_icons\"/" \
+      -e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$gtk_cursor\"/"
+  fi
+
+  sed -i -e "s/Inherits=.*/Inherits=$gtk_cursor/" "$HOME"/.icons/default/index.theme
+
+  # Reload daemon and apply gtk theme
+  pidof -q xsettingsd && killall -HUP xsettingsd
+  xsetroot -cursor_name left_ptr
+}
+
 launch_theme() {
   feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
   dunst -config "${HOME}"/.config/bspwm/dunstrc &
@@ -223,4 +252,5 @@ set_picom_config
 set_dunst_config
 set_eww_colors
 set_launchers
+set_appearance
 launch_theme

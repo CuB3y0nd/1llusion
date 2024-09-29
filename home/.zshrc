@@ -9,6 +9,7 @@ export VISUAL="${EDITOR}"
 export EDITOR="nvim"
 export BROWSER="chromium"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|reboot|history|cd -|cd ..)"
+export BAT_THEME="base16"
 
 if [ -d "$HOME/.local/bin" ];
   then PATH="$HOME/.local/bin:$PATH"
@@ -137,9 +138,6 @@ fi
 #  ├─┤│  │├─┤└─┐
 #  ┴ ┴┴─┘┴┴ ┴└─┘
 
-alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-alias mantenimiento="yay -Sc && sudo pacman -Scc"
-alias purga="sudo pacman -Rns $(pacman -Qtdq) ; sudo fstrim -av"
 alias update="yay -Syu --nocombinedupgrade"
 
 alias music="ncmpcpp"
