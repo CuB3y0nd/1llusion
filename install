@@ -138,7 +138,7 @@ if [ -d "$repo_dir" ]; then
 fi
 
 printf "Cloning dotfiles from %s\n" "$repo_url"
-git clone --depth=1 "$repo_url" "$repo_dir"
+git clone --depth=1 --recursive "$repo_url" "$repo_dir"
 sleep 2
 clear
 
