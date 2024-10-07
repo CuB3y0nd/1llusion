@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIG_FILE="$HOME/.config/bspwm/src/system.ini"
+CONFIG_FILE="$HOME/.config/bspwm/src/config/system.ini"
 SFILE="$HOME/.config/bspwm/src/.sys"
 
 [[ -f "$SFILE" ]] && exit 0
