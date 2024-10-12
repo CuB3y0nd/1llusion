@@ -6,8 +6,10 @@
 # Current Rice
 read -r RICE <"$HOME"/.config/bspwm/.rice
 
-# Bspwm border # Fade true|false # Shadows true|false # Corner radius # Shadow color # Animations true|false
-BORDER_WIDTH="3" P_FADE="false" P_SHADOWS="false" P_CORNER_R="0" SHADOW_C="#000000" ANIMATIONS="true"
+# Bspwm border # Normal border color # Focused border color
+BORDER_WIDTH="3" NORMAL_BC="#353c52" FOCUSED_BC="#5884d4"
+# Fade true|false # Shadows true|false # Corner radius # Shadow color # Animations true|false
+P_FADE="false" P_SHADOWS="false" P_CORNER_R="0" SHADOW_C="#000000" ANIMATIONS="true"
 
 # (Zombie-Night) colorscheme
 bg="#0E1113" fg="#afb1db"
@@ -27,9 +29,8 @@ set_bspwm_config() {
   bspc config bottom_padding 1
   bspc config left_padding 1
   bspc config right_padding 1
-  bspc config normal_border_color "${black}"
-  bspc config active_border_color "${green}"
-  bspc config focused_border_color "${black}"
+  bspc config normal_border_color "${NORMAL_BC}"
+  bspc config focused_border_color "${FOCUSED_BC}"
   bspc config presel_feedback_color "${magenta}"
 }
 
