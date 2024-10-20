@@ -47,7 +47,7 @@ logo "Installing needed packages..."
 
 dependencies=(alacritty base-devel bat brightnessctl bspwm dunst eza feh firefox git kitty imagemagick jq
   jgmenu libwebp maim mpc mpd neovim ncmpcpp npm pamixer pacman-contrib
-  papirus-icon-theme physlock picom playerctl polybar polkit-gnome python-gobject ranger
+  papirus-icon-theme picom playerctl polybar polkit-gnome python-gobject ranger
   redshift rofi rustup sxhkd ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd
   ttf-joypixels ttf-terminus-nerd ttf-ubuntu-mono-nerd ueberzug webp-pixbuf-loader xclip xdg-user-dirs
   xdo xdotool xsettingsd xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot
@@ -317,11 +317,18 @@ else
   yay -S rofi-greenclip --noconfirm
 fi
 
-if pacman -Q ttf-maple >/dev/null 2>&1; then
+if pacman -Qq ttf-maple >/dev/null 2>&1; then
   printf "\n%s%sttf-maple is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 else
   printf "\n%s%sInstalling ttf-maple...%s\n" "${BLD}" "${CBL}" "${CNC}"
   yay -S ttf-maple --noconfirm
+fi
+
+if pacman -Qq i3lock-color >/dev/null 2>&1; then
+  printf "\n%s%si3lock-color is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
+else
+  printf "\n%s%sInstalling i3lock-color...%s\n" "${BLD}" "${CBL}" "${CNC}"
+  yay -S i3lock-color --noconfirm
 fi
 
 if pacman -Qq eww-git >/dev/null 2>&1; then
