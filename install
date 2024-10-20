@@ -310,7 +310,7 @@ else
   yay -S xqp --noconfirm
 fi
 
-if pacman -Q rofi-greenclip >/dev/null 2>&1; then
+if pacman -Qq rofi-greenclip >/dev/null 2>&1; then
   printf "\n%s%srofi-greenclip is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 else
   printf "\n%s%sInstalling rofi-greenclip...%s\n" "${BLD}" "${CBL}" "${CNC}"
@@ -324,22 +324,11 @@ else
   yay -S ttf-maple --noconfirm
 fi
 
-if command -v eww >/dev/null 2>&1; then
+if pacman -Qq eww-git >/dev/null 2>&1; then
   printf "\n%s%seww is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
 else
   printf "\n%s%sInstalling eww...%s\n" "${BLD}" "${CBL}" "${CNC}"
-  {
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    cd
-    git clone https://github.com/elkowar/eww.git
-    cd eww || exit
-    cargo build --release --no-default-features --features x11
-    sudo install -m 755 "$HOME/eww/target/release/eww" -t /usr/bin/
-    cd
-    rm -rf eww
-  } || {
-    printf "\n%s%sFailed to install eww. You may need to install it manually.%s\n" "${BLD}" "${CRE}" "${CNC}"
-  }
+  yay -S eww-git --noconfirm
 fi
 
 logo "Enabling mpd service"
