@@ -18,8 +18,8 @@ default_lockscreen() {
     --insidewrong-color=$wrong --ringwrong-color=$wrong --line-uses-inside \
     --keyhl-color=$verify --separator-color=$verify --bshl-color=$verify \
     --time-str="%H:%M" --time-size=140 --date-str="%a, %d %b" \
-    --date-size=45 --verif-text="Verifying Password..." --wrong-text="Wrong Password!" \
-    --noinput-text="" --greeter-text="Type the password to Unlock" --ind-pos="300:610" \
+    --date-size=45 --verif-text="Verifying..." --wrong-text="Incorrect!" \
+    --noinput-text="" --greeter-text="Pwn me!" --ind-pos="300:610" \
     --time-font="JetBrainsMono NF:style=Bold" --date-font="JetBrainsMono NF" --verif-font="JetBrainsMono NF" \
     --greeter-font="JetBrainsMono NF" --wrong-font="JetBrainsMono NF" --verif-size=23 \
     --greeter-size=23 --wrong-size=23 --time-pos="300:390" \
@@ -50,8 +50,8 @@ rice_lockscreen() {
     --insidewrong-color=$wrong --ringwrong-color=$wrong --line-uses-inside \
     --keyhl-color=$verify --separator-color=$verify --bshl-color=$verify \
     --time-str="%H:%M" --time-size=140 --date-str="%a, %d %b" \
-    --date-size=45 --verif-text="Verifying Password..." --wrong-text="Wrong Password!" \
-    --noinput-text="" --greeter-text="Type the password to Unlock" --ind-pos="300:610" \
+    --date-size=45 --verif-text="Verifying..." --wrong-text="Incorrect!" \
+    --noinput-text="" --greeter-text="Pwn me!" --ind-pos="300:610" \
     --time-font="JetBrainsMono NF:style=Bold" --date-font="JetBrainsMono NF" --verif-font="JetBrainsMono NF" \
     --greeter-font="JetBrainsMono NF" --wrong-font="JetBrainsMono NF" --verif-size=23 \
     --greeter-size=23 --wrong-size=23 --time-pos="300:390" \

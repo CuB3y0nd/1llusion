@@ -46,7 +46,7 @@ alt + shift + o
 
 # Power off, Reboot, Log out, Lockscreen, kill an app
 ctrl + super + shift + {p,r,q,l,k}
-	{systemctl poweroff, systemctl reboot,bspc quit,ScreenLocker,xkill}
+	{systemctl poweroff, systemctl reboot,bspc quit,ScreenLocker -r,xkill}
 
 # Hide/Show Bar (Polybar and/or eww)
 ctrl + super + {h,u}
