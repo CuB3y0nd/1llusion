@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# Terminate existing processes if necessary.
-. "${HOME}"/.config/bspwm/src/Process.bash
-
 # Current Rice
 read -r RICE <"$HOME"/.config/bspwm/.rice
+
+# Terminate existing processes if necessary.
+. "${HOME}"/.config/bspwm/src/Process.bash
 
 # Bspwm border # Normal border color # Focused border color
 BORDER_WIDTH="0" NORMAL_BC="#16161C" FOCUSED_BC="#b0a5ed"
@@ -231,6 +231,14 @@ set_launchers() {
     img-background: url("~/.config/bspwm/rices/${RICE}/rofi.webp", width);
 }
 EOF
+
+  sed -i "$HOME"/.config/bspwm/src/ScreenLocker \
+    -e "s/bg=.*/bg=${fg:1}/" \
+    -e "s/fg=.*/fg=${fg:1}/" \
+    -e "s/ring=.*/ring=${cyan:1}/" \
+    -e "s/wrong=.*/wrong=${red:1}/" \
+    -e "s/date=.*/date=${fg:1}/" \
+    -e "s/verify=.*/verify=${magenta:1}/"
 }
 
 set_appearance() {
@@ -259,7 +267,6 @@ set_appearance() {
 }
 
 launch_theme() {
-  feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
   dunst -config "${HOME}"/.config/bspwm/src/config/dunstrc &
   sleep 0.1
   eww -c "${HOME}"/.config/bspwm/rices/"${RICE}"/andy open --toggle bar

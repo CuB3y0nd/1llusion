@@ -178,7 +178,7 @@
 	(button	:style "background-image: url('images/enpass.png');"
 			:class "button-lock"
 			:tooltip "Lock Screen"
-			:onclick "physlock -d")
+			:onclick "ScreenLocker &")
 
 	(button :style "background-image: url('images/sys-sleep.png');"
 			:class "button-bspres"
