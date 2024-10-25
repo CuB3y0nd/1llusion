@@ -277,7 +277,7 @@ fc-cache -rv >/dev/null 2>&1
 printf "\n\n%s%sFiles copied succesfully!%s\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 5
 
-logo "Installing yay, eww, tdrop & xqp"
+logo "Installing yay and some basic aur apps"
 
 if command -v yay >/dev/null 2>&1; then
   printf "%s%syay is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
@@ -296,47 +296,25 @@ else
   }
 fi
 
-if command -v tdrop >/dev/null 2>&1; then
-  printf "\n%s%sTdrop is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
-else
-  printf "\n%s%sInstalling tdrop...%s\n" "${BLD}" "${CBL}" "${CNC}"
-  yay -S tdrop-git --noconfirm
-fi
+aur_apps=(tdrop-git xqp rofi-greenclip ttf-maple i3lock-color eww-git)
 
-if command -v xqp >/dev/null 2>&1; then
-  printf "\n%s%sxqp is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
-else
-  printf "\n%s%sInstalling xqp...%s\n" "${BLD}" "${CBL}" "${CNC}"
-  yay -S xqp --noconfirm
-fi
-
-if pacman -Qq rofi-greenclip >/dev/null 2>&1; then
-  printf "\n%s%srofi-greenclip is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
-else
-  printf "\n%s%sInstalling rofi-greenclip...%s\n" "${BLD}" "${CBL}" "${CNC}"
-  yay -S rofi-greenclip --noconfirm
-fi
-
-if pacman -Qq ttf-maple >/dev/null 2>&1; then
-  printf "\n%s%sttf-maple is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
-else
-  printf "\n%s%sInstalling ttf-maple...%s\n" "${BLD}" "${CBL}" "${CNC}"
-  yay -S ttf-maple --noconfirm
-fi
-
-if pacman -Qq i3lock-color >/dev/null 2>&1; then
-  printf "\n%s%si3lock-color is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
-else
-  printf "\n%s%sInstalling i3lock-color...%s\n" "${BLD}" "${CBL}" "${CNC}"
-  yay -S i3lock-color --noconfirm
-fi
-
-if pacman -Qq eww-git >/dev/null 2>&1; then
-  printf "\n%s%seww is already installed!%s\n" "${BLD}" "${CGR}" "${CNC}"
-else
-  printf "\n%s%sInstalling eww...%s\n" "${BLD}" "${CBL}" "${CNC}"
-  yay -S eww-git --noconfirm
-fi
+printf "%s%sChecking for required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
+for aur_package in "${aur_apps[@]}"; do
+  if ! is_installed "$aur_package"; then
+    if yay -S --noconfirm "$aur_package" 2>>RiceError.log; then
+      printf "%s%s%s %shas been installed succesfully!%s\n" "${BLD}" "${CYE}" "$aur_package" "${CBL}" "${CNC}"
+      sleep 1
+    else
+      printf "%s%s%s %snot installed correctly. Check %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CYE}" "$aur_package" "${CRE}" "${CBL}" "${CRE}" "${CNC}"
+      sleep 1
+    fi
+  else
+    printf '%s%s%s %sis already installed!%s\n' "${BLD}" "${CYE}" "$aur_package" "${CGR}" "${CNC}"
+    sleep 1
+  fi
+done
+sleep 5
+clear
 
 logo "Enabling mpd service"
 
