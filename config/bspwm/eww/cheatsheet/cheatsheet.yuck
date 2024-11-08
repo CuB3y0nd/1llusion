@@ -160,7 +160,7 @@
 
     (box :orientation "v" :space-evenly "false" :spacing 2
       (box :orientation "h" :space-evenly "true"
-        (label :class "category-workspaces" :xalign 0.5 :text "System Apps")
+        (label :class "category-workspaces" :xalign 0.5 :text "Dotfiles Apps")
         (label :text ""))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Scratchpad")
@@ -173,7 +173,7 @@
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + {+,-,t}"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Network Manager")
-        (label :class "keys-alt" :xalign 1 :text "Super + Alt + N"))
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + N"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Screenshot")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + S"))
@@ -186,6 +186,9 @@
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Power Menu")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + P"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Change Keyboard Layout")
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + k"))
       (box :orientation "h" :space-evenly "true"
         (label :class "category-apps" :xalign 0.5 :text "Apps")
         (label :text ""))

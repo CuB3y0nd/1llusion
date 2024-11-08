@@ -36,6 +36,9 @@ case "$1" in
 --powermenu)
   PowerMenu
   ;;
+--keyboard)
+  KeyBoardL
+  ;;
 --ranger)
   Term --ranger
   ;;
