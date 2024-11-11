@@ -234,6 +234,7 @@ logo "Installing dotfiles..."
 printf "Copying files to respective directories...\n"
 
 [ ! -d ~/.config ] && mkdir -p ~/.config
+[ ! -d ~/.config/zsh ] && mkdir -p ~/.config/zsh
 [ ! -d ~/.local/bin ] && mkdir -p ~/.local/bin
 [ ! -d ~/.local/share ] && mkdir -p ~/.local/share
 
@@ -274,6 +275,14 @@ if cp -R ~/dotfiles/home/.icons "$HOME" 2>>RiceError.log; then
   sleep 1
 else
   printf "%s%s.icons %sfailed to been copied. Check %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CYE}" "${CRE}" "${CBL}" "${CRE}" "${CNC}"
+  sleep 1
+fi
+
+if cp ~/dotfiles/home/zsh/* ~/.config/zsh 2>>RiceError.log; then
+  printf "%s%szsh configuration files %scopied succesfully!%s\n" "${BLD}" "${CYE}" "${CGR}" "${CNC}"
+  sleep 1
+else
+  printf "%s%szsh configuration files %sfailed to been copied. Check %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CYE}" "${CRE}" "${CBL}" "${CRE}" "${CNC}"
   sleep 1
 fi
 

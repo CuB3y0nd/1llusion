@@ -1,0 +1,16 @@
+bindkey -v
+
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=black,bg=yellow'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,bold'
+
+bindkey -M vicmd 'p' history-substring-search-up
+bindkey -M vicmd 'n' history-substring-search-down
+
+bindkey -v '^[[3~' backward-delete-char
+
+bindkey -s '^r' 'rangercd\n'
