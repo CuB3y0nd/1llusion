@@ -1,4 +1,4 @@
-alias update="yay -Syu --nocombinedupgrade"
+alias update="yay -Syu --combinedupgrade=false"
 
 alias musica="ncmpcpp"
 
