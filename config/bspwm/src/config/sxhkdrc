@@ -18,9 +18,9 @@ super + @space
 
 #####
 
-# Apps (browser, filemanager, ranger, nvim, music)
-alt + shift + {b,t,r,e,m}
-	OpenApps {--browser,--filemanager,--ranger,--nvim,--music}
+# Apps (browser, filemanager, yazi, nvim, music)
+alt + shift + {b,t,y,e,m}
+	OpenApps {--browser,--filemanager,--yazi,--nvim,--music}
 
 # Pavucontrol
 shift + alt + p

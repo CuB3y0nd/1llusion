@@ -202,8 +202,8 @@
         (label :class "keys" :xalign 0 :text "Editor")
         (label :class "keys-alt" :xalign 1 :text "Alt + Shift + E"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Ranger")
-        (label :class "keys-alt" :xalign 1 :text "Alt + Shift + R"))
+        (label :class "keys" :xalign 0 :text "Yazi")
+        (label :class "keys-alt" :xalign 1 :text "Alt + Shift + Y"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Ncmpcpp")
         (label :class "keys-alt" :xalign 1 :text "Alt + Shift + M"))

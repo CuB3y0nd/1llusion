@@ -111,16 +111,16 @@ if [[ "$TERM" == (kitty*|alacritty*|tmux*|screen*|xterm*) ]]; then
 fi
 
 # switch directory with ranger
-rangercd() {
+yazicd() {
   tmp="$(mktemp)"
-  ranger --choosedir="$tmp" "$@"
+  yazi --cwd-file "$tmp" "$@"
 
   if [ -s "$tmp" ]; then
-    dir="$(cat "$tmp")"
+    dir="$(<"$tmp")"
     rm -f "$tmp"
 
     if [ "$dir" != "$(pwd)" ]; then
-      cd "$dir"
+      cd "$dir" || return
     fi
   else
     rm -f "$tmp"

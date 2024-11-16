@@ -13,4 +13,4 @@ bindkey -M vicmd 'n' history-substring-search-down
 
 bindkey -v '^[[3~' backward-delete-char
 
-bindkey -s '^r' 'rangercd\n'
+bindkey -s '^r' 'yazicd\n'
