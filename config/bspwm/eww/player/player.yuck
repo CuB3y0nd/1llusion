@@ -173,7 +173,9 @@
 
 ;; Windows ;;
 (defwindow music
-  :geometry (geometry :y "-7%"
+  :geometry
+  (geometry
+    :y "-7%"
     :anchor "bottom center"
   )
 	:wm-ignore false
