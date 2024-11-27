@@ -1,19 +1,17 @@
 ;; Vars ;;
-
-(defpoll music-player		:interval "1s" "MediaControl --player")
-(defpoll music-art			:interval "3s" "MediaControl --cover")
-(defpoll music-title 		:interval "1s" "MediaControl --title")
-(defpoll music-artist 		:interval "1s" "MediaControl --artist")
-(defpoll music-status 		:interval "1s" "MediaControl --status")
-(defpoll music-position 	:interval "1s" "MediaControl --position")
-(defpoll music-positions	:interval "1s" "MediaControl --positions")
-(defpoll music-length 		:interval "1s" "MediaControl --length")
-(defpoll music-lengths 		:interval "1s" "MediaControl --lengths")
-(defpoll shuffle 			:interval "1s" "MediaControl --shuffle")
-(defpoll loop 				:interval "1s" "MediaControl --loop")
+(defpoll music-player     :interval "1s" "MediaControl --player")
+(defpoll music-art        :interval "3s" "MediaControl --cover")
+(defpoll music-title      :interval "1s" "MediaControl --title")
+(defpoll music-artist     :interval "1s" "MediaControl --artist")
+(defpoll music-status     :interval "1s" "MediaControl --status")
+(defpoll music-position   :interval "1s" "MediaControl --position")
+(defpoll music-positions  :interval "1s" "MediaControl --positions")
+(defpoll music-length     :interval "1s" "MediaControl --length")
+(defpoll music-lengths    :interval "1s" "MediaControl --lengths")
+(defpoll shuffle          :interval "1s" "MediaControl --shuffle")
+(defpoll loop             :interval "1s" "MediaControl --loop")
 
 ;; Widgets ;;
-
 (defwidget shuffle [color action status]
 	(eventbox
 		:cursor "pointer"
@@ -56,15 +54,15 @@
 						:space-evenly false
 						:spacing 10
 						(shuffle
-							:action {music-player != "spotify" ? "mpc random" : "playerctl -p spotify shuffle toggle"}
+							:action {music-player == "MPD" ? "mpc random" : "playerctl -p ${music-player} shuffle toggle"}
 							:color {shuffle == "On" ? "#81ae5f" : "#b8bfe5"}
 							:status shuffle
 						)
 						(loop
-							:action {loop == "None" ? "playerctl -p spotify loop playlist" :
+							:action {loop == "None" ? "playerctl -p ${music-player} loop playlist" :
 							loop == "Off" ? "mpc repeat on" :
 							loop == "On" ? "mpc repeat off" :
-							loop == "Playlist" ? "playerctl -p spotify loop track" : "playerctl -p spotify loop none"}
+							loop == "Playlist" ? "playerctl -p ${music-player} loop track" : "playerctl -p ${music-player} loop none"}
 							:icon  {loop == "Track" ? "󰑘" :
 							loop == "Playlist" || loop == "On" ? "󰑖" : "󰑗"}
 							:color {loop == "Playlist" || loop == "Track" || loop == "On" ? "#81ae5f" : "#b8bfe5"}
@@ -105,7 +103,7 @@
 						(eventbox
 							:cursor "pointer"
 							(scale
-								:onchange {music-player != "spotify" ? "mpc seek {}" : "playerctl -p ${music-player} position {}"}
+								:onchange {music-player == "MPD" ? "mpc seek {}" : "playerctl -p ${music-player} position {}"}
 								:min 0
 								:max {music-lengths ?: "100"}
 								:value {music-positions ?: "0"}
@@ -174,9 +172,10 @@
 )
 
 ;; Windows ;;
-
 (defwindow music
-    :geometry (geometry :y "-7%"
-						:anchor "bottom center")
+  :geometry (geometry :y "-7%"
+    :anchor "bottom center"
+  )
 	:wm-ignore false
-    (player))
+  (player)
+)

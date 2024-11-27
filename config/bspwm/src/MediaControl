@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
 # Set the player
-[ -n "$(pgrep spotify)" ] && Control="spotify" || Control="MPD"
+players=("spotify" "Qcm" "MPD")
+
+for player in "${players[@]}"; do
+  if pgrep -x "$player" >/dev/null; then
+    Control="$player"
+    break
+  fi
+done
 
 # Here the cover image will be saved.
 Cover=/tmp/cover.png
@@ -137,8 +144,13 @@ MPD)
     echo "${positions:-0}"
     ;;
   --length)
-    length=$(playerctl --player="$Control" metadata --format "{{ duration(mpris:length) }}")
-    echo "${length:-0:00}"
+    if [ "$Control" == "Qcm" ]; then
+      length=$(playerctl --player="$Control" metadata mpris:length | awk '{t=int($1/1000000); printf "%d:%02d", t/60, t%60}')
+      echo "${length:-0:00}"
+    else
+      length=$(playerctl --player="$Control" metadata --format "{{ duration(mpris:length) }}")
+      echo "${length:-0:00}"
+    fi
     ;;
   --lengths)
     lengths=$(playerctl --player="$Control" metadata mpris:length | sed 's/.\{6\}$//')
