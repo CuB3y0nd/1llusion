@@ -145,6 +145,9 @@ fi
 
 printf "Cloning dotfiles from %s\n" "$repo_url"
 git clone --depth=1 --recursive "$repo_url" "$repo_dir"
+cd $repo_dir
+git submodule update --remote
+cd -
 sleep 3
 clear
 
