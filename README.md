@@ -4,7 +4,7 @@
 - 18 different themes i collected for BSPWM and Polybar. With a theme selector to change on the fly.
 - All the system initialization configuration you needed.
 
-## :stars: Thanks for dropping by!
+## :stars: Thanks for dropping by
 
 This is my personal collection of configuration files.
 
@@ -77,12 +77,12 @@ Hide and show the polybar and eww widgets according to your needs, giving you co
 
 Access the scratchpad functionality, a terminal window you can show or hide for tasks when you don't want the window taking up unnecessary space.
 
- - **Change themes on the fly:** 15 different Rices now!
- - **Theme Selector:** `Alt + Space` to launch it.
- - **Random wallpaper:**  Every time you switch between rices or reload bspwm with `Space + R` a new wallpaper is set depending on the rice you are on.
- - **Wallpaper Changer:** `Super + Shift + W` changes between different wallpapers in the actual rice.
- - **Hide / Unhide Bar:** If you need, you can hide bars!
- - **Change transparency on the fly:** Increase and decrease transparency in focused or selected window.
+- **Change themes on the fly:** 15 different Rices now!
+- **Theme Selector:** `Alt + Space` to launch it.
+- **Random wallpaper:**  Every time you switch between rices or reload bspwm with `Space + R` a new wallpaper is set depending on the rice you are on.
+- **Wallpaper Changer:** `Ctrl + Alt + W` changes between different wallpapers in the actual rice.
+- **Hide / Unhide Bar:** If you need, you can hide bars!
+- **Change transparency on the fly:** Increase and decrease transparency in focused or selected window.
 
 **And more...**
 
@@ -101,7 +101,7 @@ Access the scratchpad functionality, a terminal window you can show or hide for 
 |:-:|
 |![Screenshot-11_12_2023-01-03-00](https://github.com/gh0stzk/dotfiles/assets/67278339/0746df0f-6a56-44d6-a899-7bdbc0f1a593)|
 
-### :octopus: Emilia:
+### :octopus: Emilia
 
 |<img src="https://user-images.githubusercontent.com/67278339/280174054-8f56d12d-4efa-4024-99e1-4679591b45ca.gif" alt="Emilia Rice" align="center">|
 |---|
@@ -152,63 +152,65 @@ Access the scratchpad functionality, a terminal window you can show or hide for 
 |---|
 
 ### :octopus: Karla
+
 **(Zombie-Night Color Scheme)**
+
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/5455afdf-cc2f-4a8c-8fcd-526c59066d50" alt="Karla Rice" align="center">|
 |---|
 
-### :octopus: z0mbi3:
+### :octopus: z0mbi3
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/ff65caa8-6a15-4873-bf05-edf89ac0985d" alt="z0mbi3 Rice" align="center">|
 |---|
 
-### :octopus: Brenda:
+### :octopus: Brenda
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/22e37944-5aad-46bf-8934-3a57d1718ed2" alt="Brenda Rice" align="center">|
 |---|
 
-### :octopus: Daniela:
+### :octopus: Daniela
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/f296d6b4-9c8a-49ae-bf63-d82e5105f122" alt="Daniela Rice" align="center">|
 |---|
 
-### :octopus: Marisol:
+### :octopus: Marisol
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/d11d20c5-1edc-44c8-901b-a4103a139617" alt="Daniela Rice" align="center">|
 |---|
 
-### :octopus: h4ck3r:
+### :octopus: h4ck3r
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/2d55fcc6-1ea4-4d56-8c46-3a3fe10566fe" alt="Hacker Rice" align="center">|
 |---|
 
-### :octopus: Varinka:
+### :octopus: Varinka
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/454d82b4-8f09-4768-bf51-6ce7818ad226" alt="Varinka Rice" align="center">|
 |---|
 
-### :octopus: Yael:
+### :octopus: Yael
 
 |<img src="https://github.com/gh0stzk/dotfiles/assets/67278339/cbb0a1cc-4e2d-46a2-a4f2-ee0be3d08b50" alt="Yael Rice" align="center">|
 |---|
 
-## :coffee: Very useful keybindigs to know...
+## :coffee: Very useful keybindigs to know
 
- - `F1` Display keybinds cheat sheet.
- - `Alt + Space` Display menu to select theme selector.
- - `Super + Space` Apps Menu.
- - `Alt + Shift + W` Wallpaper selector.
- - `Ctrl + Super + {h, u}` Hide/Unhide bars
- - `Ctrl + Alt + S` Take screenshot.
- - `Ctrl + Alt + {+,-,t}` Changes transparency on focused window.
- - `Ctrl + Super + Shift + P` Power off computer.
- - `Ctrl + Super + Shift + R` Restart computer.
- - `Ctrl + Super + Shift + L` Lockscreen.
- - `Ctrl + Super + Shift + Q` Logout.
- - `Ctrl + Super + Shift + K` Brute Kill a window/process.
- - `Alt + Shift + Return` Open a terminal.
- - `Alt + Shift + F` Open a floating terminal.
- - `Super + R` Restart bspwm.
- - `Super + Esc` Restart sxhkd.
+- `Alt + F1` Keybindings Cheat Sheet
+- `Super + R` Restart bspwm
+- `Super + Esc` Restart sxhkd
+- `Alt + Space` Theme Selector
+- `Super + Space` Apps Launcher
+- `Ctrl + Alt + W` Wallpaper Selector
+- `Alt + Return` Open a terminal
+- `Alt + Shift + Return` Open a floating terminal
+- `Super + Shift + {h, u}` Hide/Unhide Polybar/Eww bars
+- `Ctrl + Alt + S` Screenshot
+- `Ctrl + Shift + {+, -, t}` Changes transparency
+- `Ctrl + Super + Shift + P` Power off
+- `Ctrl + Super + Shift + R` Restart
+- `Ctrl + Super + Shift + L` Lockscreen
+- `Ctrl + Super + Shift + Q` Logout
+- `Ctrl + Super + Shift + K` Brute Kill a window/process
 
 Hold `Super` and left-click to move window, right-click to resize window.
 
@@ -218,37 +220,25 @@ Hold `Super` and left-click to move window, right-click to resize window.
 > The installer only works for **Arch Linux**, and based distros.
 > This is step-by-step how to install this dotfiles. Just [R.T.F.M](https://en.wikipedia.org/wiki/RTFM).
 
- - **First, download the install script**
+- **First, download the install script**
 
 ```bash
 curl https://raw.githubusercontent.com/CuB3y0nd/1llusion/master/install -o $HOME/install
 ```
 
- - **Then, give it execute permissions**
+- **Then, give it execute permissions**
 
 ```bash
 chmod +x install
 ```
 
- - **Finally, run the install script**
+- **Finally, run the install script**
 
 ```bash
 ./install
 ```
 
-## :wind_chime: About Neovim
-
-The neovim configuration is modified base on [NvChad](https://github.com/NvChad/NvChad).
-
-If you want use my default configuration, choose `N` while in neovim's first startup.
-
-If you wanna to configure it yourself based on `NvChad`, choose `y`.
-
-For more information about customize your nvim, see [NvChad](https://nvchad.com).
-
 ## :jack_o_lantern: References
 
- - **gh0stzk's rices:** [dotfiles](https://github.com/gh0stzk/dotfiles/tree/master)
- - **NvChad:** [NvChad](https://github.com/NvChad/NvChad)
- - **ElKowars wacky widgets:** [Eww](https://github.com/elkowar/eww)
-
+- **gh0stzk's rices:** [dotfiles](https://github.com/gh0stzk/dotfiles/tree/master)
+- **ElKowars wacky widgets:** [Eww](https://github.com/elkowar/eww)
