@@ -131,7 +131,7 @@ ctrl + Tab
 	bspc node -f next.local.!hidden.window
 
 # Swap Nodes
-ctrl + shift + {h,j,k,l}
+ctrl + alt + shift + {h,j,k,l}
 	bspc node -s {west,south,north,east}
 
 # Focus the last node/desktop

@@ -140,7 +140,7 @@
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Tab"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Swap  Nodes")
-        (label :class "keys-alt" :xalign 1 :text "Ctrl + Shift + {h, j, k, l}"))
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + Shift + {h, j, k, l}"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Focus  the  last  Node/Workspace")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Shift + {comma, period}"))
