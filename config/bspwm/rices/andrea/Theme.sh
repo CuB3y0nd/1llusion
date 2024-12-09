@@ -173,6 +173,8 @@ set_dunst_config() {
 		background = "${bg}"
 		foreground = "${red}"
 	_EOF_
+
+  dunstctl reload "$dunst_config_file"
 }
 
 set_eww_colors() {
@@ -240,7 +242,6 @@ set_appearance() {
 }
 
 launch_theme() {
-  dunst -config "${HOME}"/.config/bspwm/src/config/dunstrc &
   eww -c "${HOME}"/.config/bspwm/rices/"${RICE}"/andy open --toggle bar
 
   # fix eww when entering fullscreen state

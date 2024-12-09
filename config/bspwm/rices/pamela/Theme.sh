@@ -173,6 +173,8 @@ set_dunst_config() {
 		background = "${bg}"
 		foreground = "${redb}"
 	_EOF_
+
+  dunstctl reload "$dunst_config_file"
 }
 
 set_eww_colors() {
@@ -240,8 +242,6 @@ set_appearance() {
 }
 
 launch_theme() {
-  dunst -config "${HOME}"/.config/bspwm/src/config/dunstrc &
-
   for mon in $(polybar --list-monitors | cut -d":" -f1); do
     (MONITOR=$mon polybar -q pam1 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
     (MONITOR=$mon polybar -q pam2 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &

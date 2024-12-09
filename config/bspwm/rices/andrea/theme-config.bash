@@ -38,7 +38,7 @@ P_ANIMATIONS="@"     # (@ = enable) (# = disable)
 P_TERM_OPACITY="1.0" # terminal transparency. range: 0.1 - 1.0 (1.0 = disabled)
 
 # dunst
-dunst_offset='20x30'
+dunst_offset='(20, 30)'
 dunst_origin='bottom-right'
 dunst_transparency='1'
 dunst_corner_radius='6'
@@ -52,10 +52,12 @@ gtk_cursor="Qogirr"
 geany_theme="z0mbi3-Andrea"
 
 # wallpaper engine
-# Available methods:
+# Available engines:
 # - Theme (Set a random wallpaper from rice directory)
 # - CustomDir (Set a random wallpaper from the directory you specified)
 # - CustomImage (Sets a specific image as wallpaper)
+# - CustomAnimated (Set an animated wallpaper. "mp4, mkv, gif")
 ENGINE="Theme" # Theme | CustomDir | CustomImage
 CUSTOM_DIR="/path/to/dir"
 CUSTOM_WALL="/path/to/image"
+CUSTOM_ANIMATED="$HOME/.config/bspwm/src/assets/animated_wall.mp4"
