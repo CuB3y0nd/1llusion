@@ -56,9 +56,6 @@ Thunar)
 firefox | Navigator)
   result "desktop=^1 follow=on"
   ;;
-Transmission-gtk)
-  result "desktop=^6 follow=on"
-  ;;
 Spotify)
   result "state=floating desktop=^8 follow=on center=on"
   ;;
