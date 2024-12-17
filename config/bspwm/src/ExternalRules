@@ -37,6 +37,9 @@ Updating)
 RiceEditor)
   result "state=floating focus=on center=on"
   ;;
+Scratch)
+  result "state=floating focus=on sticky=on"
+  ;;
 mpv)
   dimensions=$(calculate_dimensions 53 53)
   result "state=floating focus=on center=on rectangle=$dimensions"

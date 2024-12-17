@@ -60,7 +60,11 @@ ctrl + alt + k
 
 # Scratchpad
 alt + shift + o
-	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch kitty --class=scratch
+  Term --scratch
+
+# Yazi Scratchpad
+alt + shift + y
+	Term --yaziscratch
 
 # Power off, Reboot, Log out, Lockscreen, Kill an app
 ctrl + super + shift + {p,r,q,l,k}
@@ -71,7 +75,7 @@ super + shift + {h,u}
 	HideBar {-h,-u}
 
 # Change transparency on focused window
-ctrl + shift + {plus,minus,t}
+ctrl + shift + {plus,minus,i}
 	picom-trans {-c -o +3,-c -o -1,-c -d}
 
 # Manage brightness
