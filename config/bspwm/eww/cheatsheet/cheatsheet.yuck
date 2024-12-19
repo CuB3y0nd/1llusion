@@ -230,6 +230,10 @@
         (label :class "keys" :xalign 0 :text "Kill App")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Super + Shift + K")
       )
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Soft Reload")
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Super + Shift + S")
+      )
     )
   )
 )
