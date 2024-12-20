@@ -3,7 +3,6 @@
 video_path="$2"
 
 start() {
-
   if [[ ! "$video_path" =~ \.(mp4|mkv|gif)$ ]]; then
     echo "[-] El archivo no tiene una extensión de video válida" >&2
     exit 1
@@ -12,9 +11,6 @@ start() {
   SCREENS=$(xrandr | awk '/ connected/ {print $4}')
   for item in $SCREENS; do
     xwinwrap -g "$item" -un -fdt -ni -b -nf -- mpv --hwdec=auto -vo x11 --no-audio --no-border --no-config --no-window-dragging --no-input-default-bindings --no-osd-bar --no-sub --loop -wid WID ${video_path} >/dev/null 2>&1 &
-    if [ $? != 0 ]; then
-      xwinwrap -g "$item" -un -fdt -ni -b -nf -- mpv --hwdec=auto -vo x11 --no-audio --no-border --no-config --no-window-dragging --no-input-default-bindings --no-osd-bar --no-sub --loop -wid %WID ${video_path} >/dev/null 2>&1 &
-    fi
   done
 }
 
