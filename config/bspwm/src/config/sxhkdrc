@@ -76,7 +76,7 @@ super + shift + {h,u}
 
 # Change transparency on focused window
 ctrl + shift + {plus,minus,i}
-	picom-trans {-c -o +3,-c -o -1,-c -d}
+  picom-trans {-c -3,-c +3,-c -d}
 
 # Manage brightness
 XF86MonBrightness{Up,Down}
