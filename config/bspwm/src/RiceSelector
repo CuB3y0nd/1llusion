@@ -3,7 +3,7 @@
 # Some vars
 bspwm_dir="$HOME/.config/bspwm"
 read -r current_rice <"$bspwm_dir"/.rice
-rofi_command="rofi -dmenu -theme $bspwm_dir/src/rofi-themes/RiceSelector.rasi"
+rofi_command="rofi -dmenu -p RiceSelector -theme $bspwm_dir/src/rofi-themes/RiceSelector.rasi"
 
 # Variables to try to define the correct size of the images for your resolution
 monitor_res=$(($(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f1) * 17 / $(xdpyinfo | awk '/resolution/{print $2}' | cut -d 'x' -f1)))
@@ -24,5 +24,5 @@ selected=$(
 # If a valid option was selected, write the value to the configuration file and change theme.
 [[ -n "$selected" && "$selected" != "$current_rice" ]] && {
   echo "$selected" >"$bspwm_dir"/.rice
-  "${bspwm_dir}"/rices/"${selected}"/Theme.sh
+  "${bspwm_dir}"/src/Theme.sh
 }

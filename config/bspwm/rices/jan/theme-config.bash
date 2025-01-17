@@ -19,16 +19,23 @@ magentab="#472575"
 cyanb="#926BCA"
 whiteb="#d5ddee"
 
-# bspwm options
-BORDER_WIDTH="0"     # bspwm border
+accent_color="#09021f"
+arch_icon="#0f94d2"
+
+# Bspwm options
+BORDER_WIDTH="0" # bspwm border
+TOP_PADDING="43"
+BOTTOM_PADDING="1"
+LEFT_PADDING="1"
+RIGHT_PADDING="1"
 NORMAL_BC="#926BCA"  # normal border color
 FOCUSED_BC="#fb007a" # focused border color
 
-# terminal font & size
+# Terminal font & size
 term_font_size="10"
 term_font_name="JetBrainsMono Nerd Font"
 
-# picom options
+# Picom options
 P_FADE="true"         # fade true|false
 P_SHADOWS="false"     # shadows true|false
 SHADOW_C="#000000"    # shadow color
@@ -37,21 +44,53 @@ P_BLUR="false"        # blur true|false
 P_ANIMATIONS="@"      # (@ = enable) (# = disable)
 P_TERM_OPACITY="0.96" # terminal transparency. range: 0.1 - 1.0 (1.0 = disabled)
 
-# dunst
+# Dunst
 dunst_offset='(20, 60)'
 dunst_origin='top-right'
 dunst_transparency='8'
 dunst_corner_radius='0'
 dunst_font='Inconsolata Semi Condensed Extra Bold 9'
 dunst_border='2'
+dunst_frame_color="$magenta"
+dunst_icon_theme="BeautyLine"
 
-# gtk theme vars
+# Dunst animations
+dunst_close_preset="fly-out"
+dunst_close_direction="up"
+dunst_open_preset="fly-in"
+dunst_open_direction="right"
+
+# Jgmenu colors
+jg_bg="$bg"
+jg_fg="$fg"
+jg_sel_bg="$yellow"
+jg_sel_fg="$bg"
+jg_sep="$red"
+
+# Rofi menu font and colors
+rofi_font="Terminess Nerd Font Mono Bold 10"
+rofi_background="${bg}F0"
+rofi_bg_alt="$accent_color"
+rofi_background_alt="${bg}E0"
+rofi_fg="$fg"
+rofi_selected="${red}f0"
+rofi_active="$green"
+rofi_urgent="$red"
+
+# Screenlocker
+sl_bg="${bg:1}"
+sl_fg="${fg:1}"
+sl_ring="${red:1}"
+sl_wrong="${red:1}"
+sl_date="${yellow:1}"
+sl_verify="${green:1}"
+
+# GTK theme
 gtk_theme="CyberPunk-zk"
 gtk_icons="BeautyLine"
 gtk_cursor="Qogirr-Dark"
-geany_theme="z0mbi3-CyberPunk"
 
-# wallpaper engine
+# Wallpaper engine
 # Available engines:
 # - Theme (Set a random wallpaper from rice directory)
 # - CustomDir (Set a random wallpaper from the directory you specified)
