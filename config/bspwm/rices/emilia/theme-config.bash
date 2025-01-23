@@ -41,7 +41,7 @@ P_SHADOWS="true"     # shadows true|false
 SHADOW_C="#000000"   # shadow color
 P_CORNER_R="6"       # corner radius (0 = disabled)
 P_BLUR="false"       # blur true|false
-P_ANIMATIONS="#"     # (@ = enable) (# = disable)
+P_ANIMATIONS="@"     # (@ = enable) (# = disable)
 P_TERM_OPACITY="1.0" # terminal transparency. range: 0.1 - 1.0 (1.0 = disabled)
 
 # Dunst
