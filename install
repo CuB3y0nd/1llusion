@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 CRE=$(tput setaf 1)
 CYE=$(tput setaf 3)
 CGR=$(tput setaf 2)
@@ -41,7 +43,7 @@ is_installed() {
 }
 
 logo "Welcome!"
-printf '%s%sThis script will check if you have the necessary dependencies, and if not, it will install them. Then, it will clone my repository in your $HOME directory.\nAfter that, it will create a backup of your files, and then copy the new files to your computer.\n\nMy dotfiles DO NOT modify any of your system configurations.\nYou will be prompted for your root password to install missing dependencies and/or to switch to zsh shell if its not your default.\n\nThis script doesnt have the potential power to break your system, it only copies files from my repository to your $HOME directory.%s\n\n' "${BLD}" "${CRE}" "${CNC}"
+printf "%s%sThis script will check if you have the necessary dependencies, and if not, it will install them. Then, it will clone my repository in your $HOME directory.\nAfter that, it will create a backup of your files, and then copy the new files to your computer.\n\nMy dotfiles DO NOT modify any of your system configurations.\nYou will be prompted for your root password to install missing dependencies and/or to switch to zsh shell if its not your default.\n\nThis script doesnt have the potential power to break your system, it only copies files from my repository to your $HOME directory.%s\n\n" "${BLD}" "${CRE}" "${CNC}"
 
 while true; do
   read -rp " Continue? [y/N]: " yn
@@ -66,7 +68,7 @@ dependencies=(alacritty base-devel bat brightnessctl bspwm clipcat dunst eza feh
 
 printf "%s%sChecking for required packages...%s\n\n" "${BLD}" "${CBL}" "${CNC}"
 
-for pkg in "${dependencias[@]}"; do
+for pkg in "${dependencies[@]}"; do
   if ! is_installed "$pkg"; then
     if sudo pacman -S "$pkg" --noconfirm >/dev/null 2> >(tee -a "$ERROR_LOG"); then
       printf "%s%s%s %sinstalled succesfully.%s\n" "${BLD}" "${CYE}" "$pkg" "${CBL}" "${CNC}"
@@ -145,7 +147,7 @@ fi
 
 printf "Cloning dotfiles from %s\n" "$repo_url"
 git clone --depth=1 --recursive "$repo_url" "$repo_dir"
-cd $repo_dir
+cd "$repo_dir"
 git submodule update --remote
 cd -
 sleep 3
@@ -175,7 +177,7 @@ for folder in bspwm alacritty picom rofi eww sxhkd dunst kitty polybar gtk-3.0 n
       printf "%s%s%s backed up successfully at %s%s/%s_%s%s\n" "${BLD}" "${CGR}" "$folder" "${CBL}" "$backup_folder" "$folder" "$date" "${CNC}"
       sleep 1
     else
-      printf "%s%sFailed to backup %s. Check %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CRE}" "$folder" "${CBL}" "${CNC}"
+      printf "%s%sFailed to backup %s. Check %sRiceError.log %sfor more details.\n" "${BLD}" "${CRE}" "$folder" "${CBL}" "${CNC}"
       sleep 1
     fi
   else
@@ -190,7 +192,7 @@ if [[ $try_nvim == "y" ]]; then
       printf "%s%snvim backed up successfully at %s%s/nvim_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "$date" "${CNC}"
       sleep 1
     else
-      printf "%s%sFailed to backup nvim. Check %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
+      printf "%s%sFailed to backup nvim. Check %sRiceError.log %sfor more details.\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
       sleep 1
     fi
   else
@@ -203,7 +205,7 @@ if [ -f ~/.zshrc ]; then
   if mv ~/.zshrc "$backup_folder"/.zshrc_"$date" 2>>RiceError.log; then
     printf "%s%s.zshrc backed up successfully at %s%s/.zshrc_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "${date}" "${CNC}"
   else
-    printf "%s%sFailed to backup .zshrc. Check %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
+    printf "%s%sFailed to backup .zshrc. Check %sRiceError.log %sfor more details.\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
   fi
 else
   printf "%s%s.zshrc does not exists, %sskipped.%s\n" "${BLD}" "${CGR}" "${CYE}" "${CNC}"
@@ -213,7 +215,7 @@ if [ -f ~/.gtkrc-2.0 ]; then
   if mv ~/.gtkrc-2.0 "$backup_folder"/.gtkrc-2.0_"$date" 2>>RiceError.log; then
     printf "%s%s.gtkrc-2.0 backed up successfully at %s%s/.gtkrc-2.0_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "${date}" "${CNC}"
   else
-    printf "%s%sFailed to backup .gtkrc-2.0. Check %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
+    printf "%s%sFailed to backup .gtkrc-2.0. Check %sRiceError.log %sfor more details.\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
   fi
 else
   printf "%s%s.gtkrc-2.0 does not exists, %sskipped.%s\n" "${BLD}" "${CGR}" "${CYE}" "${CNC}"
@@ -223,7 +225,7 @@ if [ -d ~/.icons ]; then
   if mv ~/.icons "$backup_folder"/.icons"$date" 2>>RiceError.log; then
     printf "%s%s.icons backed up successfully at %s%s/.icons_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "${date}" "${CNC}"
   else
-    printf "%s%sFailed to backup .icons. Check %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
+    printf "%s%sFailed to backup .icons. Check %sRiceError.log %sfor more details.\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
   fi
 else
   printf "%s%s.icons does not exists, %sskipped.%s\n" "${BLD}" "${CGR}" "${CYE}" "${CNC}"

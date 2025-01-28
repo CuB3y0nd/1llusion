@@ -11,10 +11,10 @@ result() {
 
 case "$class" in
 FloaTerm)
-  result "state=floating center=on rectangle=696x399+0+0"
+  result "state=floating center=on rectangle=1125x635+0+0"
   ;;
 Updating)
-  result "state=floating sticky=on center=on rectangle=390x405+0+0"
+  result "state=floating sticky=on center=on rectangle=600x650+0+0"
   ;;
 RiceEditor)
   result "state=floating focus=on center=on"
