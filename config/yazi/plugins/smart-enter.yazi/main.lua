@@ -1,3 +1,4 @@
+--- @since 25.2.7
 --- @sync entry
 
 local function setup(self, opts)

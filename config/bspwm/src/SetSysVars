@@ -5,31 +5,33 @@ SFILE="$HOME/.config/bspwm/src/.sys"
 
 [[ -f "$SFILE" ]] && exit 0
 
-function setup_system_vars() {
-  # Network interfaces (primary and secondary)
-  # readarray -t ALL_NET < <(ip -o link show up | awk -F': ' '{print $2}' | grep -vE '^(lo|docker|veth|br-)')
+setup_system_vars() {
+  # Get primary network interface (default route)
+  local primary_net
+  primary_net=$(awk '/default via/ {print $5; exit}' <(ip -4 route show 2>/dev/null))
 
-  PRIMARY_NET=$(ip -o route get 1 | awk '{print $5; exit}')
-  #SECONDARY_NET=$(printf '%s\n' "${ALL_NET[@]}" | grep -v "$PRIMARY_NET" | head -n1)
+  # Get secondary active interface (non-primary physical interface)
+  #local secondary_net
+  #secondary_net=$(ip -o link show up | awk -F': ' '{print $2}' |
+  #grep -vE '^(lo|docker|veth|br-|tun|vir|wg)' |
+  #grep -v "$primary_net" | head -n1)
 
-  [[ -n "$PRIMARY_NET" ]] && sed -i "s/sys_network_interface = .*/sys_network_interface = $PRIMARY_NET/" "$CONFIG_FILE"
-  # [[ -n "$SECONDARY_NET" ]] && sed -i "s/sys_network_interface2 = .*/sys_network_interface2 = $SECONDARY_NET/" "$CONFIG_FILE"
+  # Detect backlight control interface
+  local card
+  card=$(basename /sys/class/backlight/*/ 2>/dev/null | head -n1)
 
-  # Graphics card (backlight)
-  CARD=$(find /sys/class/backlight -maxdepth 1 -type l | head -n1 | xargs basename)
-  [[ -n "$CARD" ]] && sed -i "s/sys_graphics_card = .*/sys_graphics_card = $CARD/" "$CONFIG_FILE"
+  # Identify power supply components
+  local battery adapter
+  battery=$(find /sys/class/power_supply -maxdepth 1 -type l -name "BAT*" | head -n1 | xargs basename 2>/dev/null)
+  adapter=$(find /sys/class/power_supply -maxdepth 1 -type l \( -name "AC*" -o -name "ADP*" \) | head -n1 | xargs basename 2>/dev/null)
 
-  # Battery and adapter
-  BATTERY=$(find /sys/class/power_supply -maxdepth 1 -type l -name "BAT*" | head -n1 | xargs basename)
-  ADAPTER=$(find /sys/class/power_supply -maxdepth 1 -type l -name "A[CD]*" | head -n1 | xargs basename)
-
-  [[ -n "$BATTERY" ]] && sed -i "s/sys_battery = .*/sys_battery = $BATTERY/" "$CONFIG_FILE"
-  [[ -n "$ADAPTER" ]] && sed -i "s/sys_adapter = .*/sys_adapter = $ADAPTER/" "$CONFIG_FILE"
-
-  sed -i "s/size = [0-9]*/size = $font_size/" ~/.config/alacritty/fonts.toml
-  sed -i "s/font_size [0-9]*/font_size $font_size/" ~/.config/kitty/kitty.conf
+  # Update configuration file
+  sed -i -e "s/^sys_network_interface =.*/sys_network_interface = ${primary_net}/" \
+    -e "s/^sys_graphics_card =.*/sys_graphics_card = ${card}/" \
+    -e "s/^sys_battery =.*/sys_battery = ${battery}/" \
+    -e "s/^sys_adapter =.*/sys_adapter = ${adapter}/" "$CONFIG_FILE"
+  #-e "s/^sys_network_interface2 =.*/sys_network_interface2 = ${secondary_net}/" \
 }
 
 setup_system_vars
-
 touch "$SFILE"
