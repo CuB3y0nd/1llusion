@@ -6,7 +6,7 @@ count_lines() {
 
 fetch_updates() {
   regular_updates=$(checkupdates 2>/dev/null || true)
-  aur_updates=$(yay -Qua 2>/dev/null || true)
+  aur_updates=$(paru -Qua 2>/dev/null || true)
 }
 
 case "$1" in
@@ -36,7 +36,7 @@ case "$1" in
   ;;
 
 --update-system)
-  yay -Syu --combinedupgrade=false
+  paru -Syu --nocombinedupgrade
   ;;
 
 --help | *)
