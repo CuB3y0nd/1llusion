@@ -37,11 +37,13 @@ zinit wait lucid for \
 # load completions
 autoload -Uz compinit
 
-for dump in ~/.config/zsh/zcompdump(N.mh+24); do
-  compinit -d ~/.config/zsh/zcompdump
-done
+fpath+=/usr/share/zsh/site-functions
 
-compinit -C -d ~/.config/zsh/zcompdump
+if [[ -n $ZSH_COMPDUMP ]]; then
+  compinit -C -d $ZSH_COMPDUMP
+else
+  compinit -d ~/.config/zsh/zcompdump
+fi
 
 autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
