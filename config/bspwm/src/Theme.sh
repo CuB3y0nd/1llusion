@@ -1,12 +1,43 @@
 #!/usr/bin/env bash
 
+# Current Rice
 read -r RICE <"$HOME"/.config/bspwm/.rice
 
-. "$HOME"/.config/bspwm/src/Process.bash
+# Load theme configuration
 . "$HOME"/.config/bspwm/rices/"$RICE"/theme-config.bash
-. "$HOME"/.config/bspwm/src/WallEngine.bash
 
-set_bspwm_config() {
+# Function to wait for processes to finish correctly
+wait_for_termination() {
+  local process_name="$1"
+  while pgrep -f "$process_name" >/dev/null; do
+    sleep 0.2
+  done
+}
+
+kill_processes() {
+  # Kill polybar or eww bars when you switch from the current theme to another
+  if pgrep -x polybar >/dev/null; then
+    polybar-msg cmd quit >/dev/null
+    wait_for_termination "polybar"
+  elif pgrep -f "eww.*bar" >/dev/null; then
+    pkill -f "eww.*bar"
+    wait_for_termination "eww.*bar"
+  fi
+
+  # Kill the fix for eww in fullscreen, we don't need it in themes with polybar
+  if pgrep -f "bspc subscribe node_state" >/dev/null; then
+    pkill -f "bspc subscribe node_state"
+    wait_for_termination "bspc subscribe node_state"
+  fi
+
+  # Kill animated wallpaper if is active
+  if pgrep -x xwinwrap >/dev/null; then
+    pkill xwinwrap
+    wait_for_termination "xwinwrap"
+  fi
+}
+
+apply_bspwm_config() {
   bspc config border_width ${BORDER_WIDTH}
   bspc config top_padding ${TOP_PADDING}
   bspc config bottom_padding ${BOTTOM_PADDING}
@@ -17,7 +48,7 @@ set_bspwm_config() {
   bspc config presel_feedback_color "${blue}"
 }
 
-set_term_config() {
+apply_term_config() {
   # Alacritty
   sed -i "$HOME"/.config/alacritty/fonts.toml \
     -e "s/size = .*/size = $term_font_size/" \
@@ -61,7 +92,7 @@ set_term_config() {
   kitten themes --reload-in=all ${RICE}
 }
 
-set_picom_config() {
+apply_picom_config() {
   picom_conf_file="$HOME/.config/bspwm/src/config/picom.conf"
   picom_animations_file="$HOME/.config/bspwm/src/config/picom-animations.conf"
 
@@ -81,7 +112,7 @@ set_picom_config() {
     -e "/#-dunst-open-direction/s/.*#-/\t\t\tdirection = \"${dunst_open_direction}\";\t#-/"
 }
 
-set_dunst_config() {
+apply_dunst_config() {
   dunst_config_file="$HOME/.config/bspwm/src/config/dunstrc"
 
   sed -i "$dunst_config_file" \
@@ -116,7 +147,7 @@ set_dunst_config() {
   dunstctl reload "$dunst_config_file"
 }
 
-set_eww_colors() {
+apply_eww_colors() {
   cat >"$HOME"/.config/bspwm/eww/colors.scss <<-EOF
 		\$bg: ${bg};
 		\$bg-alt: ${accent_color};
@@ -132,7 +163,7 @@ set_eww_colors() {
 	EOF
 }
 
-set_launchers() {
+apply_menu_colors() {
   # Jgmenu
   sed -i "$HOME"/.config/bspwm/src/config/jgmenurc \
     -e "s/color_menu_bg = .*/color_menu_bg = ${jg_bg}/" \
@@ -167,7 +198,7 @@ set_launchers() {
     -e "s/verify=.*/verify=${sl_verify}/"
 }
 
-set_appearance() {
+apply_gtk_appearance() {
   # Set the gtk theme corresponding to rice
   sed -i "$HOME"/.config/bspwm/src/config/xsettingsd \
     -e "s|Net/ThemeName .*|Net/ThemeName \"$gtk_theme\"|" \
@@ -181,15 +212,41 @@ set_appearance() {
   xsetroot -cursor_name left_ptr
 }
 
-launch_theme() {
+apply_wallpaper() {
+  case $ENGINE in
+  "Theme")
+    feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
+    ;;
+
+  "CustomDir")
+    feh -z --no-fehbg --bg-fill "$CUSTOM_DIR"
+    ;;
+
+  "CustomImage")
+    feh --no-fehbg --bg-fill "$CUSTOM_WALL"
+    ;;
+
+  "CustomAnimated")
+    AnimatedWall --start "$CUSTOM_ANIMATED"
+    ;;
+
+  *)
+    feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
+    ;;
+  esac
+}
+
+apply_bar() {
   . "$HOME"/.config/bspwm/rices/"$RICE"/Bar.bash
 }
 
-set_bspwm_config
-set_term_config
-set_picom_config
-set_appearance
-set_dunst_config
-set_eww_colors
-set_launchers
-launch_theme
+kill_processes
+apply_picom_config
+apply_bspwm_config
+apply_term_config
+apply_gtk_appearance
+apply_dunst_config
+apply_eww_colors
+apply_menu_colors
+apply_wallpaper
+apply_bar
