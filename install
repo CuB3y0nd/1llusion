@@ -233,6 +233,15 @@ install_dependencies() {
     gh0stzk-icons-zafiro-purple
   )
 
+  # Handle ueberzug/ueberzugpp conflict
+  if is_installed "ueberzug"; then
+    echo -e "\n${BLD}${CYE}Removing conflicting ueberzug package...${CNC}\n"
+    sudo pacman -Rns --noconfirm ueberzug >>"$ERROR_LOG" 2>&1 || {
+      log_error "Failed to remove ueberzug"
+      echo -e "${BLD}${CRE}Error removing ueberzug! Check logs${CNC}\n\n"
+    }
+  fi
+
   echo -e "${BLD}${CBL}Checking for required packages...${CNC}\n"
   sleep 2
 
