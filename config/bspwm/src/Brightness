@@ -3,7 +3,6 @@
 readonly DIR="$HOME/.config/bspwm/src/assets"
 readonly BRIGHTNESS_STEPS=5
 readonly MIN_BRIGHTNESS=2
-readonly NOTIFICATION_ID=12345
 
 get_brightness() {
   brightnessctl i | awk -F '[()%]' '/Current brightness:/ {print $2}'
