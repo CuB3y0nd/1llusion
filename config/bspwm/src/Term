@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CFG_TERM="$HOME/.config/bspwm/src/.term"
+CFG_TERM="$HOME/.config/bspwm/src/config/.term"
 DEFAULT_TERM="alacritty"
 ROFI_THEME="$HOME/.config/bspwm/src/rofi-themes/TermSelector.rasi"
 

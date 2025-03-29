@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+SCRATCHPAD_NAME="bspwm-scratch"
+CFG_TERM="$HOME/.config/bspwm/src/.term"
+MY_TERM=$(<"$CFG_TERM")
+MAX_WIDTH_PERCENT=70
+HEIGHT_PERCENT=35
+
+get_monitor_geometry() {
+  local mon_geo
+  mon_geo=$(bspc query -T -m focused | jq -r '.rectangle | "\(.width) \(.height) \(.x) \(.y)"')
+  SCREEN_WIDTH=$(echo "$mon_geo" | awk '{print $1}')
+  SCREEN_HEIGHT=$(echo "$mon_geo" | awk '{print $2}')
+  MONITOR_X=$(echo "$mon_geo" | awk '{print $3}')
+  MONITOR_Y=$(echo "$mon_geo" | awk '{print $4}')
+}
+
+calculate_position() {
+  WIDTH=$((SCREEN_WIDTH * MAX_WIDTH_PERCENT / 100))
+  HEIGHT=$((SCREEN_HEIGHT * HEIGHT_PERCENT / 100))
+  X_POS=$((MONITOR_X + (SCREEN_WIDTH - WIDTH) / 2))
+  Y_POS=$MONITOR_Y
+}
+
+get_scratchpad_id() {
+  bspc query -N -n ".floating.window" | while read -r node; do
+    if xprop -id "$node" WM_CLASS | grep -q "$SCRATCHPAD_NAME"; then
+      echo "$node"
+      return
+    fi
+  done
+}
+
+get_monitor_geometry
+calculate_position
+
+WINDOW_ID=$(get_scratchpad_id)
+
+if [ -n "$WINDOW_ID" ]; then
+  # Get current status
+  CURRENT_STATE=$(bspc query -T -n "$WINDOW_ID" | jq -r '.client.state')
+
+  if [ "$CURRENT_STATE" = "floating" ]; then
+    # If already visible: hide
+    bspc node "$WINDOW_ID" -g hidden
+  else
+    # If hidden: move, resize and show
+    bspc node "$WINDOW_ID" -m focused
+    xdo move -x "$X_POS" -y "$Y_POS" "$WINDOW_ID"
+    xdo resize -w "$WIDTH" -h "$HEIGHT" "$WINDOW_ID"
+    bspc node "$WINDOW_ID" -g hidden=off -f
+  fi
+else
+  # Create rule for new node
+  bspc rule -a "$SCRATCHPAD_NAME" \
+    state=floating \
+    sticky=on \
+    layer=above \
+    rectangle="${WIDTH}x${HEIGHT}+${X_POS}+${Y_POS}" \
+    --one-shot
+
+  # Launch the corresponding terminal
+  if [[ $MY_TERM == "alacritty" ]]; then
+    alacritty --class "$SCRATCHPAD_NAME" &
+  else
+    kitty --class="$SCRATCHPAD_NAME" &
+  fi
+
+  # Wait and adjust final position
+  sleep 0.3
+  WINDOW_ID=$(get_scratchpad_id)
+  xdo move -x "$X_POS" -y "$Y_POS" "$WINDOW_ID"
+  xdo resize -w "$WIDTH" -h "$HEIGHT" "$WINDOW_ID"
+fi
+
+# Update when changing monitor
+bspc subscribe monitor_focus | while read -r _; do
+  get_monitor_geometry
+  calculate_position
+  WINDOW_ID=$(get_scratchpad_id)
+
+  if [ -n "$WINDOW_ID" ]; then
+    # Move and resize only if visible
+    if [ "$(bspc query -T -n "$WINDOW_ID" | jq -r '.client.state')" = "floating" ]; then
+      bspc node "$WINDOW_ID" -m focused
+      xdo move -x "$X_POS" -y "$Y_POS" "$WINDOW_ID"
+      xdo resize -w "$WIDTH" -h "$HEIGHT" "$WINDOW_ID"
+    fi
+  fi
+done &

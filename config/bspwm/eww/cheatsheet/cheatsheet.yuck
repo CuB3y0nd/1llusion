@@ -167,9 +167,6 @@
         (label :class "keys" :xalign 0 :text "Scratchpad")
         (label :class "keys-alt" :xalign 1 :text "Alt + Shift + O"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Yazi Scratchpad")
-        (label :class "keys-alt" :xalign 1 :text "Alt + Shift + Y"))
-      (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Hide/Unhide  Polybar/Eww")
         (label :class "keys-alt" :xalign 1 :text "Super + Shift + {h,u}"))
       (box :orientation "h" :space-evenly "true"
@@ -190,6 +187,9 @@
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Power Menu")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + P"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Change rofi style")
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + L"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Change  Keyboard  Layout")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + k"))

@@ -213,6 +213,11 @@ apply_gtk_appearance() {
 }
 
 apply_wallpaper() {
+  if [[ -f /tmp/wall_refresh.pid ]]; then
+    kill $(cat /tmp/wall_refresh.pid) 2>/dev/null
+    rm -f /tmp/wall_refresh.pid
+  fi
+
   case $ENGINE in
   "Theme")
     feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
@@ -228,6 +233,16 @@ apply_wallpaper() {
 
   "CustomAnimated")
     AnimatedWall --start "$CUSTOM_ANIMATED"
+    ;;
+
+  "Slideshow")
+    (
+      while true; do
+        feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
+        sleep 900 # 900 seconds = 15 minutes
+      done
+    ) &
+    echo $! >/tmp/wall_refresh.pid
     ;;
 
   *)
