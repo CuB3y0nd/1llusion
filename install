@@ -722,6 +722,8 @@ add_chaotic_repo
 
 install_paru
 install_dependencies
+install_gh0stzk_dependencies
+install_chaotic_dependencies
 install_aur_dependencies
 clone_dotfiles
 
