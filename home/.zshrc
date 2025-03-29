@@ -32,7 +32,8 @@ zinit wait lucid for \
   blockf \
     zsh-users/zsh-completions \
   atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-autosuggestions \
+    Aloxaf/fzf-tab
 
 # load completions
 autoload -Uz compinit
@@ -54,18 +55,27 @@ zinit cdreplay -q
 
 # basic auto/tab complete:
 zstyle ':completion:*' menu select
-zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list \
     'm:{a-zA-Z}={A-Za-z}' \
     '+r:|[._-]=* r:|=*' \
     '+l:|=*'
-zstyle ':completion:*:warnings' format "%B%F{red}No matches for:%f %F{magenta}%d%b"
-zstyle ':completion:*:descriptions' format '%F{yellow}[-- %d --]%f'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:*' formats '%F{green}%b%u%c%f '
 zstyle ':vcs_info:*' actionformats '%F{green}%b|%a%u%c%f '
+zstyle ':fzf-tab:*' fzf-flags --style=full --height=90% --pointer '>' \
+    --color 'pointer:green:bold,bg+:-1:,fg+:green:bold,info:blue:bold,marker:yellow:bold,hl:gray:bold,hl+:yellow:bold' \
+    --input-label ' Search ' --color 'input-border:blue,input-label:blue:bold' \
+    --list-label ' Results ' --color 'list-border:green,list-label:green:bold' \
+    --preview-label ' Preview ' --color 'preview-border:magenta,preview-label:magenta:bold'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --icons=always --color=always -a $realpath'
+zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza -1 --icons=always --color=always -a $realpath'
+zstyle ':fzf-tab:complete:bat:*' fzf-preview 'bat --color=always --theme=base16 $realpath'
+zstyle ':fzf-tab:*' fzf-bindings 'space:accept'
+zstyle ':fzf-tab:*' accept-line enter
 zmodload zsh/complist
 
 # edit current command in your editor
