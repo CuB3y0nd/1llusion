@@ -22,6 +22,10 @@ super + {b,f,p}
 super + {y,v,m}
   OpenApps --{yazi,nvim,music}
 
+# Rice Editor
+super + r
+  RiceEditor
+
 # Terminal Selector
 ctrl + alt + t
 	Term --selecterm
@@ -89,10 +93,6 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 # Music Control
 XF86Audio{Next,Prev,Play,Stop}
 	MediaControl {--next,--previous,--toggle,--stop}
-
-# Reload Bspwm
-super + r
-	bspc wm -r
 
 # Close/Kill node
 super + {_,shift + }c

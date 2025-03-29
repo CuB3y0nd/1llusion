@@ -1,7 +1,9 @@
 (defwidget cheatsheet []
-  (box :class "cheatsheet" :orientation "v" :space-evenly "false"
-    (top)
-    (content)
+  (scroll :hscroll true :vscroll true
+    (box :class "cheatsheet" :orientation "v" :space-evenly "false"
+      (top)
+      (content)
+    )
   )
 )
 
@@ -25,7 +27,7 @@
 
 (defwidget content []
   (box :class "content" :orientation "h" :spacing 20 :space-evenly "true"
-    (box :orientation "v" :space-evenly "false" :spacing 2
+    (box :orientation "v" :space-evenly "false" :spacing 1
       (box :orientation "h" :space-evenly "true"
         (label :class "category-bspwm" :xalign 0.5 :text "Bspwm")
         (label :text ""))
@@ -53,6 +55,9 @@
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Theme  Selector")
         (label :class "keys-alt" :xalign 1 :text "Alt + Space"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Theme Editor")
+        (label :class "keys-alt" :xalign 1 :text "Super + R"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Terminal  Selector")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + T"))
@@ -92,7 +97,7 @@
       )
     )
 
-    (box :orientation "v" :space-evenly "false" :spacing 2
+    (box :orientation "v" :space-evenly "false" :spacing 1
       (box :orientation "h" :space-evenly "true"
         (label :class "category-nodes" :xalign 0.5 :text "Nodes")
         (label :text ""))
@@ -151,17 +156,14 @@
         (label :class "keys" :xalign 0 :text "Expand  node")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt +    "))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Contract node")
+        (label :class "keys" :xalign 0 :text "Contract  node")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + Shift +    "))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Move floating node")
+        (label :class "keys" :xalign 0 :text "Move  floating  node")
         (label :class "keys-alt" :xalign 1 :text "Alt + Shift +    ")
       )
-    )
-
-    (box :orientation "v" :space-evenly "false" :spacing 2
       (box :orientation "h" :space-evenly "true"
-        (label :class "category-workspaces" :xalign 0.5 :text "Applets")
+        (label :class "category-others" :xalign 0.5 :text "Others")
         (label :text ""))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Scratchpad")
@@ -172,6 +174,13 @@
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Change  transparency")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Shift + {+,-,i}"))
+    )
+
+    (box :orientation "v" :space-evenly "false" :spacing 1
+      (box :orientation "h" :space-evenly "true"
+        (label :class "category-workspaces" :xalign 0.5 :text "Dotfiles Apps")
+        (label :text "")
+      )
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Network  Manager")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + N"))
@@ -185,13 +194,13 @@
         (label :class "keys" :xalign 0 :text "Clipboard")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + C"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Power Menu")
+        (label :class "keys" :xalign 0 :text "Power  Menu")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + P"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Change rofi style")
+        (label :class "keys" :xalign 0 :text "Rofi  style")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + L"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Change  Keyboard  Layout")
+        (label :class "keys" :xalign 0 :text "Keyboard  Layout")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + k"))
       (box :orientation "h" :space-evenly "true"
         (label :class "category-apps" :xalign 0.5 :text "Apps")
@@ -200,8 +209,11 @@
         (label :class "keys" :xalign 0 :text "Browser")
         (label :class "keys-alt" :xalign 1 :text "Super + B"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "File Manager")
+        (label :class "keys" :xalign 0 :text "File  Manager")
         (label :class "keys-alt" :xalign 1 :text "Super + F"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "NeoVim")
+        (label :class "keys-alt" :xalign 1 :text "Super + V"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Yazi")
         (label :class "keys-alt" :xalign 1 :text "Super + Y"))
@@ -221,17 +233,17 @@
         (label :class "keys" :xalign 0 :text "Reboot")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Super + Shift + R"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Log Out")
+        (label :class "keys" :xalign 0 :text "Log  Out")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Super + Shift + Q"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Lockscreen")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Super + Shift + L"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Kill App")
+        (label :class "keys" :xalign 0 :text "Kill  App")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Super + Shift + K")
       )
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Soft Reload")
+        (label :class "keys" :xalign 0 :text "Soft  Reload")
         (label :class "keys-alt" :xalign 1 :text "Ctrl + Super + Shift + S")
       )
     )
@@ -244,6 +256,8 @@
   (geometry
     :x "0%"
     :y "0%"
+    :width "76%"
+    :height "66%"
     :anchor "center"
   )
   :wm-ignore false
