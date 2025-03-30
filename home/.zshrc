@@ -141,7 +141,7 @@ yazicd() {
 
 # load aliases and shortcuts if existent
 [ -f "$HOME/.config/zsh/shortcutrc" ] && source "$HOME/.config/zsh/shortcutrc"
-[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
+[ -f "$HOME/.config/zsh/aliasrc" ] && source "$HOME/.config/zsh/aliasrc"
 
 # miscs
 $HOME/.local/bin/colorscript -r
