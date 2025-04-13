@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 cfgStyle="$HOME/.config/bspwm/src/config/.launcher"
+[[ -f "$cfgStyle" ]] || echo "1" >"$cfgStyle"
 read -r current_style <"$cfgStyle"
 
 styleDir="$HOME/.config/bspwm/src/rofi-themes"
@@ -14,7 +15,7 @@ monitor_width=$(xrandr | grep -w -- "$focused_monitor" | grep -o '[0-9]\+x[0-9]\
 screen_dpi=$(xdpyinfo | awk '/resolution/{print $2; exit}' | cut -d 'x' -f1)
 
 # Calculate icon size
-icon_size=$(((monitor_width * 14) / (${screen_dpi:-96})))
+icon_size=$(((monitor_width * 11) / (${screen_dpi:-96})))
 rofi_override="element-icon{size:${icon_size}px;}"
 rofi_command="rofi -dmenu -theme $HOME/.config/bspwm/src/rofi-themes/StyleSelect.rasi -theme-str $rofi_override"
 

@@ -18,7 +18,7 @@
 (defpoll CITY  :interval "15m" "Weather city")
 
 ;; Updates vars
-(defpoll UPDATES :interval "5m" "Updates --get-updates")
+(defpoll UPDATES :interval "15m" `cat $HOME/.cache/Updates.txt 2>/dev/null`)
 
 ;; Volume vars
 (defpoll volume_icon :interval "1s" "scripts/Volume --icon")
@@ -42,13 +42,13 @@
 
 ;; Launcher ;;
 (defwidget launcher []
-	(box :class "mainbars"
-		 (eventbox :cursor "pointer"
+  (box :class "mainbars"
+    (eventbox :cursor "pointer"
 			(button :style "background-image: url('images/dashboard.png');"
-				    :class "icons"
-				    :valign "center"
-				    :onclick "cd ; OpenApps --menu &"
-				    :onrightclick "OpenApps --rice &")
+              :class "icons"
+              :valign "center"
+              :onclick "cd ; OpenApps --menu"
+              :onrightclick "OpenApps --rice")
 		 )
 	)
 )
@@ -56,95 +56,96 @@
 ;; Apps ;;
 (defwidget apps []
 	(box :class "mainbars"
-		 :spacing 15
-			(eventbox :cursor "pointer"
-			(button :style "background-image: url('images/zombie.png');"
-					:class "icons"
-					:valign "center"
-					:onclick "OpenApps --fetch &"))
+	  :spacing 15
+    (eventbox :cursor "pointer"
+    (button :style "background-image: url('images/zombie.png');"
+            :class "icons"
+            :valign "center"
+            :onclick "OpenApps --fetch"))
 
-			(eventbox :cursor "pointer"
-			(button :style "background-image: url('images/terminal.png');"
-					:class "icons"
-					:valign "center"
-					:onclick "cd ; OpenApps --terminal &"))
+    (eventbox :cursor "pointer"
+    (button :style "background-image: url('images/terminal.png');"
+            :class "icons"
+            :valign "center"
+            :onclick "cd ; OpenApps --terminal"))
 
-			(eventbox :cursor "pointer"
-			(button :style "background-image: url('images/firefox.png');"
-					:class "icons"
-					:valign "center"
-					:onclick "OpenApps --browser &"))
+    (eventbox :cursor "pointer"
+    (button :style "background-image: url('images/firefox.png');"
+            :class "icons"
+            :valign "center"
+            :onclick "OpenApps --browser"))
 
-			(eventbox :cursor "pointer"
-			(button :style "background-image: url('images/files.png');"
-					:class "icons"
-					:valign "center"
-					:onclick "cd ; OpenApps --filemanager &"))
+    (eventbox :cursor "pointer"
+    (button :style "background-image: url('images/files.png');"
+            :class "icons"
+            :valign "center"
+            :onclick "cd ; OpenApps --filemanager"))
 
-			(eventbox :cursor "pointer"
-			(button :style "background-image: url('images/notes.png');"
-					:class "icons"
-					:valign "center"
-					:onclick "OpenApps --editor &"))
+    (eventbox :cursor "pointer"
+    (button :style "background-image: url('images/notes.png');"
+            :class "icons"
+            :valign "center"
+            :onclick "OpenApps --editor"))
 
-			(eventbox :cursor "pointer"
-			(button :style "background-image: url('images/telegram.png');"
-					:class "icons"
-					:valign "center"
-					:onclick "OpenApps --telegram &"))
+    (eventbox :cursor "pointer"
+    (button :style "background-image: url('images/telegram.png');"
+            :class "icons"
+            :valign "center"
+            :onclick "OpenApps --telegram"))
 	)
 )
 
 ;; Music Control ;;
 (defwidget music []
 	(box :class "mainbars"
-		 :spacing 10
-		 :space-evenly "false"
+	     :spacing 10
+		   :space-evenly "false"
 
-		 (box :class "album_art"
-			  :valign "center"
-			  :halign "start"
-			  :style "background-image: url('${COVER}');")
+    (box :class "album_art"
+         :valign "center"
+         :halign "start"
+         :style "background-image: url('${COVER}');")
 
-		 (eventbox :cursor "pointer"
-		 (button :onclick "OpenApps --player &"
-		 (box :orientation "v"
-			  :class "song-info"
-			  :spacing 0
-			  :valign "center"
+    (eventbox :cursor "pointer"
+    (button :onclick "OpenApps --player"
+    (box :orientation "v"
+         :class "song-info"
+         :spacing 0
+         :valign "center"
 
-				(label :class "song"
-					   :xalign 0
-					   :justify "fill"
-					   :wrap "false"
-					   :limit-width 18
-					   :text SONG)
+      (label :class "song"
+             :xalign 0
+             :justify "fill"
+             :wrap "false"
+             :limit-width 18
+             :text SONG)
 
-				(label :class "artist"
-					   :xalign 0
-					   :justify "fill"
-					   :wrap "false"
-					   :limit-width 18
-					   :text ARTIST))))
+      (label :class "artist"
+             :xalign 0
+             :justify "fill"
+             :wrap "false"
+             :limit-width 18
+             :text ARTIST))))
 
-		 (box :spacing 8
-			  :valign "center"
-			  :halign "end"
-			  :space-evenly "false"
+    (box :spacing 8
+         :valign "center"
+         :halign "end"
+         :space-evenly "false"
 
-			  (eventbox :cursor "pointer"
-				(button :class "player-previous"
-						:onclick "MediaControl --previous" "󰒮"))
+      (eventbox :cursor "pointer"
+      (button :class "player-previous"
+              :onclick "MediaControl --previous" "󰒮"))
 
-			  (eventbox :cursor "pointer"
-				(button :class "player-toggle"
-						:onclick "MediaControl --toggle"
-						{STATUS == "Playing" ? "󰏤" : STATUS == "Paused" ? "󰐊" : "󰓛"}))
+      (eventbox :cursor "pointer"
+      (button :class "player-toggle"
+              :onclick "MediaControl --toggle"
+              {STATUS == "Playing" ? "󰏤" : STATUS == "Paused" ? "󰐊" : "󰓛"}))
 
-			  (eventbox :cursor "pointer"
-				(button :class "player-next"
-						:onclick "MediaControl --next" "󰒭"))
-		 )
+      (eventbox :cursor "pointer"
+      (button :class "player-next"
+              :onclick "MediaControl --next" "󰒭")
+      )
+		)
 	)
 )
 
@@ -155,9 +156,9 @@
 		 :space-evenly "false"
 
 		 (eventbox :cursor "pointer"
-		 (button :onclick "OpenApps --update &"
-				 :onrightclick "OpenApps --checkupdates &"
-				 (box :orientation "h"
+     (button :onclick "OpenApps --checkupdates"
+          :onrightclick "OpenApps --update"
+			    (box :orientation "h"
 					  :spacing 2
 					  :valign "center"
 					  :halign "center"
@@ -173,9 +174,9 @@
 		 ))
 
 		 (eventbox :cursor "pointer"
-		 (button :onclick "${EWW_CMD} open --toggle audio_ctl &"
-				 :onrightclick "scripts/volume.sh --toggle-muted &"
-				 (box :orientation "h"
+		 (button :onclick "${EWW_CMD} open --toggle audio_ctl"
+          :onrightclick "scripts/volume.sh --toggle-muted"
+          (box :orientation "h"
 					  :spacing 3
 					  :valign "center"
 					  :halign "center"
@@ -191,8 +192,8 @@
 		 ))
 
 		 (eventbox :cursor "pointer"
-		 (button :onclick "OpenApps --netmanager &"
-				 (box :orientation "h"
+		 (button :onclick "OpenApps --netmanager"
+          (box :orientation "h"
 					  :spacing 3
 					  :valign "center"
 					  :halign "center"
@@ -208,8 +209,8 @@
 		 ))
 
 		 (eventbox :cursor "pointer"
-		 (button :onclick "OpenApps --usercard &"
-				 (box :orientation "h"
+		 (button :onclick "OpenApps --usercard"
+          (box :orientation "h"
 					  :spacing 3
 					  :valign "center"
 					  :halign "center"
@@ -225,8 +226,8 @@
 		 ))
 
 		 (eventbox :cursor "pointer"
-		 (button :onclick "OpenApps --powermenu &"
-				 (box :orientation "h"
+		 (button :onclick "OpenApps --powermenu"
+          (box :orientation "h"
 					  :spacing 3
 					  :valign "center"
 					  :halign "center"
@@ -246,7 +247,7 @@
 		 :space-evenly "false"
 
 		 (eventbox :cursor "pointer"
-		 (button :onclick "OpenApps --calendar &"
+		 (button :onclick "OpenApps --calendar"
 		 (box :orientation "v"
 			  :spacing 0
 			  :halign "start"
@@ -322,8 +323,8 @@
 (defwindow bar [monitor]
 	:monitor monitor
 	:geometry (geometry :y "0px"
-						:width "100%"
-						:anchor "top center")
+                      :width "100%"
+                      :anchor "top center")
 
 	:stacking "fg"
 	:reserve (struts :distance "3px" :side "top")
@@ -333,8 +334,8 @@
 
 (defwindow audio_ctl
 	:geometry (geometry :x "-13%"
-						:y "8%"
-                        :anchor "top right")
+                      :y "8%"
+                      :anchor "top right")
 	:stacking "fg"
-    :wm-ignore false
+  :wm-ignore false
 (audio))

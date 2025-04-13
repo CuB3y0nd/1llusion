@@ -1,29 +1,40 @@
 #!/usr/bin/env bash
 
-count_lines() {
-  [[ -n "$1" ]] && wc -l <<<"$1" || echo 0
+UPDATE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/Updates.txt"
+
+check_updates() {
+  # get official updates
+  local official=0
+  if updates=$(checkupdates 2>/dev/null); then
+    official=$(echo "$updates" | wc -l)
+  fi
+
+  # get aur updates
+  local aur=0
+  if aur_updates=$(paru -Qua 2>/dev/null); then
+    aur=$(echo "$aur_updates" | wc -l)
+  fi
+
+  # calculate and write the total to the file
+  total=$((official + aur))
+  echo "$total" >"$UPDATE_FILE"
+
+  # sends the signal to polybar-module/eww-poll to update the data
+  if pgrep -x polybar >/dev/null; then
+    polybar-msg action updates hook 0 >/dev/null 2>&1
+  else
+    read -r current_rice <"$HOME"/.config/bspwm/.rice
+    eww -c $HOME/.config/bspwm/rices/"${current_rice}"/bar poll UPDATES
+  fi
 }
 
-fetch_updates() {
-  regular_updates=$(checkupdates 2>/dev/null || true)
-  aur_updates=$(paru -Qua 2>/dev/null || true)
-}
-
-case "$1" in
---get-updates)
-  fetch_updates
-  echo $(($(count_lines "$regular_updates") + $(count_lines "$aur_updates")))
-  ;;
-
---print-updates)
-  fetch_updates
-  total=$(($(count_lines "$regular_updates") + $(count_lines "$aur_updates")))
-
+list_updates() {
+  check_updates
   if ((total > 0)); then
     echo -e "\033[1m\033[33mThere are $total updates available:\033[0m"
-    [[ -n "$regular_updates" ]] && {
+    [[ -n "$updates" ]] && {
       echo -e "\n\033[1m\033[34mOfficial updates:\033[0m"
-      sed 's/->/\x1b[32;1m\x1b[0m/g' <<<"$regular_updates"
+      sed 's/->/\x1b[32;1m\x1b[0m/g' <<<"$updates"
     }
     [[ -n "$aur_updates" ]] && {
       echo -e "\n\033[1m\033[34mAUR updates:\033[0m"
@@ -33,16 +44,19 @@ case "$1" in
     echo -e "\033[1m\033[32m¡Your system is already updated!\033[0m"
   fi
   exit 0
-  ;;
+}
 
---update-system)
-  paru -Syu --nocombinedupgrade
+case "$1" in
+--sync-polybar)
+  check_updates
   ;;
-
---help | *)
-  echo -e "Updates [options]\n\nOptions:
-  \033[1m--get-updates\033[0m\t\tGet the number of updates available.
-  \033[1m--print-updates\033[0m\tList packages with pending updates
-  \033[1m--update-system\033[0m\tInstall all updates (Regular + AUR)\n"
+--print-updates)
+  list_updates
+  ;;
+*)
+  echo "$(basename "$0") [OPTIONS]"
+  echo "  --sync-polybar      Sync data & polybar module"
+  echo "  --print-updates     Sync data, polybar module & print available apps to update"
+  exit 1
   ;;
 esac
