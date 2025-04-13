@@ -15,13 +15,13 @@ You are probably here for my **Aesthetic BSPWM** and **Aesthetic NEOVIM** config
    <ul>
       <li><strong>WM: </strong> <a href="https://github.com/baskerville/bspwm">bspwm</a></li>
       <li><strong>OS: </strong> <a href="https://archlinux.org">Arch Linux</a></li>
-      <li><strong>Terminal: </strong> <a href="https://github.com/alacritty/alacritty">Alacritty</a>/<a href="https://github.com/kovidgoyal/kitty">kitty</a></li>
-      <li><strong>Shell: </strong> <a href="https://www.zsh.org">zsh</a></li>
+      <li><strong>Terminal: </strong> <a href="https://github.com/alacritty/alacritty">Alacritty</a>/<a href="https://github.com/kovidgoyal/kitty">Kitty</a></li>
+      <li><strong>Shell: </strong> <a href="https://www.zsh.org">Zsh</a></li>
       <li><strong>Bar: </strong> <a href="https://github.com/polybar/polybar">Polybar</a></li>
       <li><strong>Music/Player: </strong> <a href="https://github.com/MusicPlayerDaemon/MPD">MPD</a>/<a href="https://github.com/ncmpcpp/ncmpcpp">ncmpcpp</a></li>
       <li><strong>Widgets: </strong> <a href="https://github.com/elkowar/eww">Eww</a></li>
       <li><strong>Compositor: </strong> <a href="https://github.com/ibhagwan/picom">picom</a></li>
-      <li><strong>Editor: </strong> <a href="https://github.com/neovim/neovim">Neovim</a></li>
+      <li><strong>Editor: </strong> <a href="https://github.com/neovim/neovim">NeoVim</a></li>
       <li><strong>Browser: </strong> <a href="https://www.mozilla.org/en-US/firefox">Firefox</a></li>
       <li><strong>File Manager: </strong> <a href="https://github.com/xfce-mirror/thunar">Thunar</a></li>
       <li><strong>Application Launcher: </strong> <a href="https://github.com/davatorium/rofi">Rofi</a></li>
@@ -30,9 +30,7 @@ You are probably here for my **Aesthetic BSPWM** and **Aesthetic NEOVIM** config
 
 ## :book: Wiki
 
-Here is the [wiki](https://github.com/CuB3y0nd/1llusion/wiki). I also wrote a tutorial about the installation of Arch Linux dual boot + dotfile usage, check [Arch Linux 双系统 + Bspwm 配置小记](https://www.cubeyond.net/blog/linux/archlinux-dualboot-and-bspwm-configure).
-
-If you have any problem, create issue or contact me: <a href="mailto:root@cubeyond.net">root@cubeyond.net</a>.
+Here is the [wiki](https://github.com/CuB3y0nd/1llusion/wiki). I also wrote a tutorial about the installation of Arch Linux dual boot + dotfile usage, check [Arch Linux 双系统 + Bspwm 配置小记](https://www.assembly.rip/posts/linux/archlinux-configure-note/).
 
 ## :rocket: Features
 
@@ -46,6 +44,10 @@ With our custom menu based on rofi launcher, switching between the 15 themes is 
 
 Each theme not only changes the appearance of bspwm but also instantly transforms the color scheme in alacritty terminal, eww widgets, polybar bars, notifications, and more. Visual harmony is guaranteed in every corner of your system.
 
+### RiceEditor
+
+Is an application designed to simplify the customization of your current theme. It allows you to easily adjust various visual and configuration aspects, tailoring your environment to your preferences without the need to manually edit configuration files.
+
 ### Unique Eww Widgets
 
 Discover 4 unique eww widgets, including a calendar, power menu, music player, and user card. These widgets are not only functional but also instantly adapt to the color scheme of the selected theme.
@@ -54,9 +56,19 @@ Discover 4 unique eww widgets, including a calendar, power menu, music player, a
 
 Explore an elegant right-click menu made with Jgmenu, which also syncs with themes for flawless visual consistency. Additionally, 10 polybar bars and 2 eww widgets offer a fully customizable user experience.
 
+### LockScreen
+
+The lockscreen automatically adapts to the active theme and offers two locking options: it can capture the current screen with a blur effect, or use a specific wallpaper depending on the selected theme.
+
 ### Variety of Wallpapers
 
 Each login surprises you with a randomly selected wallpaper. But if surprises aren't your thing, our wallpaper menu lets you choose from overall wallpapers.
+
+### Scratchpad
+
+A scratchpad is a tool designed to provide quick, temporary access to applications or notes without disrupting the desktop workflow. When activated, the scratchpad appears over the current workspace, allowing the user to access applications like a terminal, text editor, or any configured tool. Minimizing it hides the scratchpad from view but keeps it running in the background, ready to be reopened with a simple keyboard shortcut.
+
+It's ideal for quick note-taking, running commands, or accessing auxiliary tools without losing focus on the current task.
 
 ### Visual Composition with Picom
 
@@ -205,7 +217,7 @@ Access the scratchpad functionality, a terminal window you can show or hide for 
 - `Alt + Shift + Return` Open a floating terminal
 - `Super + Shift + {h, u}` Hide/Unhide Polybar/Eww bars
 - `Ctrl + Alt + S` Screenshot
-- `Ctrl + Shift + {+, -, t}` Changes transparency
+- `Ctrl + Shift + {+, -, i}` Changes transparency
 - `Ctrl + Super + Shift + P` Power off
 - `Ctrl + Super + Shift + R` Restart
 - `Ctrl + Super + Shift + L` Lockscreen
