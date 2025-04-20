@@ -49,6 +49,14 @@ is_installed() {
   pacman -Qq "$1" >/dev/null 2>&1
 }
 
+is_reflector() {
+  if ! command -v reflector >/dev/null; then
+    echo -e "\t${BLD}${CBL}Installing reflector to get the best mirrors...${CNC}"
+    sudo pacman -Syy >>"$ERROR_LOG" 2>&1
+    sudo pacman -S reflector --noconfirm >>"$ERROR_LOG" 2>&1
+  fi
+}
+
 welcome() {
   clear
   logo "Welcome $USER"
@@ -167,13 +175,6 @@ add_chaotic_repo() {
     return 1
   fi
 
-  # Update package databases
-  echo -e "${BLD}${CYE}Updating package databases...${CNC}"
-  if ! sudo pacman -Syy >>"$ERROR_LOG" 2>&1; then
-    log_error "Failed to update package databases"
-    return 1
-  fi
-
   echo -e "\n${BLD}${CGR}${repo_name} repository configured successfully!${CNC}"
   sleep 3
 }
@@ -215,6 +216,11 @@ install_dependencies() {
   clear
   logo "Installing needed packages from official repositories..."
   sleep 2
+
+  is_reflector
+  echo -e "\n${BLD}${CGR}Getting the 10 best and fastest mirrors${CNC}\n"
+  sudo reflector --verbose --age 6 --fastest 10 --score 10 --protocol https --latest 10 --sort age --save /etc/pacman.d/mirrorlist
+  sudo pacman -Syy
 
   local dependencies=(
     alacritty base-devel bat brightnessctl bspwm clipcat dunst eza feh fzf thunar
@@ -672,7 +678,7 @@ configure_services() {
 
     if [ -f "$picom_config" ]; then
       if sed -i 's/vsync = true/vsync = false/' "$picom_config" >>"$ERROR_LOG" 2>&1; then
-        echo -en "${BLD}{CGR}Picom vSync disabled${CNC}\n\n"
+        echo -en "${BLD}${CGR}Picom vSync disabled${CNC}\n\n"
       else
         log_error "Failed to modify Picom configuration"
         echo -en "${BLD}${CRE}Failed to adjust Picom settings${CNC}\n\n"
