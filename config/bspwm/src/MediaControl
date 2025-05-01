@@ -1,14 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Set the player
-players=("spotify" "Qcm" "MPD")
-
-for player in "${players[@]}"; do
-  if pgrep -x "$player" >/dev/null; then
-    Control="$player"
-    break
-  fi
-done
+[ -n "$(pgrep spotify)" ] && Control="spotify" || Control="MPD"
 
 # Here the cover image will be saved.
 Cover=/tmp/cover.png
@@ -54,14 +47,14 @@ MPD)
     [ -f "$LAST_SONG_FILE" ] && last_song=$(cat "$LAST_SONG_FILE")
 
     if [ "$current_song" != "$last_song" ] || [ ! -f "$Cover" ]; then
-      ffmpeg -i "$mpddir/$(mpc current -f %file%)" "${Cover}" -y &>/dev/null || cp $bkpCover $Cover
+      ffmpeg -i "$mpddir/$(mpc current -f %file%)" "$Cover" -y >/dev/null 2>&1 || cp "$bkpCover" "$Cover"
       echo "$current_song" >"$LAST_SONG_FILE"
     fi
 
     echo "$Cover"
     ;;
   nccover)
-    ffmpeg -i "$mpddir"/"$(mpc current -f %file%)" "${Cover}" -y &>/dev/null || cp $bkpCover $Cover
+    ffmpeg -i "$mpddir/$(mpc current -f %file%)" "$Cover" -y >/dev/null 2>&1 || cp "$bkpCover" "$Cover"
     ;;
   --position)
     position=$(mpc status %currenttime%)
@@ -125,10 +118,12 @@ MPD)
 
     if [ "$current_song" != "$last_song" ] || [ ! -f "$Cover" ]; then
       albumart="$(playerctl --player="$Control" metadata mpris:artUrl | sed -e 's/open.spotify.com/i.scdn.co/g')"
-      if [[ $(playerctl --player="$Control" metadata mpris:artUrl) ]]; then
-        curl -s "$albumart" --output $Cover
+      art_url=$(playerctl --player="$Control" metadata mpris:artUrl)
+      if [ -n "$art_url" ]; then
+        albumart=$(echo "$art_url" | sed -e 's/open.spotify.com/i.scdn.co/g')
+        curl -s "$albumart" --output "$Cover"
       else
-        cp $bkpCover $Cover
+        cp "$bkpCover" "$Cover"
       fi
       echo "$current_song" >"$LAST_SONG_FILE"
     fi
@@ -144,13 +139,8 @@ MPD)
     echo "${positions:-0}"
     ;;
   --length)
-    if [ "$Control" == "Qcm" ]; then
-      length=$(playerctl --player="$Control" metadata mpris:length | awk '{t=int($1/1000000); printf "%d:%02d", t/60, t%60}')
-      echo "${length:-0:00}"
-    else
-      length=$(playerctl --player="$Control" metadata --format "{{ duration(mpris:length) }}")
-      echo "${length:-0:00}"
-    fi
+    length=$(playerctl --player="$Control" metadata --format "{{ duration(mpris:length) }}")
+    echo "${length:-0:00}"
     ;;
   --lengths)
     lengths=$(playerctl --player="$Control" metadata mpris:length | sed 's/.\{6\}$//')

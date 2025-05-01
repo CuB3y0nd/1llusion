@@ -1,7 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 TEMP_IMAGE="/tmp/i3lock.jpg"
 
+# Colors
 bg=1a1b26
 fg=c0caf5
 ring=15161e
@@ -10,6 +11,7 @@ date=c0caf5
 verify=9ece6a
 
 default_lockscreen() {
+
   maim -d 0.3 -u ${TEMP_IMAGE}
   magick $TEMP_IMAGE -blur 5x4 $TEMP_IMAGE
   i3lock -n --force-clock -i $TEMP_IMAGE -e --indicator \
@@ -18,8 +20,8 @@ default_lockscreen() {
     --insidewrong-color=$wrong --ringwrong-color=$wrong --line-uses-inside \
     --keyhl-color=$verify --separator-color=$verify --bshl-color=$verify \
     --time-str="%H:%M" --time-size=140 --date-str="%a, %d %b" \
-    --date-size=45 --verif-text="Verifying..." --wrong-text="Incorrect!" \
-    --noinput-text="" --greeter-text="Pwn me!" --ind-pos="300:610" \
+    --date-size=45 --verif-text="Verifying Password..." --wrong-text="Wrong Password!" \
+    --noinput-text="" --greeter-text="Type the password to Unlock" --ind-pos="300:610" \
     --time-font="JetBrainsMono NF:style=Bold" --date-font="JetBrainsMono NF" --verif-font="JetBrainsMono NF" \
     --greeter-font="JetBrainsMono NF" --wrong-font="JetBrainsMono NF" --verif-size=23 \
     --greeter-size=23 --wrong-size=23 --time-pos="300:390" \
@@ -28,9 +30,11 @@ default_lockscreen() {
     --greeter-color=$fg --wrong-color=$wrong --verif-color=$verify \
     --verif-pos="300:820" --pointer=default --refresh-rate=0 \
     --pass-media-keys --pass-volume-keys
+
 }
 
 rice_lockscreen() {
+
   # Current Rice
   read -r RICE <"$HOME"/.config/bspwm/.rice
   # Wallpapers dir
@@ -40,9 +44,11 @@ rice_lockscreen() {
   lock_image=$(find "$image_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) | shuf -n 1)
 
   # If the image is *.webp convert to /tmp/lock_image.jpg
-  if [[ "$lock_image" == *.webp ]]; then
+  case "$lock_image" in
+  *.webp | *.jpg | *.jpeg | *.png)
     magick "$lock_image" "$TEMP_IMAGE" || exit 1
-  fi
+    ;;
+  esac
 
   i3lock -n --force-clock -i $TEMP_IMAGE --scale -e --indicator \
     --radius=30 --ring-width=60 --inside-color=$bg \
@@ -50,8 +56,8 @@ rice_lockscreen() {
     --insidewrong-color=$wrong --ringwrong-color=$wrong --line-uses-inside \
     --keyhl-color=$verify --separator-color=$verify --bshl-color=$verify \
     --time-str="%H:%M" --time-size=140 --date-str="%a, %d %b" \
-    --date-size=45 --verif-text="Verifying..." --wrong-text="Incorrect!" \
-    --noinput-text="" --greeter-text="Pwn me!" --ind-pos="300:610" \
+    --date-size=45 --verif-text="Verifying Password..." --wrong-text="Wrong Password!" \
+    --noinput-text="" --greeter-text="Type the password to Unlock" --ind-pos="300:610" \
     --time-font="JetBrainsMono NF:style=Bold" --date-font="JetBrainsMono NF" --verif-font="JetBrainsMono NF" \
     --greeter-font="JetBrainsMono NF" --wrong-font="JetBrainsMono NF" --verif-size=23 \
     --greeter-size=23 --wrong-size=23 --time-pos="300:390" \

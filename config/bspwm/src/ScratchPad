@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 SCRATCHPAD_NAME="bspwm-scratch"
 CFG_TERM="$HOME/.config/bspwm/src/config/.term"
-MY_TERM=$(<"$CFG_TERM")
+read -r MY_TERM <"$CFG_TERM"
 MAX_WIDTH_PERCENT=70
 HEIGHT_PERCENT=35
 
+# Function to get geometry of current monitor
 get_monitor_geometry() {
-  local mon_geo
   mon_geo=$(bspc query -T -m focused | jq -r '.rectangle | "\(.width) \(.height) \(.x) \(.y)"')
   SCREEN_WIDTH=$(echo "$mon_geo" | awk '{print $1}')
   SCREEN_HEIGHT=$(echo "$mon_geo" | awk '{print $2}')
@@ -15,6 +15,7 @@ get_monitor_geometry() {
   MONITOR_Y=$(echo "$mon_geo" | awk '{print $4}')
 }
 
+# Function to calculate position and size
 calculate_position() {
   WIDTH=$((SCREEN_WIDTH * MAX_WIDTH_PERCENT / 100))
   HEIGHT=$((SCREEN_HEIGHT * HEIGHT_PERCENT / 100))
@@ -22,6 +23,7 @@ calculate_position() {
   Y_POS=$MONITOR_Y
 }
 
+# Function to find the window
 get_scratchpad_id() {
   bspc query -N -n ".floating.window" | while read -r node; do
     if xprop -id "$node" WM_CLASS | grep -q "$SCRATCHPAD_NAME"; then
@@ -31,9 +33,11 @@ get_scratchpad_id() {
   done
 }
 
+# Get current geometry
 get_monitor_geometry
 calculate_position
 
+# Find existing window
 WINDOW_ID=$(get_scratchpad_id)
 
 if [ -n "$WINDOW_ID" ]; then

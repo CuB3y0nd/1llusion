@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 cache_file=$HOME/.cache/$(whoami)/redshift_state
 
 mkdir -p "$(dirname "$cache_file")"
-[[ -f "$cache_file" ]] || echo off >"$cache_file"
+[ -f "$cache_file" ] || echo off >"$cache_file"
 
 get_state() {
   cat "$cache_file"
@@ -21,7 +21,7 @@ enable_redshift() {
 }
 
 toggle() {
-  if [[ $(get_state) == "on" ]]; then
+  if [ "$(get_state)" = "on" ]; then
     disable_redshift
   else
     enable_redshift

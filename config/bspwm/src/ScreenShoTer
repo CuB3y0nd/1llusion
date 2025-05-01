@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Screenshot general options
 timestamp=$(date +%Y-%m-%d-%H%M%S)
@@ -16,20 +16,20 @@ s_all="󰍹"
 
 # Function to get current monitor geometry based on mouse position
 get_current_monitor() {
-  local MONITORS=$(xrandr | grep -o '[0-9]*x[0-9]*[+-][0-9]*[+-][0-9]*')
-  local XMOUSE=$(xdotool getmouselocation | awk -F "[: ]" '{print $2}')
-  local YMOUSE=$(xdotool getmouselocation | awk -F "[: ]" '{print $4}')
+  MONITORS=$(xrandr | grep -o '[0-9]*x[0-9]*[+-][0-9]*[+-][0-9]*')
+  XMOUSE=$(xdotool getmouselocation | awk -F "[: ]" '{print $2}')
+  YMOUSE=$(xdotool getmouselocation | awk -F "[: ]" '{print $4}')
 
   for mon in ${MONITORS}; do
-    local MONW=$(echo ${mon} | awk -F "[x+]" '{print $1}')
-    local MONH=$(echo ${mon} | awk -F "[x+]" '{print $2}')
-    local MONX=$(echo ${mon} | awk -F "[x+]" '{print $3}')
-    local MONY=$(echo ${mon} | awk -F "[x+]" '{print $4}')
+    MONW=$(echo ${mon} | awk -F "[x+]" '{print $1}')
+    MONH=$(echo ${mon} | awk -F "[x+]" '{print $2}')
+    MONX=$(echo ${mon} | awk -F "[x+]" '{print $3}')
+    MONY=$(echo ${mon} | awk -F "[x+]" '{print $4}')
 
-    if ((${XMOUSE} >= ${MONX})) &&
-      ((${XMOUSE} <= ${MONX} + ${MONW})) &&
-      ((${YMOUSE} >= ${MONY})) &&
-      ((${YMOUSE} <= ${MONY} + ${MONH})); then
+    if [ "$XMOUSE" -ge "$MONX" ] &&
+      [ "$XMOUSE" -le $((MONX + MONW)) ] &&
+      [ "$YMOUSE" -ge "$MONY" ] &&
+      [ "$YMOUSE" -le $((MONY + MONH)) ]; then
       echo "${MONW}x${MONH}+${MONX}+${MONY}"
       return 0
     fi
@@ -47,11 +47,11 @@ rofi_cmd() {
 }
 
 run_rofi() {
-  echo -e "$s_full\n$s_select\n$s_in3\n$s_all" | rofi_cmd
+  printf "%s\n%s\n%s\n%s\n" "$s_full" "$s_select" "$s_in3" "$s_all" | rofi_cmd
 }
 
 show_notification() {
-  if [[ -e "$filename" ]]; then
+  if [ -e "$filename" ]; then
     dunstify -r 699 -i "$filename" "Screenshot" "Screenshot saved and copied to clipboard"
   else
     dunstify -r 699 -i user-trash "Screenshot" "Screenshot Canceled"
@@ -63,16 +63,16 @@ copy_screenshot() {
 }
 
 take_screenshot() {
-  local mode="$1"
-  local all_monitors="$2"
-  local geometry=""
-  local cmd="maim -u -d 1"
+  mode="$1"
+  all_monitors="$2"
+  geometry=""
+  cmd="maim -u -d 1"
 
   case "$mode" in
   "full")
-    if [[ "$all_monitors" != "true" ]]; then
+    if [ "$all_monitors" != "true" ]; then
       geometry=$(get_current_monitor)
-      [[ -n "$geometry" ]] && cmd="$cmd -g $geometry"
+      [ -n "$geometry" ] && cmd="$cmd -g $geometry"
     fi
     ;;
   "select")
@@ -82,8 +82,8 @@ take_screenshot() {
 
   $cmd "$filename"
 
-  if [[ $? -eq 0 ]]; then
-    paplay /usr/share/sounds/freedesktop/stereo/screen-capture.oga &>/dev/null
+  if [ "$?" -eq 0 ]; then
+    paplay /usr/share/sounds/freedesktop/stereo/screen-capture.oga >/dev/null 2>&1
     copy_screenshot
     show_notification
   fi

@@ -1,27 +1,21 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Get the current layout
 CURRENT=$(setxkbmap -query | awk '/layout/ {print $2}')
 
-# Layouts
-declare -A LAYOUTS=(
-  ["US English"]="us"
-  ["ES América Latina"]="latam"
-  ["ES España"]="es"
-  ["FR France"]="fr"
-  ["DE Deutschland"]="de"
-  ["RU Россия"]="ru"
-  ["IT Italia"]="it"
-  ["PT Brasil"]="br"
-)
+# Layouts. You can add yours.
+LAYOUTS="US English|us
+ES América Latina|latam
+ES España|es
+FR France|fr
+DE Deutschland|de
+RU Россия|ru
+IT Italia|it
+PT Brasil|br"
 
 # Show rofi menu
 show_rofi_menu() {
-  local options=""
-  for layout in "${!LAYOUTS[@]}"; do
-    options+="$layout\n"
-  done
-  echo -e "${options%\\n}" | rofi \
+  printf '%s\n' "$LAYOUTS" | cut -d'|' -f1 | rofi \
     -dmenu \
     -p "Keyboard Layout" \
     -mesg "Current layout --> $CURRENT" \
@@ -31,6 +25,9 @@ show_rofi_menu() {
 
 # Select and apply the layout
 selected=$(show_rofi_menu)
-if [[ -n "$selected" && -n "${LAYOUTS[$selected]}" ]]; then
-  setxkbmap "${LAYOUTS[$selected]}"
+if [ -n "$selected" ]; then
+  layout_code=$(printf '%s\n' "$LAYOUTS" | awk -F'|' -v sel="$selected" '$1 == sel {print $2}')
+  if [ -n "$layout_code" ]; then
+    setxkbmap "$layout_code"
+  fi
 fi

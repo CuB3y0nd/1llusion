@@ -1,9 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 cfgStyle="$HOME/.config/bspwm/src/config/.launcher"
-[[ -f "$cfgStyle" ]] || echo "1" >"$cfgStyle"
+[ -f "$cfgStyle" ] || echo "1" >"$cfgStyle"
 read -r current_style <"$cfgStyle"
 
+# Paths
 styleDir="$HOME/.config/bspwm/src/rofi-themes"
 rofiAssetDir="$HOME/.config/bspwm/src/assets"
 
@@ -17,44 +18,50 @@ screen_dpi=$(xdpyinfo | awk '/resolution/{print $2; exit}' | cut -d 'x' -f1)
 # Calculate icon size
 icon_size=$(((monitor_width * 11) / (${screen_dpi:-96})))
 rofi_override="element-icon{size:${icon_size}px;}"
-rofi_command="rofi -dmenu -theme $HOME/.config/bspwm/src/rofi-themes/StyleSelect.rasi -theme-str $rofi_override"
 
 # Function to select the styles
 choose_launcher_style() {
 
   # Find styles
-  mapfile -t styles < <(find "$styleDir" -type f -name 'style_*.rasi' | sed -E 's|.*/style_([0-9]+)\.rasi|\1|' | sort -n)
+  styles=$(find "$styleDir" -type f -name 'style_*.rasi' | sed 's|.*/style_\([0-9]*\)\.rasi|\1|' | sort -n)
 
   # Find current style
   selected_index=-1
-
-  for i in "${!styles[@]}"; do
-    if [[ "${styles[i]}" == "$current_style" ]]; then
-      selected_index=$i
+  index=0
+  IFS='
+'
+  for style in $styles; do
+    if [ "$style" = "$current_style" ]; then
+      selected_index=$index
       break
     fi
+    index=$((index + 1))
   done
+  unset IFS
 
   # Show the rofi selection menu
   selected=$(
-    for style_select in "${styles[@]}"; do
-      printf "%s\0icon\x1f%s/style_%s.webp\n" "$style_select" "$rofiAssetDir" "$style_select"
-    done | $rofi_command -selected-row "$selected_index"
+    IFS='
+'
+    for style in $styles; do
+      printf "%s\000icon\037%s/style_%s.webp\n" "$style" "$rofiAssetDir" "$style"
+    done | rofi -dmenu \
+      -theme "$HOME/.config/bspwm/src/rofi-themes/StyleSelect.rasi" \
+      -theme-str "$rofi_override" \
+      -selected-row "$selected_index"
   )
 
   # Write the selection to config file
-  [[ -n "$selected" ]] && echo "${selected}" >"$cfgStyle"
+  [ -n "$selected" ] && echo "${selected}" >"$cfgStyle"
 
 }
 
 launch_launcher() {
-
-  local ROFI_THEME
   ROFI_THEME="$HOME/.config/bspwm/src/rofi-themes/style_$current_style.rasi"
   rofi -show drun -theme "$ROFI_THEME"
-
 }
 
+# -- Main executor -- #
 case "$1" in
 --choose-style)
   choose_launcher_style

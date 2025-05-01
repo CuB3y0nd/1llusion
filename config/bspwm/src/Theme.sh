@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Current Rice
 read -r RICE <"$HOME"/.config/bspwm/.rice
@@ -8,7 +8,7 @@ read -r RICE <"$HOME"/.config/bspwm/.rice
 
 # Function to wait for processes to finish correctly
 wait_for_termination() {
-  local process_name="$1"
+  process_name="$1"
   while pgrep -f "$process_name" >/dev/null; do
     sleep 0.2
   done
@@ -34,6 +34,11 @@ kill_processes() {
   if pgrep -x xwinwrap >/dev/null; then
     pkill xwinwrap
     wait_for_termination "xwinwrap"
+  fi
+
+  if [ -f /tmp/wall_refresh.pid ]; then
+    kill $(cat /tmp/wall_refresh.pid) 2>/dev/null
+    rm -f /tmp/wall_refresh.pid
   fi
 }
 
@@ -215,11 +220,6 @@ apply_gtk_appearance() {
 }
 
 apply_wallpaper() {
-  if [[ -f /tmp/wall_refresh.pid ]]; then
-    kill $(cat /tmp/wall_refresh.pid) 2>/dev/null
-    rm -f /tmp/wall_refresh.pid
-  fi
-
   case $ENGINE in
   "Theme")
     feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls

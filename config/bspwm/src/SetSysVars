@@ -1,20 +1,45 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 CONFIG_FILE="$HOME/.config/bspwm/src/config/system.ini"
 SFILE="$HOME/.config/bspwm/src/.sys"
 
-[[ -f "$SFILE" ]] && exit 0
+[ -f "$SFILE" ] && exit 0 # The file exists, exit without doing anything
 
 setup_system_vars() {
   # Primary Network Interface Detection
-  local primary_net=$(ip link | awk '/state UP/ {print $2}' | tr -d :)
+  primary_net=$(ip link | awk '/state UP/ {print $2}' | tr -d :)
 
   # Graphics card detection
-  local card=$(ls /sys/class/backlight/ 2>/dev/null | head -n1)
+  card=""
+  for entry in /sys/class/backlight/*; do
+    if [ -d "$entry" ]; then
+      card=$(basename "$entry")
+      break
+    fi
+  done
 
   # Battery and adapter detection
-  local battery=$(ls /sys/class/power_supply/ 2>/dev/null | grep -m1 'BAT')
-  local adapter=$(ls /sys/class/power_supply/ 2>/dev/null | grep -m1 -E 'AC|ADP')
+  battery=""
+  for entry in /sys/class/power_supply/*; do
+    entry_name=$(basename "$entry")
+    case "$entry_name" in
+    *BAT*)
+      battery="$entry_name"
+      break
+      ;;
+    esac
+  done
+
+  adapter=""
+  for entry in /sys/class/power_supply/*; do
+    entry_name=$(basename "$entry")
+    case "$entry_name" in
+    *AC* | *ADP*)
+      adapter="$entry_name"
+      break
+      ;;
+    esac
+  done
 
   # Atomic update of the configuration file
   tmpfile=$(mktemp)
@@ -30,6 +55,7 @@ setup_system_vars() {
     ' "$CONFIG_FILE" >"$tmpfile" && mv "$tmpfile" "$CONFIG_FILE"
 }
 
+# Main execution
 sleep 3
 setup_system_vars
 touch "$SFILE"

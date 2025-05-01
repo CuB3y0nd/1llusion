@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 get_vol() {
   volumen=$(pamixer --get-volume-human | tr -d '%')
-  [[ $volumen == 'muted' ]] && echo "0" || echo "${volumen}"
+  [ "$volumen" = "muted" ] && echo "0" || echo "${volumen}"
 }
 
 get_icon() {
   vol=$(get_vol)
-  echo "images/$([[ $vol == "0" ]] && echo "mute" || echo "volume").png"
+  echo "images/$([ "$vol" = "0" ] && echo "mute" || echo "volume").png"
 }
 
 case "$1" in

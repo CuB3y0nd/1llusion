@@ -1,18 +1,18 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 cache_dir="$HOME/.cache/$USER"
 cache_file="$cache_dir/airplane_state"
 
 mkdir -p "$cache_dir"
-[[ -f "$cache_file" ]] || echo "Off" >"$cache_file"
+[ -f "$cache_file" ] || echo "Off" >"$cache_file"
 
 # Function to check if the system has Bluetooth and if the service is active
 has_bluetooth() {
-  if ! rfkill list bluetooth &>/dev/null; then
+  if ! rfkill list bluetooth >/dev/null 2>&1; then
     return 1
   fi
 
-  if systemctl is-active bluetooth &>/dev/null; then
+  if systemctl is-active bluetooth >/dev/null 2>&1; then
     return 0
   else
     return 1
@@ -34,10 +34,9 @@ airplane_on() {
   nmcli networking off
 
   if has_bluetooth; then
-    local bluetooth_state
     bluetooth_state=$(bluetoothctl show | grep -q "Powered: yes" && echo "On" || echo "Off")
 
-    if [[ "$bluetooth_state" == "On" ]]; then
+    if [ "$bluetooth_state" = "On" ]; then
       bluetoothctl power off
     fi
 
@@ -53,10 +52,9 @@ airplane_off() {
   nmcli networking on
 
   if has_bluetooth; then
-    local prev_bluetooth_state
     prev_bluetooth_state=$(sed -n '2p' "$cache_file" 2>/dev/null)
 
-    if [[ "$prev_bluetooth_state" == "On" ]]; then
+    if [ "$prev_bluetooth_state" = "On" ]; then
       bluetoothctl power on
     fi
   fi
@@ -67,7 +65,11 @@ airplane_off() {
 }
 
 toggle() {
-  [[ "$(get_state)" == "Off" ]] && airplane_on || airplane_off
+  if [ "$(get_state)" = "Off" ]; then
+    airplane_on
+  else
+    airplane_off
+  fi
 }
 
 case "$1" in
