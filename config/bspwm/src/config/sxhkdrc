@@ -95,7 +95,7 @@ XF86Audio{Next,Prev,Play,Stop}
 	MediaControl {--next,--previous,--toggle,--stop}
 
 # Close/Kill node
-super + {_,shift + }c
+super + {_,shift + }x
 	bspc node -{c,k}
 
 # Reload sxhkd keybinds
@@ -143,12 +143,12 @@ alt + Tab
         -kb-element-next "Alt-Tab"
 
 # Focus the node in the given direction
-super + shift + {Left,Down,Up,Right}
+super + alt + {Left,Down,Up,Right}
 	{ DIR=west FALLBACK=prev; , DIR=south; , DIR=north; , DIR=east FALLBACK=next; } \
-	bspc node -f $DIR.!sticky.!hidden || bspc node -f $FALLBACK.leaf.!sticky.!hidden
+	bspc node -f $DIR.!sticky.!hidden.local || bspc node -f $FALLBACK.leaf.!sticky.!hidden.local
 
 # Swap Nodes
-ctrl + alt + shift + {h,j,k,l}
+ctrl + alt + {Left,Down,Up,Right}
 	bspc node -s {west,south,north,east}.local
 
 # Focus the last node/desktop
@@ -178,5 +178,5 @@ super + ctrl + {plus,minus}
 	}
 
 # Move floating window
-super + alt + {Left,Down,Up,Right}
+super + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
