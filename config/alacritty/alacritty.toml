@@ -1,9 +1,11 @@
 [general]
-import = [
-  "~/.config/alacritty/rice-colors.toml",
-  "~/.config/alacritty/fonts.toml",
-]
+import = ["themes/emilia.toml", "fonts.toml"]
+
 live_config_reload = true
+
+[env]
+TERM = "alacritty"
+WINIT_X11_SCALE_FACTOR = "1.0"
 
 [cursor]
 blink_interval = 550
@@ -21,11 +23,9 @@ save_to_clipboard = true
 decorations = "none"
 dynamic_title = true
 opacity = 1.0
+padding = { x = 15, y = 15 }
 dynamic_padding = true
-
-[window.padding]
-x = 15
-y = 15
+resize_increments = true
 
 [scrolling]
 history = 10000
