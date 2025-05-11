@@ -223,7 +223,7 @@ install_dependencies() {
     alacritty base-devel bat brightnessctl bspwm clipcat dunst eza feh fzf
     thunar tumbler firefox git imagemagick jq jgmenu kitty libwebp maim mpc
     mpd mpv neovim ncmpcpp npm pamixer pacman-contrib papirus-icon-theme
-    picom playerctl polybar polkit-gnome python-gobject redshift rofi rustup
+    picom playerctl polybar lxsession-gtk3 python-gobject redshift rofi rustup
     sxhkd tmux xclip xdg-user-dirs xdo xdotool xsettingsd xorg-xdpyinfo
     xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot xorg-xwininfo yazi zsh
     ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd

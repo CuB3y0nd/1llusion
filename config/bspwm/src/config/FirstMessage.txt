@@ -5,7 +5,7 @@ Maybe it's your first time using a window manager or maybe not, here are some ti
 
     - (Alt + F1) For a list of all keyboard shortcuts (If it doesn't open, please visit https://github.com/CuB3y0nd/1llusion/wiki/Install-eww)
     - (Alt + Enter) Opens the terminal
-    - (Super + C) To close Windows/Apps
+    - (Super + X) To close Windows/Apps
     - (Super + Space) Open the apps launcher
     - (Alt + Space) Open the theme selector
     - (Super + {h, l}) Move between workspaces
