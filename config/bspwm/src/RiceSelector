@@ -24,10 +24,8 @@ case "$resolution" in
   ;;
 esac
 
-# Extract monitor width
-monitor_width=${resolution%x*}
-
 # Get monitor width and DPI (versión reforzada contra espacios/valores rotos)
+monitor_width=${resolution%x*}
 screen_dpi=$(xdpyinfo | awk '/resolution/{print $2}' | cut -d 'x' -f1)
 screen_dpi=${screen_dpi:-96}
 
