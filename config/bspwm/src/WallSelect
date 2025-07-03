@@ -7,17 +7,7 @@ cacheDir="$HOME/.cache/$USER/$current_rice"
 # Create cache dir if not exists
 [ -d "$cacheDir" ] || mkdir -p "$cacheDir"
 
-# Get focused monitor name
-focused_monitor=$(bspc query -M -m focused --names)
-
-# Get monitor width and DPI
-monitor_width=$(xrandr | grep -w -- "$focused_monitor" | grep -o '[0-9]\+x[0-9]\+' | cut -d 'x' -f 1)
-screen_dpi=$(xdpyinfo | awk '/resolution/{print $2; exit}' | cut -d 'x' -f1)
-
-# Calculate icon size
-icon_size=$(((monitor_width * 14) / (${screen_dpi:-96})))
-rofi_override="element-icon{size:${icon_size}px;}"
-rofi_command="rofi -dmenu -theme $HOME/.config/bspwm/src/rofi-themes/WallSelect.rasi -theme-str $rofi_override"
+rofi_command="rofi -dmenu -theme $HOME/.config/bspwm/src/rofi-themes/WallSelect.rasi"
 
 # Detect number of cores and set a sensible number of jobs
 get_optimal_jobs() {

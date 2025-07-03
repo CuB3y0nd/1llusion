@@ -65,6 +65,7 @@ element selected.normal {
 }
 
 element-icon {
+    size:                        20%;
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;

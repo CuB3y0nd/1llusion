@@ -3,10 +3,6 @@ configuration {
     show-icons:                  true;
     drun-display-format:         "{name}";
     font:                        "JetBrainsMono NF Bold 11";
-
-    //hover-select:                true;
-    //me-select-entry:             "";
-    //me-accept-entry:             "MousePrimary";
 }
 
 * {
@@ -77,6 +73,7 @@ element selected.normal {
 }
 
 element-icon {
+    size:                        33%;
     cursor:                      inherit;
     border-radius:               20px;
     background-color:            transparent;

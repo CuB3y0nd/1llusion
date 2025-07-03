@@ -2,9 +2,6 @@ configuration {
     modi:                        "drun";
     show-icons:                  true;
     drun-display-format:         "{name}";
-    //hover-select:                true;
-    //me-select-entry:             "";
-    //me-accept-entry:             "MousePrimary";
 }
 
 @import "shared.rasi"
@@ -70,6 +67,7 @@ element selected.normal {
 }
 
 element-icon {
+    size:                        25%;
     cursor:                      inherit;
     border-radius:               20px;
     background-color:            transparent;
