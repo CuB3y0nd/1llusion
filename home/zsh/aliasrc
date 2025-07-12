@@ -1,5 +1,3 @@
-alias update="yay -Syu --combinedupgrade=false"
-
 alias musica="ncmpcpp"
 
 alias ll='eza -algF --group-directories-first --octal-permissions --git'
@@ -10,19 +8,19 @@ alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 alias set-proxy='export ALL_PROXY=socks5://127.0.0.1:2080'
 alias unset-proxy='unset ALL_PROXY'
 
-# SWITCH GPU
+# Pwn
 
-alias gpu-mode='optimus-manager --print-mode'
-alias nvidia='optimus-manager --switch nvidia'
-
-# PWN
-
-alias checkaslr='cat /proc/sys/kernel/randomize_va_space'
+alias check_aslr='cat /proc/sys/kernel/randomize_va_space'
 alias aslron='echo 2 | sudo tee /proc/sys/kernel/randomize_va_space'
 alias aslrhalf='echo 1 | sudo tee /proc/sys/kernel/randomize_va_space'
 alias aslroff='echo 0 | sudo tee /proc/sys/kernel/randomize_va_space'
 
+alias check_ptrace='cat /proc/sys/kernel/yama/ptrace_scope'
+alias ptrace_on='echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+alias ptrace_off='echo 1 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+
 # Rust Documentation
+
 alias rust-doc='env -u BROWSER rustup doc'
 alias cargo-doc='env -u BROWSER cargo doc --open'
 
@@ -34,4 +32,3 @@ alias yarn-env='export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/n
 alias spotify='spotify --proxy-server="socks5://127.0.0.1:2080"'
 alias discord='discord --proxy-server="socks5://127.0.0.1:2080"'
 alias element='element-desktop --proxy-server="socks5://127.0.0.1:2080"'
-alias onekey-wallet='onekey-wallet --proxy-server="socks5://127.0.0.1:2080"'
