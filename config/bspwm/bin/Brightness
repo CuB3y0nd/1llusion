@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIR="$HOME/.config/bspwm/src/assets"
+DIR="$HOME/.config/bspwm/config/assets"
 BRIGHTNESS_STEPS=5
 MIN_BRIGHTNESS=2
 

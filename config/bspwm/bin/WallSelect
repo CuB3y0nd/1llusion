@@ -7,7 +7,7 @@ cacheDir="$HOME/.cache/$USER/$current_rice"
 # Create cache dir if not exists
 [ -d "$cacheDir" ] || mkdir -p "$cacheDir"
 
-rofi_command="rofi -dmenu -theme $HOME/.config/bspwm/src/rofi-themes/WallSelect.rasi"
+rofi_command="rofi -dmenu -theme $HOME/.config/bspwm/config/rofi-themes/WallSelect.rasi"
 
 # Detect number of cores and set a sensible number of jobs
 get_optimal_jobs() {

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 SCRATCHPAD_NAME="bspwm-scratch"
-CFG_TERM="$HOME/.config/bspwm/src/config/.term"
+CFG_TERM="$HOME/.config/bspwm/config/.term"
 read -r MY_TERM <"$CFG_TERM"
 MAX_WIDTH_PERCENT=70
 HEIGHT_PERCENT=35

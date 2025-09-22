@@ -1,7 +1,7 @@
 #!/bin/sh
 
-CONFIG_FILE="$HOME/.config/bspwm/src/config/system.ini"
-SFILE="$HOME/.config/bspwm/src/.sys"
+CONFIG_FILE="$HOME/.config/bspwm/config/system.ini"
+SFILE="$HOME/.config/bspwm/config/.sys"
 
 [ -f "$SFILE" ] && exit 0 # The file exists, exit without doing anything
 

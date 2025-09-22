@@ -1,7 +1,7 @@
 #!/bin/sh
 
-CFG_TERM="$HOME/.config/bspwm/src/config/.term"
-ROFI_THEME="$HOME/.config/bspwm/src/rofi-themes/TermSelector.rasi"
+CFG_TERM="$HOME/.config/bspwm/config/.term"
+ROFI_THEME="$HOME/.config/bspwm/config/rofi-themes/TermSelector.rasi"
 
 [ -f "$CFG_TERM" ] || echo "alacritty" >"$CFG_TERM"
 

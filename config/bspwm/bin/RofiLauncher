@@ -1,12 +1,12 @@
 #!/bin/sh
 
-cfgStyle="$HOME/.config/bspwm/src/config/.launcher"
+cfgStyle="$HOME/.config/bspwm/config/.launcher"
 [ -f "$cfgStyle" ] || echo "1" >"$cfgStyle"
 read -r current_style <"$cfgStyle"
 
 # Paths
-styleDir="$HOME/.config/bspwm/src/rofi-themes"
-rofiAssetDir="$HOME/.config/bspwm/src/assets"
+styleDir="$HOME/.config/bspwm/config/rofi-themes"
+rofiAssetDir="$HOME/.config/bspwm/config/assets"
 
 # Function to select the styles
 choose_launcher_style() {
@@ -35,7 +35,7 @@ choose_launcher_style() {
     for style in $styles; do
       printf "%s\000icon\037%s/style_%s.webp\n" "$style" "$rofiAssetDir" "$style"
     done | rofi -dmenu \
-      -theme "$HOME/.config/bspwm/src/rofi-themes/StyleSelect.rasi" \
+      -theme "$styleDir/StyleSelect.rasi" \
       -selected-row "$selected_index"
   )
 
@@ -45,7 +45,7 @@ choose_launcher_style() {
 }
 
 launch_launcher() {
-  ROFI_THEME="$HOME/.config/bspwm/src/rofi-themes/style_$current_style.rasi"
+  ROFI_THEME="$styleDir/style_$current_style.rasi"
   rofi -show drun -theme "$ROFI_THEME"
 }
 

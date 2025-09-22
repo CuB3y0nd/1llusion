@@ -2,7 +2,7 @@
 
 CONFIG_DIR="$HOME/.config/bspwm"
 RICES_DIR="$CONFIG_DIR/rices"
-DUNST_CONFIG="$CONFIG_DIR/src/config/dunstrc"
+DUNST_CONFIG="$CONFIG_DIR/config/dunstrc"
 read -r CURRENT_RICE <"$CONFIG_DIR"/.rice
 
 reload() {

@@ -29,7 +29,7 @@ class RiceEditorApp(Gtk.Window):
         sidebar.set_size_request(200, -1)  # Ancho fijo para el menú lateral
 
         # Cargar logo SVG
-        logo_path = os.path.expanduser("~/.config/bspwm/src/assets/profile.png")
+        logo_path = os.path.expanduser("~/.config/bspwm/config/assets/profile.png")
         try:
             logo_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
                 logo_path, 130, 130, True
@@ -922,7 +922,7 @@ class RiceEditorApp(Gtk.Window):
                     f"~/.config/bspwm/rices/{current_theme}/theme-config.bash"
                 )
                 picom_config_file = os.path.expanduser(
-                    "~/.config/bspwm/src/config/picom.conf"
+                    "~/.config/bspwm/config/picom.conf"
                 )
 
                 try:
@@ -996,7 +996,7 @@ class RiceEditorApp(Gtk.Window):
         config_file = os.path.expanduser(
             f"~/.config/bspwm/rices/{current_theme}/theme-config.bash"
         )
-        picom_config_file = os.path.expanduser("~/.config/bspwm/src/config/picom.conf")
+        picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
         try:
             # Update theme-config.bash
@@ -1069,9 +1069,7 @@ class RiceEditorApp(Gtk.Window):
             config_file = os.path.expanduser(
                 f"~/.config/bspwm/rices/{current_theme}/theme-config.bash"
             )
-            picom_config_file = os.path.expanduser(
-                "~/.config/bspwm/src/config/picom.conf"
-            )
+            picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
             try:
                 # Read and update theme-config.bash
@@ -1144,7 +1142,7 @@ class RiceEditorApp(Gtk.Window):
         config_file = os.path.expanduser(
             f"~/.config/bspwm/rices/{current_theme}/theme-config.bash"
         )
-        picom_config_file = os.path.expanduser("~/.config/bspwm/src/config/picom.conf")
+        picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
         try:
             # Update theme-config.bash
@@ -1217,7 +1215,7 @@ class RiceEditorApp(Gtk.Window):
         config_file = os.path.expanduser(
             f"~/.config/bspwm/rices/{current_theme}/theme-config.bash"
         )
-        picom_config_file = os.path.expanduser("~/.config/bspwm/src/config/picom.conf")
+        picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
         try:
             # Actualizar theme-config.bash
@@ -1290,7 +1288,7 @@ class RiceEditorApp(Gtk.Window):
         config_file = os.path.expanduser(
             f"~/.config/bspwm/rices/{current_theme}/theme-config.bash"
         )
-        picom_config_file = os.path.expanduser("~/.config/bspwm/src/config/picom.conf")
+        picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
         try:
             # Update theme-config.bash
@@ -1374,7 +1372,7 @@ class RiceEditorApp(Gtk.Window):
                     f"~/.config/bspwm/rices/{current_theme}/theme-config.bash"
                 )
                 picom_config_file = os.path.expanduser(
-                    "~/.config/bspwm/src/config/picom.conf"
+                    "~/.config/bspwm/config/picom.conf"
                 )
 
                 try:
@@ -1987,7 +1985,7 @@ class RiceEditorApp(Gtk.Window):
         """
         Lee el backend actual desde picom.conf.
         """
-        picom_config_file = os.path.expanduser("~/.config/bspwm/src/config/picom.conf")
+        picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
         try:
             with open(picom_config_file, "r") as f:
@@ -2007,7 +2005,7 @@ class RiceEditorApp(Gtk.Window):
         Aplica el backend seleccionado en picom.conf.
         """
         selected_backend = combo.get_active_id()
-        picom_config_file = os.path.expanduser("~/.config/bspwm/src/config/picom.conf")
+        picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
         try:
             with open(picom_config_file, "r") as f:
@@ -2027,7 +2025,7 @@ class RiceEditorApp(Gtk.Window):
         """
         Lee el estado actual de vSync desde picom.conf.
         """
-        picom_config_file = os.path.expanduser("~/.config/bspwm/src/config/picom.conf")
+        picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
         try:
             with open(picom_config_file, "r") as f:
@@ -2047,7 +2045,7 @@ class RiceEditorApp(Gtk.Window):
         Maneja los cambios en el switch de vSync.
         """
         new_state = "true" if state else "false"
-        picom_config_file = os.path.expanduser("~/.config/bspwm/src/config/picom.conf")
+        picom_config_file = os.path.expanduser("~/.config/bspwm/config/picom.conf")
 
         try:
             with open(picom_config_file, "r") as f:

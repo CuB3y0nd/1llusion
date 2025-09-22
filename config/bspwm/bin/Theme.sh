@@ -67,8 +67,8 @@ apply_term_config() {
 }
 
 apply_picom_config() {
-  picom_conf_file="$HOME/.config/bspwm/src/config/picom.conf"
-  picom_animations_file="$HOME/.config/bspwm/src/config/picom-animations.conf"
+  picom_conf_file="$HOME/.config/bspwm/config/picom.conf"
+  picom_animations_file="$HOME/.config/bspwm/config/picom-animations.conf"
 
   sed -i "$picom_conf_file" \
     -e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/" \
@@ -87,7 +87,7 @@ apply_picom_config() {
 }
 
 apply_dunst_config() {
-  dunst_config_file="$HOME/.config/bspwm/src/config/dunstrc"
+  dunst_config_file="$HOME/.config/bspwm/config/dunstrc"
 
   sed -i "$dunst_config_file" \
     -e "s/origin = .*/origin = ${dunst_origin}/" \
@@ -139,7 +139,7 @@ apply_eww_colors() {
 
 apply_menu_colors() {
   # Jgmenu
-  sed -i "$HOME"/.config/bspwm/src/config/jgmenurc \
+  sed -i "$HOME"/.config/bspwm/config/jgmenurc \
     -e "s/color_menu_bg = .*/color_menu_bg = ${jg_bg}/" \
     -e "s/color_norm_fg = .*/color_norm_fg = ${jg_fg}/" \
     -e "s/color_sel_bg = .*/color_sel_bg = ${jg_sel_bg}/" \
@@ -147,7 +147,7 @@ apply_menu_colors() {
     -e "s/color_sep_fg = .*/color_sep_fg = ${jg_sep}/"
 
   # Rofi launchers
-  cat >"$HOME"/.config/bspwm/src/rofi-themes/shared.rasi <<-EOF
+  cat >"$HOME"/.config/bspwm/config/rofi-themes/shared.rasi <<-EOF
 		* {
 		    font: "${rofi_font}";
 		    background: ${rofi_background};
@@ -163,7 +163,7 @@ apply_menu_colors() {
 	EOF
 
   # Screenlock colors
-  sed -i "$HOME"/.config/bspwm/src/ScreenLocker \
+  sed -i "$HOME"/.config/bspwm/bin/ScreenLocker \
     -e "s/bg=.*/bg=${sl_bg}/" \
     -e "s/fg=.*/fg=${sl_fg}/" \
     -e "s/ring=.*/ring=${sl_ring}/" \
@@ -174,7 +174,7 @@ apply_menu_colors() {
 
 apply_gtk_appearance() {
   # Set the gtk theme corresponding to rice
-  sed -i "$HOME"/.config/bspwm/src/config/xsettingsd \
+  sed -i "$HOME"/.config/bspwm/config/xsettingsd \
     -e "s|Net/ThemeName .*|Net/ThemeName \"$gtk_theme\"|" \
     -e "s|Net/IconThemeName .*|Net/IconThemeName \"$gtk_icons\"|" \
     -e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$gtk_cursor\"|"

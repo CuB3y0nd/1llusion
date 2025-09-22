@@ -20,7 +20,7 @@ show_rofi_menu() {
     -p "Keyboard Layout" \
     -mesg "Current layout --> $CURRENT" \
     -markup-rows \
-    -theme "$HOME/.config/bspwm/src/rofi-themes/Keyboard.rasi"
+    -theme "$HOME/.config/bspwm/config/rofi-themes/Keyboard.rasi"
 }
 
 # Select and apply the layout

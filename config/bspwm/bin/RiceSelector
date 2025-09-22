@@ -27,12 +27,12 @@ selected=$(
   for rice in $rices; do
     printf "%s\000icon\037%s/rices/%s/preview.webp\n" "$rice" "$bspwm_dir" "$rice"
   done | rofi -dmenu -p "RiceSelector" \
-    -theme "$bspwm_dir/src/rofi-themes/RiceSelector.rasi" \
+    -theme "$bspwm_dir/config/rofi-themes/RiceSelector.rasi" \
     -selected-row "$selected_index"
 )
 
 # If a valid option was selected, write the value to the configuration file and change theme.
 if [ -n "$selected" ] && [ "$selected" != "$current_rice" ]; then
   echo "$selected" >"$bspwm_dir"/.rice
-  "${bspwm_dir}"/src/Theme.sh
+  "${bspwm_dir}"/bin/Theme.sh
 fi

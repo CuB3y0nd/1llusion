@@ -44,7 +44,7 @@ rofi_cmd() {
     -p Screenshot \
     -mesg "Directory :: $dir" \
     -markup-rows \
-    -theme "$HOME"/.config/bspwm/src/rofi-themes/Screenshot.rasi
+    -theme "$HOME"/.config/bspwm/config/rofi-themes/Screenshot.rasi
 }
 
 run_rofi() {
@@ -92,7 +92,7 @@ take_screenshot() {
 
 countdown() {
   for sec in $(seq "$1" -1 1); do
-    dunstify -r 345 -t 1100 -i ~/.config/bspwm/src/assets/screenshot.png "Taking shot in : $sec"
+    dunstify -r 345 -t 1100 -i ~/.config/bspwm/config/assets/screenshot.png "Taking shot in : $sec"
     sleep 1
   done
 }

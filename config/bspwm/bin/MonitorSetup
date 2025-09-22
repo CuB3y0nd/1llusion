@@ -3,6 +3,11 @@
 # xrandr cmd
 XRANDR_OUTPUT=$(xrandr)
 
+# Remove disconnected monmitors
+xrandr | while read -r mon state _; do
+  [ "$state" = "disconnected" ] && xrandr --output "$mon" --off
+done
+
 # Function to obtain monitor info (POSIX-compliant)
 get_monitor_info() {
   echo "$XRANDR_OUTPUT" | awk -v monitor="$1" '

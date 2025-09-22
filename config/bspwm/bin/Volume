@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Icon directory
-vol_dir="$HOME/.config/bspwm/src/assets"
+vol_dir="$HOME/.config/bspwm/config/assets"
 
 notify() {
   dunstify -u low -h string:x-dunst-stack-tag:cvolum "$@"
