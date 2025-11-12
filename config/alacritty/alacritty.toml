@@ -1,5 +1,5 @@
 [general]
-import = ["themes/emilia.toml", "fonts.toml"]
+import = ["rice-colors.toml", "fonts.toml"]
 
 live_config_reload = true
 
