@@ -40,7 +40,6 @@ Firefox,OpenApps --browser,firefox
 ^tag(wg)
 User Card,OpenApps --usercard,system-users
 Music Player,OpenApps --player,musique
-Calendar,OpenApps --calendar,office-calendar
 
 ^tag(wm)
 Rice Editor,RiceEditor,preferences-desktop-theme

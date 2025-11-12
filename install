@@ -118,8 +118,8 @@ install_dependencies() {
     mpd mpv neovim ncmpcpp npm pamixer pacman-contrib papirus-icon-theme
     picom playerctl polybar lxsession python-gobject redshift rofi rustup
     sxhkd xclip xdg-user-dirs xdo xdotool xsettingsd xorg-xdpyinfo xorg-xkill
-    xorg-xprop xorg-xrandr xorg-xsetroot xorg-xwininfo yazi zsh ttf-inconsolata
-    ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd
+    xorg-xprop xorg-xrandr xorg-xsetroot xorg-xwininfo xorg-xrdb yazi zsh
+    ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd
     ttf-ubuntu-mono-nerd webp-pixbuf-loader
   "
 
