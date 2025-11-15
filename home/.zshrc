@@ -9,7 +9,13 @@ export BROWSER="firefox"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|reboot|history|cd -|cd ..)"
 export BAT_THEME="Coldark-Dark"
 export GOPROXY=https://goproxy.io,direct
-export ALL_PROXY=http://127.0.0.1:2080
+# export ALL_PROXY=http://127.0.0.1:2080
+export http_proxy="http://127.0.0.1:2080"
+export HTTP_PROXY="http://127.0.0.1:2080"
+export https_proxy="http://127.0.0.1:2080"
+export HTTPS_PROXY="http://127.0.0.1:2080"
+export NO_PROXY="localhost,127.0.0.1"
+export no_porxy="localhost,127.0.0.1"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 if [[ -d "$HOME/.local/bin" ]]; then
@@ -142,6 +148,18 @@ yazicd() {
 # load aliases and shortcuts if existent
 [ -f "$HOME/.config/zsh/shortcutrc" ] && source "$HOME/.config/zsh/shortcutrc"
 [ -f "$HOME/.config/zsh/aliasrc" ] && source "$HOME/.config/zsh/aliasrc"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# debuginfod
+export DEBUGINFOD_URLS="https://debuginfod.ubuntu.com"
+export DEBUGINFOD_PROGRESS=1
+
+# mcp
+export GEMINI_API_KEY=YOUR_API_KEY
 
 # miscs
 $HOME/.local/bin/colorscript -r
