@@ -5,43 +5,68 @@ SFILE="$HOME/.config/bspwm/config/.sys"
 
 [ -f "$SFILE" ] && exit 0 # The file exists, exit without doing anything
 
-setup_system_vars() {
-  # Primary Network Interface Detection
-  primary_net=$(ip link | awk '/state UP/ {gsub(":", "", $2); print $2; exit}')
-
-  # Graphics card detection
-  card=""
-  for entry in /sys/class/backlight/*; do
-    if [ -d "$entry" ]; then
-      card=$(basename "$entry")
-      break
-    fi
+wait_for_interface() {
+  while :; do
+    iface=$(ip link | awk '/state UP/ {gsub(":", "", $2); print $2; exit}')
+    [ -n "$iface" ] && {
+      printf "%s" "$iface"
+      return
+    }
+    sleep 0.3
   done
+}
 
-  # Battery and adapter detection
-  battery=""
+wait_for_internet() {
+  while ! curl -fsS --max-time 3 https://google.com >/dev/null 2>&1; do
+    sleep 0.3
+  done
+}
+
+detect_graphics() {
+  for entry in /sys/class/backlight/*; do
+    [ -d "$entry" ] || continue
+    printf "%s" "$(basename "$entry")"
+    return
+  done
+}
+
+detect_battery() {
   for entry in /sys/class/power_supply/*; do
     entry_name=$(basename "$entry")
     case "$entry_name" in
     *BAT*)
-      battery="$entry_name"
-      break
+      printf "%s" "$entry_name"
+      return
       ;;
     esac
   done
+}
 
-  adapter=""
+detect_adapter() {
   for entry in /sys/class/power_supply/*; do
     entry_name=$(basename "$entry")
     case "$entry_name" in
     *AC* | *ADP*)
-      adapter="$entry_name"
-      break
+      printf "%s" "$entry_name"
+      return
       ;;
     esac
   done
+}
 
-  # Atomic update of the configuration file
+setup_system_vars() {
+  card=$(detect_graphics)
+  battery=$(detect_battery)
+  adapter=$(detect_adapter)
+
+  # Step 1: Wait for the physical/virtual UP interface
+  primary_net=$(wait_for_interface)
+
+  # Step 2: Adjust to the actual output interface
+  wait_for_internet
+  route_if=$(ip route 2>/dev/null | awk '/default/ {print $5; exit}')
+  [ -n "$route_if" ] && primary_net="$route_if"
+
   tmpfile=$(mktemp)
   awk -v net="$primary_net" \
     -v card="$card" \
@@ -55,7 +80,5 @@ setup_system_vars() {
     ' "$CONFIG_FILE" >"$tmpfile" && mv "$tmpfile" "$CONFIG_FILE"
 }
 
-# Main execution
-sleep 3
 setup_system_vars
 touch "$SFILE"
