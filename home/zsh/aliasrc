@@ -8,7 +8,7 @@ alias lld='eza -algFD --group-directories-first --octal-permissions --git'
 alias set-proxy='export ALL_PROXY=socks5://127.0.0.1:2080'
 alias unset-proxy='unset ALL_PROXY'
 
-# Pwn
+# PWN
 
 alias check_aslr='cat /proc/sys/kernel/randomize_va_space'
 alias aslron='echo 2 | sudo tee /proc/sys/kernel/randomize_va_space'
@@ -18,6 +18,12 @@ alias aslroff='echo 0 | sudo tee /proc/sys/kernel/randomize_va_space'
 alias check_ptrace='cat /proc/sys/kernel/yama/ptrace_scope'
 alias ptrace_on='echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
 alias ptrace_off='echo 1 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+alias ptrace_disable='echo 2 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+alias ptrace_cap='echo 3 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+
+alias pwninit='pwninit --no-template'
+
+alias gdb='pwndbg'
 
 # Rust Documentation
 
@@ -31,4 +37,3 @@ alias yarn-env='export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/n
 
 alias spotify='spotify --proxy-server="socks5://127.0.0.1:2080"'
 alias discord='discord --proxy-server="socks5://127.0.0.1:2080"'
-alias element='element-desktop --proxy-server="socks5://127.0.0.1:2080"'
