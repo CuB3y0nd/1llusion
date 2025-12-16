@@ -15,7 +15,7 @@ export HTTP_PROXY="http://127.0.0.1:2080"
 export https_proxy="http://127.0.0.1:2080"
 export HTTPS_PROXY="http://127.0.0.1:2080"
 export NO_PROXY="localhost,127.0.0.1"
-export no_porxy="localhost,127.0.0.1"
+export no_proxy="localhost,127.0.0.1"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 if [[ -d "$HOME/.local/bin" ]]; then
